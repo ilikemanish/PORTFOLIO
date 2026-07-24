@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>ManishHere | Aspiring Data Analyst</title>
+    <title>Manish Kashyap | Aspiring Data Analyst</title>
 
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <!-- External CSS -->
@@ -47,29 +48,30 @@
         <div id="particles-js"></div>
 
         <div class="hero-content">
-            <h1 data-aos="fade-up" data-aos-delay="100">Hi, I'm <span>Manish Kashyap</span> <i class="fa-solid fa-handshake"></i><br />Aspiring Data Analyst</h1>
+            <h1 data-aos="fade-up" data-aos-delay="100"><span id="dynamicGreeting">Hi</span>, I'm <span>Manish Kashyap</span> <i class="fa-solid fa-handshake"></i><br />Aspiring Data Analyst</h1>
 
             <p data-aos="fade-up" data-aos-delay="150">An aspiring Data Analyst passionate about data analysis and visualization. Skilled in Python, SQL, Excel, Power BI, and Tableau, I focus on extracting meaningful insights from data and presenting them in a clear and impactful way. I continuously work on projects to improve my analytical, technical, and problem-solving skills.</p>
 
-            <div class="terminal-box glow-card" id="terminalBox" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.2" data-aos="fade-up" data-aos-delay="200">
+            <!-- Static Terminal -->
+            <div class="terminal-box glow-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="terminal-header">
                     <span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span>
                 </div>
                 <div class="terminal-body">
-                    manish@analytics:~# launch --profile<br />
-                    &gt; Environment: <span>Python 3.11 / SQL Server</span><br />
-                    &gt; Target: <span>Data Analytics &amp; Visualization Core</span><br />
-                    &gt; Status: <span>Active &amp; Ready for Infrastructure Deployment</span>
+                    <div><span class="prompt">manish@analytics:~#</span> launch --profile</div>
+                    <div>&gt; Environment: <span class="highlight">Python 3.11 / SQL Server</span></div>
+                    <div>&gt; Target: <span class="highlight">Data Analytics &amp; Visualization Core</span></div>
+                    <div>&gt; Status: <span class="highlight">Active &amp; Ready for Infrastructure Deployment</span></div>
                 </div>
             </div>
 
             <div class="hero-actions" data-aos="fade-up" data-aos-delay="250">
                 <a href="#contact" class="btn btn-primary">Contact Me</a>
-                <a href="assets/manish-resume.pdf" download class="btn btn-secondary"><i class="fa-solid fa-download"></i> Download Resume</a>
+                <button id="openResumeViewerBtn" class="btn btn-secondary"><i class="fa-solid fa-file-pdf"></i> View Resume</button>
             </div>
 
             <div class="social-links" data-aos="fade-up" data-aos-delay="300">
-                <a href="https://github.com" target="_blank" aria-label="GitHub Profile"><i class="fa-brands fa-github"></i></a>
+                <a href="https://github.com/Manish-kashyap" target="_blank" aria-label="GitHub Profile"><i class="fa-brands fa-github"></i></a>
                 <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn Network"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="https://instagram.com" target="_blank" aria-label="Instagram Stream"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://facebook.com" target="_blank" aria-label="Facebook Connection"><i class="fa-brands fa-facebook"></i></a>
@@ -77,7 +79,7 @@
         </div>
 
         <div class="hero-image-container" data-aos="zoom-in" data-aos-delay="150">
-            <div style="position: relative; width: 100%; display: flex; justify-content: center;">
+            <div style="position: relative; width: 100%; display: flex; justify-content: center; align-items: center;">
 
                 <div class="floating-widget widget-1">
                     <div class="widget-icon"><i class="fa-solid fa-broom"></i></div>
@@ -117,159 +119,15 @@
                 <h3 class="counter" data-target="25">0</h3><span>+</span>
                 <p>Dashboards Built</p>
             </div>
-            <div class="metric-card glow-card" data-tilt data-tilt-max="10">
-                <i class="fa-solid fa-filter metric-icon"></i>
-                <h3 class="counter" data-target="40">0</h3><span>+</span>
-                <p>Datasets Cleaned</p>
+            <div class="metric-card glow-card" data-tilt data-tilt-max="10" id="githubStatCard">
+                <i class="fa-brands fa-github metric-icon"></i>
+                <h3 class="counter" id="githubCounter" data-target="12">0</h3><span id="githubPlus">+</span>
+                <p id="githubText">GitHub Repositories</p>
             </div>
         </div>
     </section>
 
-    <!-- SKILLS -->
-    <section id="skills">
-        <h2 class="section-title" data-aos="fade-right">My Skills Hub</h2>
-        <div class="skills-container-box">
-
-            <div class="subsection-title" data-aos="fade-right"><i class="fa-solid fa-code"></i> Technical Expertise</div>
-            <div class="skills-row">
-                <div class="skill-item tech-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="50" style="--progress: 90%;">
-                    <div class="skill-main-view">
-                        <img src="assets/icons/python.svg" alt="Python" onerror="this.src='https://cdn-icons-png.flaticon.com/512/5968/5968350.png'" />
-                        <span>Python</span>
-                    </div>
-                    <div class="skill-loading-view">
-                        <div class="skill-loading-header">
-                            <p>Status</p><span class="pct-txt">90%</span>
-                        </div>
-                        <div class="track-bg"><div class="fill-bar"></div></div>
-                    </div>
-                </div>
-                <div class="skill-item tech-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="100" style="--progress: 85%;">
-                    <div class="skill-main-view">
-                        <img src="assets/icons/sql.svg" alt="SQL" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2772/2772128.png'" />
-                        <span>SQL</span>
-                    </div>
-                    <div class="skill-loading-view">
-                        <div class="skill-loading-header">
-                            <p>Status</p><span class="pct-txt">85%</span>
-                        </div>
-                        <div class="track-bg"><div class="fill-bar"></div></div>
-                    </div>
-                </div>
-                <div class="skill-item tech-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="150" style="--progress: 80%;">
-                    <div class="skill-main-view">
-                        <img src="assets/icons/powerbi.svg" alt="Power BI" onerror="this.src='https://img.icons8.com/color/480/power-bi.png'" />
-                        <span>Power BI</span>
-                    </div>
-                    <div class="skill-loading-view">
-                        <div class="skill-loading-header">
-                            <p>Status</p><span class="pct-txt">80%</span>
-                        </div>
-                        <div class="track-bg"><div class="fill-bar"></div></div>
-                    </div>
-                </div>
-                <div class="skill-item tech-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="200" style="--progress: 75%;">
-                    <div class="skill-main-view">
-                        <img src="assets/icons/tableau.svg" alt="Tableau" onerror="this.src='https://img.icons8.com/color/480/tableau-software.png'" />
-                        <span>Tableau</span>
-                    </div>
-                    <div class="skill-loading-view">
-                        <div class="skill-loading-header">
-                            <p>Status</p><span class="pct-txt">75%</span>
-                        </div>
-                        <div class="track-bg"><div class="fill-bar"></div></div>
-                    </div>
-                </div>
-                <div class="skill-item tech-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="250" style="--progress: 90%;">
-                    <div class="skill-main-view">
-                        <img src="assets/icons/excel.svg" alt="Excel" onerror="this.src='https://cdn-icons-png.flaticon.com/512/732/732220.png'" />
-                        <span>Excel</span>
-                    </div>
-                    <div class="skill-loading-view">
-                        <div class="skill-loading-header">
-                            <p>Status</p><span class="pct-txt">90%</span>
-                        </div>
-                        <div class="track-bg"><div class="fill-bar"></div></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="subsection-title" data-aos="fade-right"><i class="fa-solid fa-brain"></i> Professional Core Soft Skills</div>
-            <div class="skills-row">
-                <div class="skill-item social-card soft-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="50">
-                    <div class="skill-main-view">
-                        <i class="fa-solid fa-lightbulb soft-icon"></i>
-                        <span>Critical Thinking</span>
-                    </div>
-                </div>
-                <div class="skill-item social-card soft-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="100">
-                    <div class="skill-main-view">
-                        <i class="fa-solid fa-users-gear soft-icon"></i>
-                        <span>Team Leading</span>
-                    </div>
-                </div>
-                <div class="skill-item social-card soft-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="150">
-                    <div class="skill-main-view">
-                        <i class="fa-solid fa-layer-group soft-icon"></i>
-                        <span>Decision Making</span>
-                    </div>
-                </div>
-                <div class="skill-item social-card soft-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="200">
-                    <div class="skill-main-view">
-                        <i class="fa-solid fa-chart-pie soft-icon"></i>
-                        <span>Storytelling</span>
-                    </div>
-                </div>
-                <div class="skill-item social-card soft-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="250">
-                    <div class="skill-main-view">
-                        <i class="fa-solid fa-handshake-angle soft-icon"></i>
-                        <span>Collaborative</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- PORTFOLIO -->
-    <section id="portfolio">
-        <h2 class="section-title" data-aos="fade-right">Projects - Data Visualization</h2>
-        <div class="portfolio-filter-bar" data-aos="fade-up">
-            <span class="filter-tag active" data-target="all">All Specs</span>
-            <span class="filter-tag" data-target="excel">Excel Modeling</span>
-            <span class="filter-tag" data-target="sql">SQL Query Engine</span>
-            <span class="filter-tag" data-target="bi">Power BI Analytics</span>
-            <span class="filter-tag" data-target="python">Python Data Analysis</span>
-        </div>
-        <div class="projects-placeholder glow-card" id="projectPlaceholderBox" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="portfolio-notice">Coming Soon: My interactive dashboards and reports will be displayed here.</h3>
-
-            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="excel">
-                <div class="mock-meta"><span>Excel Analytical Ledger</span><span>Pending Sandbox Build</span></div>
-                <p style="font-size:0.85rem; color:var(--text-muted);">Advanced data modeling using structural macro sheets and complex visual filters.</p>
-            </div>
-            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="sql">
-                <div class="mock-meta"><span>SQL Query Engine Pipeline</span><span>Pending Integration</span></div>
-                <p style="font-size:0.85rem; color:var(--text-muted);">Relational data extraction scripts optimized for business metrics isolation operations.</p>
-            </div>
-            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="bi">
-                <div class="mock-meta"><span>Power BI Dashboard Interface</span><span>Awaiting Visual Asset</span></div>
-                <p style="font-size:0.85rem; color:var(--text-muted);">Interactive enterprise dashboard tracking core performance KPIs and active sales fields.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section id="testimonials">
-        <h2 class="section-title" data-aos="fade-right">Testimonials</h2>
-        <div class="testimonials-stack">
-            <div class="testimonial-item" data-aos="fade-up" data-aos-delay="50">“Manish approaches data problems with clarity, precision, and attention to detail.”</div>
-            <div class="testimonial-item" data-aos="fade-up" data-aos-delay="100">“He presents data in a simple and visually engaging way that is easy to understand.”</div>
-            <div class="testimonial-item" data-aos="fade-up" data-aos-delay="150">“Manish’s analytical work supports smarter, faster, and data-driven decision-making.”</div>
-        </div>
-    </section>
-
-    <!-- ABOUT / EDUCATION -->
+    <!-- ABOUT -->
     <section id="about">
         <h2 class="section-title" data-aos="fade-right">Education</h2>
         <div class="about-grid-container">
@@ -287,6 +145,262 @@
                 <p><strong>Specialization:</strong> Artificial Intelligence, Machine Learning, Deep Learning</p>
                 <p><strong>Focus Areas:</strong> Data Analytics, Python, Machine Learning, Data Science</p>
             </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <h2 class="section-title" data-aos="fade-right">My Skills Hub</h2>
+        <div class="skills-container-box">
+
+            <div class="subsection-title" data-aos="fade-right"><i class="fa-solid fa-code"></i> Technical Expertise <span style="font-size:0.7rem; color:var(--text-muted); font-weight:400; margin-left:10px;">(Click to view proficiency)</span></div>
+            <div class="skills-row">
+                <div class="skill-item tech-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="50" style="--progress: 90%;">
+                    <div class="skill-main-view">
+                        <img src="assets/icons/python.svg" alt="Python" onerror="this.src='https://cdn-icons-png.flaticon.com/512/5968/5968350.png'" />
+                        <span>Python</span>
+                    </div>
+                    <div class="skill-loading-view">
+                        <div class="skill-loading-header">
+                            <p>Proficiency</p><span class="pct-txt">90%</span>
+                        </div>
+                        <div class="track-bg"><div class="fill-bar"></div></div>
+                    </div>
+                </div>
+                <div class="skill-item tech-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="100" style="--progress: 85%;">
+                    <div class="skill-main-view">
+                        <img src="assets/icons/sql.svg" alt="SQL" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2772/2772128.png'" />
+                        <span>SQL</span>
+                    </div>
+                    <div class="skill-loading-view">
+                        <div class="skill-loading-header">
+                            <p>Proficiency</p><span class="pct-txt">85%</span>
+                        </div>
+                        <div class="track-bg"><div class="fill-bar"></div></div>
+                    </div>
+                </div>
+                <div class="skill-item tech-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="150" style="--progress: 80%;">
+                    <div class="skill-main-view">
+                        <img src="assets/icons/powerbi.svg" alt="Power BI" onerror="this.src='https://img.icons8.com/color/480/power-bi.png'" />
+                        <span>Power BI</span>
+                    </div>
+                    <div class="skill-loading-view">
+                        <div class="skill-loading-header">
+                            <p>Proficiency</p><span class="pct-txt">80%</span>
+                        </div>
+                        <div class="track-bg"><div class="fill-bar"></div></div>
+                    </div>
+                </div>
+                <div class="skill-item tech-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="200" style="--progress: 75%;">
+                    <div class="skill-main-view">
+                        <img src="assets/icons/tableau.svg" alt="Tableau" onerror="this.src='https://img.icons8.com/color/480/tableau-software.png'" />
+                        <span>Tableau</span>
+                    </div>
+                    <div class="skill-loading-view">
+                        <div class="skill-loading-header">
+                            <p>Proficiency</p><span class="pct-txt">75%</span>
+                        </div>
+                        <div class="track-bg"><div class="fill-bar"></div></div>
+                    </div>
+                </div>
+                <div class="skill-item tech-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="250" style="--progress: 90%;">
+                    <div class="skill-main-view">
+                        <img src="assets/icons/excel.svg" alt="Excel" onerror="this.src='https://cdn-icons-png.flaticon.com/512/732/732220.png'" />
+                        <span>Excel</span>
+                    </div>
+                    <div class="skill-loading-view">
+                        <div class="skill-loading-header">
+                            <p>Proficiency</p><span class="pct-txt">90%</span>
+                        </div>
+                        <div class="track-bg"><div class="fill-bar"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection-title" data-aos="fade-right"><i class="fa-solid fa-brain"></i> Professional Core Soft Skills</div>
+            
+            <div class="skills-row">
+                <div class="skill-item social-card glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="50">
+                    <div class="skill-main-view">
+                        <i class="fa-solid fa-lightbulb soft-icon"></i>
+                        <span>Critical Thinking</span>
+                    </div>
+                </div>
+                <div class="skill-item social-card glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-main-view">
+                        <i class="fa-solid fa-users-gear soft-icon"></i>
+                        <span>Team Leading</span>
+                    </div>
+                </div>
+                <div class="skill-item social-card glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="150">
+                    <div class="skill-main-view">
+                        <i class="fa-solid fa-layer-group soft-icon"></i>
+                        <span>Decision Making</span>
+                    </div>
+                </div>
+                <div class="skill-item social-card glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-main-view">
+                        <i class="fa-solid fa-chart-pie soft-icon"></i>
+                        <span>Storytelling</span>
+                    </div>
+                </div>
+                <div class="skill-item social-card glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="250">
+                    <div class="skill-main-view">
+                        <i class="fa-solid fa-handshake-angle soft-icon"></i>
+                        <span>Collaborative</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+        <h2 class="section-title" data-aos="fade-right">Projects & Analytics</h2>
+        
+        <div class="portfolio-filter-bar" data-aos="fade-up">
+            <span class="filter-tag active" data-target="major">Major Projects</span>
+            <span class="filter-tag" data-target="python">Python</span>
+            <span class="filter-tag" data-target="statistics">Statistics</span>
+            <span class="filter-tag" data-target="excel">MS Excel</span>
+        </div>
+
+        <div class="projects-grid-container" id="projectPlaceholderBox" data-aos="fade-up" data-aos-delay="100">
+            
+            <!-- Major Project -->
+            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="major" style="display: flex;">
+                <div style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
+                    <i class="fa-solid fa-rocket" style="font-size: 2.5rem; color: var(--accent-emerald); margin-bottom: 10px; opacity: 0.8; filter: drop-shadow(0 0 8px rgba(0, 245, 160, 0.4));"></i>
+                    <h3 style="color:var(--text-main); margin-bottom: 5px;">Interactive project will display soon</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 5px;">A comprehensive multi-tool pipeline spanning database querying, cleaning, deep exploration, and interactive visualization dashboards.</p>
+                    
+                    <div class="pipeline-flow">
+                        <span><i class="devicon-mysql-plain"></i> SQL</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <span><i class="devicon-python-plain"></i> Python</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <span><i class="fa-solid fa-file-excel"></i> Excel</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <span><i class="fa-solid fa-chart-pie"></i> Power BI</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <span><i class="fa-solid fa-chart-line"></i> Tableau</span>
+                    </div>
+
+                    <div class="mock-meta" style="justify-content: center; margin-top: 15px;">
+                        <span style="border: 1px solid #ffbd2e; color: #ffbd2e; padding: 5px 15px; border-radius: 20px; font-weight: 800; letter-spacing: 1px;">COMING SOON</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NYC Taxi - Statistics -->
+            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="statistics" style="display: none;">
+                <div class="mock-meta"><span>Data Statistics</span></div>
+                <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">NYC Taxi Revenue Analysis</h3>
+                
+                <div class="impact-badge">
+                    <i class="fa-solid fa-bolt"></i> Impact: Found ways to maximize daily driver earnings.
+                </div>
+
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">Performed statistical analysis on NYC taxi trip data to identify patterns and insights for maximizing driver revenue.</p>
+                <div class="project-links-row">
+                    <a href="https://github.com/Manish-kashyap/NYC-Taxi-Revenue-Maximization_Statistics" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> Code</a>
+                    <span class="project-link-btn btn-details" data-modal="modal-taxi"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
+                </div>
+            </div>
+
+            <!-- Google Play Store EDA - Python -->
+            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="python" style="display: none;">
+                <div class="mock-meta"><span>Python & EDA</span></div>
+                <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">Google Play Store EDA</h3>
+                
+                <div class="impact-badge">
+                    <i class="fa-solid fa-bolt"></i> Impact: Identified key features of highly-rated apps.
+                </div>
+
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">Exploratory Data Analysis on Google Play Store apps to uncover patterns and factors that contribute to app success.</p>
+                <div class="project-links-row">
+                    <a href="https://github.com/Manish-kashyap/Google_Play_Store-EDA" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> Code</a>
+                    <a href="https://www.kaggle.com/datasets/lava18/google-play-store-apps" target="_blank" class="project-link-btn"><i class="fa-solid fa-database"></i> Dataset</a>
+                    <span class="project-link-btn btn-details" data-modal="modal-playstore"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
+                </div>
+            </div>
+
+            <!-- Customer Churn - Data Analysis -->
+            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="python" style="display: none;">
+                <div class="mock-meta"><span>Data Analysis</span></div>
+                <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">Customer Churn Analysis</h3>
+                
+                <div class="impact-badge">
+                    <i class="fa-solid fa-bolt"></i> Impact: Identified key churn indicators for business strategy.
+                </div>
+
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">Analyzed customer data to identify patterns and factors contributing to customer churn, enabling data-driven retention strategies.</p>
+                <div class="project-links-row">
+                    <a href="https://github.com/Manish-kashyap/Customer_Churn_Analysis-Python-" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> Code</a>
+                    <span class="project-link-btn btn-details" data-modal="modal-churn"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
+                </div>
+            </div>
+
+            <!-- Diwali Sales Analysis - Python -->
+            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="python" style="display: none;">
+                <div class="mock-meta"><span>Python Analytics</span></div>
+                <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">Diwali Sales Analysis</h3>
+                
+                <div class="impact-badge">
+                    <i class="fa-solid fa-bolt"></i> Impact: Highlighted top 3 best-selling demographics.
+                </div>
+
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">Analyzed Diwali festival sales data to understand customer behavior and optimize marketing strategies.</p>
+                <div class="project-links-row">
+                    <a href="https://github.com/Manish-kashyap/Diwali_Sales_Analysis-Python-" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> Code</a>
+                    <span class="project-link-btn btn-details" data-modal="modal-diwali"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
+                </div>
+            </div>
+
+            <!-- NumPy Sales Analysis - Python -->
+            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="python" style="display: none;">
+                <div class="mock-meta"><span>Data Processing</span></div>
+                <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">NumPy Sales Analysis</h3>
+                
+                <div class="impact-badge">
+                    <i class="fa-solid fa-bolt"></i> Impact: Significantly optimized data processing times.
+                </div>
+
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">Used NumPy for efficient array operations on sales data, significantly reducing processing time and uncovering business trends.</p>
+                <div class="project-links-row">
+                    <a href="https://github.com/Manish-kashyap/Sales_Analysis_Using_Numpy" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> Code</a>
+                    <span class="project-link-btn btn-details" data-modal="modal-numpy"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
+                </div>
+            </div>
+
+            <!-- Excel Project -->
+            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="excel" style="display: none;">
+                <div class="mock-meta"><span>Business Intelligence</span></div>
+                <img src="https://raw.githubusercontent.com/Manish-kashyap/SALES-DASHBOARD-EXCEL/main/DASBOARD.png" alt="Excel Dashboard" class="excel-dashboard-img">
+                <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">Interactive Sales Dashboard</h3>
+                
+                <div class="impact-badge">
+                    <i class="fa-solid fa-bolt"></i> Impact: Automated daily reporting for executives.
+                </div>
+
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">Built an interactive Excel dashboard to track daily sales, consolidate fragmented retail data, and automate KPI tracking.</p>
+                <div class="project-links-row">
+                    <a href="https://github.com/Manish-kashyap/SALES-DASHBOARD-EXCEL" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> Project Files</a>
+                    <span class="project-link-btn btn-details" data-modal="modal-excel"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+        <h2 class="section-title" data-aos="fade-right">Testimonials</h2>
+        <div class="testimonials-stack">
+            <div class="testimonial-item" data-aos="fade-up" data-aos-delay="50">"Manish approaches data problems with clarity, precision, and attention to detail."</div>
+            <div class="testimonial-item" data-aos="fade-up" data-aos-delay="100">"He presents data in a simple and visually engaging way that is easy to understand."</div>
+            <div class="testimonial-item" data-aos="fade-up" data-aos-delay="150">"Manish's analytical work supports smarter, faster, and data-driven decision-making."</div>
         </div>
     </section>
 
@@ -316,7 +430,10 @@
                     <div class="icon-3d-shield"><i class="fa-solid fa-envelope"></i></div>
                     <div class="card-3d-info">
                         <h4>Email Network</h4>
-                        <p><a href="mailto:manishkshyp0123@gmail.com">manishkshyp0123@gmail.com</a></p>
+                        <div class="copy-email-wrapper">
+                            <a href="mailto:manishkshyp0123@gmail.com" id="emailText">manishkshyp0123@gmail.com</a>
+                            <button class="copy-btn" id="copyEmailBtn" aria-label="Copy Email"><i class="fa-regular fa-copy"></i></button>
+                        </div>
                     </div>
                 </div>
                 <div class="card-3d-node glow-card" data-tilt data-tilt-max="15" data-tilt-glare data-tilt-max-glare="0.2" data-aos="fade-up" data-aos-delay="100">
@@ -330,7 +447,7 @@
                     <div class="icon-3d-shield"><i class="fa-solid fa-briefcase"></i></div>
                     <div class="card-3d-info">
                         <h4>Freelance Status</h4>
-                        <p>Available for Projects</p>
+                        <p>Available for Roles</p>
                     </div>
                 </div>
             </div>
@@ -395,13 +512,197 @@
         <p>&copy; 2026 Manish Kashyap. All Rights Reserved.</p>
     </footer>
 
-    <!-- MOBILE CONTACT BUTTON -->
-    <a href="#contact" class="mobile-contact-button" aria-label="Contact Me"><i class="fa-solid fa-message"></i></a>
+    <!-- RESUME VIEWER MODAL -->
+    <div class="modal-overlay" id="resumeViewerModal">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px;">
+                <h2 class="modal-title" style="margin:0;">Manish Kashyap Resume</h2>
+                <a href="assets/manish-resume.pdf" download id="resumeDownloadBtnModal" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download PDF</a>
+            </div>
+            <iframe src="assets/manish-resume.pdf" class="resume-iframe" title="Manish Kashyap Resume"></iframe>
+        </div>
+    </div>
 
-    <!-- External JS -->
+    <!-- PROJECT DETAILS MODALS -->
+    <div class="modal-overlay" id="modal-major">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="modal-title">Retail Data Analysis (Active W.I.P.)</h2>
+            <div class="modal-subtitle">Multi-Tool Analytics Pipeline</div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-circle-question"></i> The Problem</h4>
+                <p>The business wanted to consolidate fragmented retail data and build a pipeline for data integration. They needed a multi-tool approach for cleaning, analysis, and visualization to empower stakeholders with a central data view.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4>
+                <p>I am architecting a comprehensive pipeline spanning from database extraction with <strong>SQL</strong> and cleaning in <strong>Python</strong>, to descriptive exploration in <strong>Excel</strong>, and interactive dashboarding in both <strong>Power BI</strong> and <strong>Tableau</strong>.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-lightbulb"></i> Key Insights (Anticipated)</h4>
+                <ul>
+                    <li>Integrated view of fragmented retail data across channels.</li>
+                    <li>Automated KPI tracking through dynamic central dashboards.</li>
+                    <li>Vectorized array operations cutting computation time.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-taxi">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="modal-title">NYC Taxi Revenue Analysis</h2>
+            <div class="modal-subtitle">Statistical Analysis Project</div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-circle-question"></i> The Problem</h4>
+                <p>Drivers wanted to maximize their daily income, but it's hard to know which trip variables actually lead to higher fares and tips.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4>
+                <p>I performed statistical analysis on NYC taxi data using Python to identify patterns and prove mathematically what drives revenue, rather than just guessing.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4>
+                <ul>
+                    <li>Identified critical fare variables and optimal operating timeframes.</li>
+                    <li>Found specific times of day that yield a 20% higher tip rate.</li>
+                    <li>Proved that shorter, high-frequency trips in certain zones are more profitable.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-playstore">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="modal-title">Google Play Store EDA</h2>
+            <div class="modal-subtitle">Exploratory Data Analysis</div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-circle-question"></i> The Problem</h4>
+                <p>Developers face app visibility challenges. I wanted to resolve these challenges by uncovering market trends, user engagement patterns, and key rating factors.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4>
+                <p>I cleaned messy app data using <strong>Pandas</strong> and <strong>NumPy</strong> and visualized user patterns using <strong>Seaborn</strong> and <strong>Matplotlib</strong>, creating charts to examine app size, pricing, and ratings.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4>
+                <ul>
+                    <li>Identified key correlations between app size, pricing, and user ratings.</li>
+                    <li>Highlighted key features of highly-rated and heavily-downloaded apps.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-churn">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="modal-title">Customer Churn Analysis</h2>
+            <div class="modal-subtitle">Data Analytics Project</div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-circle-question"></i> The Problem</h4>
+                <p>A subscription business was losing customers. They needed to understand the factors contributing to churn to develop effective retention strategies.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4>
+                <p>I analyzed customer data using <strong>Pandas</strong> and performed in-depth analysis to identify patterns and key indicators of customer churn.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4>
+                <ul>
+                    <li>Identified top churn indicators, enabling data-driven retention strategies.</li>
+                    <li>Created customer risk profiles to guide targeted retention campaigns.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-diwali">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="modal-title">Diwali Sales Analysis</h2>
+            <div class="modal-subtitle">Retail Data Analytics</div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-circle-question"></i> The Problem</h4>
+                <p>A retail store needed to optimize seasonal inventory by understanding customer behavioral trends across different demographics.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4>
+                <p>I visualized festive season sales patterns using <strong>Matplotlib</strong> and <strong>Seaborn</strong>, grouping buyers by age, gender, and category to analyze preferences.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4>
+                <ul>
+                    <li>Targeted marketing informed by segmenting customer behavior and product demographics.</li>
+                    <li>Highlighted top 3 best-selling product categories for inventory planning.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-numpy">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="modal-title">NumPy Sales Analysis</h2>
+            <div class="modal-subtitle">High-Speed Data Processing</div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-circle-question"></i> The Problem</h4>
+                <p>Processing millions of rows of sales data was taking too long. Standard loops were slowing down messy array processing and business trend extraction.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4>
+                <p>I rewrote the data processing using vectorized array operations in <strong>NumPy</strong> and implemented efficient data manipulation with <strong>Pandas</strong>.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4>
+                <ul>
+                    <li>Vectorized array operations cut down massive data processing computation time.</li>
+                    <li>Cleaned messy arrays to uncover useful business trends with significantly reduced overhead.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-excel">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="modal-title">Interactive Sales Dashboard</h2>
+            <div class="modal-subtitle">Business Intelligence in Excel</div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-circle-question"></i> The Problem</h4>
+                <p>Managers needed fragmented retail data consolidated into a central view to track dynamic sales, accelerate executive decision-making, and automate KPI tracking.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4>
+                <p>I built an interactive dashboard entirely in <strong>MS Excel</strong>. Raw data was connected to <strong>Pivot Tables</strong> for easy manager data understanding at a glance.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-display"></i> Live Interactive Preview</h4>
+                <div class="iframe-placeholder">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <p style="margin-bottom: 0;">Interactive Dashboard Active Here</p>
+                    <span style="font-size: 0.8rem; color: var(--accent-blue);">(Simulated Web Embed)</span>
+                </div>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4>
+                <ul>
+                    <li>Dynamic dashboard for KPI tracking and visualizing revenue trends.</li>
+                    <li>Consolidated fragmented retail data, accelerating executive decision-making.</li>
+                    <li>Automated KPI tracking with Pivot Tables.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JS Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Main JS -->
     <script src="script.js"></script>
 </body>
 </html>
