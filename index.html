@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <!-- External CSS -->
+    <!-- Main CSS -->
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -25,9 +25,6 @@
             <div class="loader-text">Loading Portfolio...</div>
         </div>
     </div>
-
-    <!-- CUSTOM CURSOR -->
-    <div class="custom-cursor" id="customCursor"></div>
 
     <!-- HEADER -->
     <header>
@@ -48,7 +45,17 @@
         <div id="particles-js"></div>
 
         <div class="hero-content">
-            <h1 data-aos="fade-up" data-aos-delay="100"><span id="dynamicGreeting">Hi</span>, I'm <span>Manish Kashyap</span> <i class="fa-solid fa-handshake"></i><br />Aspiring Data Analyst</h1>
+            <h1 data-aos="fade-up" data-aos-delay="100">
+                <span class="greeting-line">
+                    <span class="greeting-text" id="dynamicGreeting">Good Morning</span><span class="white-text">, I'm </span>
+                </span>
+                <span class="name-line">
+                    <span class="name-text">Manish Kashyap</span> <i class="fa-solid fa-handshake handshake-icon"></i>
+                </span>
+                <span class="title-line">
+                    <span class="title-text">Aspiring Data Analyst</span>
+                </span>
+            </h1>
 
             <p data-aos="fade-up" data-aos-delay="150">An aspiring Data Analyst passionate about data analysis and visualization. Skilled in Python, SQL, Excel, Power BI, and Tableau, I focus on extracting meaningful insights from data and presenting them in a clear and impactful way. I continuously work on projects to improve my analytical, technical, and problem-solving skills.</p>
 
@@ -155,7 +162,7 @@
 
             <div class="subsection-title" data-aos="fade-right"><i class="fa-solid fa-code"></i> Technical Expertise <span style="font-size:0.7rem; color:var(--text-muted); font-weight:400; margin-left:10px;">(Click to view proficiency)</span></div>
             <div class="skills-row">
-                <div class="skill-item tech-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="50" style="--progress: 90%;">
+                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="50" style="--progress: 90%;">
                     <div class="skill-main-view">
                         <img src="assets/icons/python.svg" alt="Python" onerror="this.src='https://cdn-icons-png.flaticon.com/512/5968/5968350.png'" />
                         <span>Python</span>
@@ -167,7 +174,7 @@
                         <div class="track-bg"><div class="fill-bar"></div></div>
                     </div>
                 </div>
-                <div class="skill-item tech-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="100" style="--progress: 85%;">
+                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="100" style="--progress: 85%;">
                     <div class="skill-main-view">
                         <img src="assets/icons/sql.svg" alt="SQL" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2772/2772128.png'" />
                         <span>SQL</span>
@@ -179,7 +186,7 @@
                         <div class="track-bg"><div class="fill-bar"></div></div>
                     </div>
                 </div>
-                <div class="skill-item tech-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="150" style="--progress: 80%;">
+                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="150" style="--progress: 80%;">
                     <div class="skill-main-view">
                         <img src="assets/icons/powerbi.svg" alt="Power BI" onerror="this.src='https://img.icons8.com/color/480/power-bi.png'" />
                         <span>Power BI</span>
@@ -191,7 +198,7 @@
                         <div class="track-bg"><div class="fill-bar"></div></div>
                     </div>
                 </div>
-                <div class="skill-item tech-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="200" style="--progress: 75%;">
+                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="200" style="--progress: 75%;">
                     <div class="skill-main-view">
                         <img src="assets/icons/tableau.svg" alt="Tableau" onerror="this.src='https://img.icons8.com/color/480/tableau-software.png'" />
                         <span>Tableau</span>
@@ -203,7 +210,7 @@
                         <div class="track-bg"><div class="fill-bar"></div></div>
                     </div>
                 </div>
-                <div class="skill-item tech-item glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="250" style="--progress: 90%;">
+                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="250" style="--progress: 90%;">
                     <div class="skill-main-view">
                         <img src="assets/icons/excel.svg" alt="Excel" onerror="this.src='https://cdn-icons-png.flaticon.com/512/732/732220.png'" />
                         <span>Excel</span>
@@ -220,31 +227,31 @@
             <div class="subsection-title" data-aos="fade-right"><i class="fa-solid fa-brain"></i> Professional Core Soft Skills</div>
             
             <div class="skills-row">
-                <div class="skill-item social-card glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="50">
+                <div class="skill-item social-card glow-card" data-aos="fade-up" data-aos-delay="50">
                     <div class="skill-main-view">
                         <i class="fa-solid fa-lightbulb soft-icon"></i>
                         <span>Critical Thinking</span>
                     </div>
                 </div>
-                <div class="skill-item social-card glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="100">
+                <div class="skill-item social-card glow-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="skill-main-view">
                         <i class="fa-solid fa-users-gear soft-icon"></i>
                         <span>Team Leading</span>
                     </div>
                 </div>
-                <div class="skill-item social-card glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="150">
+                <div class="skill-item social-card glow-card" data-aos="fade-up" data-aos-delay="150">
                     <div class="skill-main-view">
                         <i class="fa-solid fa-layer-group soft-icon"></i>
                         <span>Decision Making</span>
                     </div>
                 </div>
-                <div class="skill-item social-card glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="200">
+                <div class="skill-item social-card glow-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="skill-main-view">
                         <i class="fa-solid fa-chart-pie soft-icon"></i>
                         <span>Storytelling</span>
                     </div>
                 </div>
-                <div class="skill-item social-card glow-card" data-tilt data-tilt-max="15" data-tilt-scale="1.05" data-aos="fade-up" data-aos-delay="250">
+                <div class="skill-item social-card glow-card" data-aos="fade-up" data-aos-delay="250">
                     <div class="skill-main-view">
                         <i class="fa-solid fa-handshake-angle soft-icon"></i>
                         <span>Collaborative</span>
@@ -269,7 +276,7 @@
         <div class="projects-grid-container" id="projectPlaceholderBox" data-aos="fade-up" data-aos-delay="100">
             
             <!-- Major Project -->
-            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="major" style="display: flex;">
+            <div class="mock-dashboard-card glow-card" data-filter="major" style="display: flex;">
                 <div style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
                     <i class="fa-solid fa-rocket" style="font-size: 2.5rem; color: var(--accent-emerald); margin-bottom: 10px; opacity: 0.8; filter: drop-shadow(0 0 8px rgba(0, 245, 160, 0.4));"></i>
                     <h3 style="color:var(--text-main); margin-bottom: 5px;">Interactive project will display soon</h3>
@@ -294,7 +301,7 @@
             </div>
 
             <!-- NYC Taxi - Statistics -->
-            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="statistics" style="display: none;">
+            <div class="mock-dashboard-card glow-card" data-filter="statistics" style="display: none;">
                 <div class="mock-meta"><span>Data Statistics</span></div>
                 <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">NYC Taxi Revenue Analysis</h3>
                 
@@ -310,7 +317,7 @@
             </div>
 
             <!-- Google Play Store EDA - Python -->
-            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="python" style="display: none;">
+            <div class="mock-dashboard-card glow-card" data-filter="python" style="display: none;">
                 <div class="mock-meta"><span>Python & EDA</span></div>
                 <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">Google Play Store EDA</h3>
                 
@@ -327,7 +334,7 @@
             </div>
 
             <!-- Customer Churn - Data Analysis -->
-            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="python" style="display: none;">
+            <div class="mock-dashboard-card glow-card" data-filter="python" style="display: none;">
                 <div class="mock-meta"><span>Data Analysis</span></div>
                 <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">Customer Churn Analysis</h3>
                 
@@ -343,7 +350,7 @@
             </div>
 
             <!-- Diwali Sales Analysis - Python -->
-            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="python" style="display: none;">
+            <div class="mock-dashboard-card glow-card" data-filter="python" style="display: none;">
                 <div class="mock-meta"><span>Python Analytics</span></div>
                 <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">Diwali Sales Analysis</h3>
                 
@@ -359,7 +366,7 @@
             </div>
 
             <!-- NumPy Sales Analysis - Python -->
-            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="python" style="display: none;">
+            <div class="mock-dashboard-card glow-card" data-filter="python" style="display: none;">
                 <div class="mock-meta"><span>Data Processing</span></div>
                 <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">NumPy Sales Analysis</h3>
                 
@@ -375,7 +382,7 @@
             </div>
 
             <!-- Excel Project -->
-            <div class="mock-dashboard-card glow-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.2" data-filter="excel" style="display: none;">
+            <div class="mock-dashboard-card glow-card" data-filter="excel" style="display: none;">
                 <div class="mock-meta"><span>Business Intelligence</span></div>
                 <img src="https://raw.githubusercontent.com/Manish-kashyap/SALES-DASHBOARD-EXCEL/main/DASBOARD.png" alt="Excel Dashboard" class="excel-dashboard-img">
                 <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">Interactive Sales Dashboard</h3>
@@ -515,7 +522,7 @@
     <!-- RESUME VIEWER MODAL -->
     <div class="modal-overlay" id="resumeViewerModal">
         <div class="modal-content">
-            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close" aria-label="Close resume viewer"><i class="fa-solid fa-xmark"></i></button>
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px;">
                 <h2 class="modal-title" style="margin:0;">Manish Kashyap Resume</h2>
                 <a href="assets/manish-resume.pdf" download id="resumeDownloadBtnModal" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download PDF</a>
@@ -527,7 +534,7 @@
     <!-- PROJECT DETAILS MODALS -->
     <div class="modal-overlay" id="modal-major">
         <div class="modal-content">
-            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <h2 class="modal-title">Retail Data Analysis (Active W.I.P.)</h2>
             <div class="modal-subtitle">Multi-Tool Analytics Pipeline</div>
             <div class="modal-section">
@@ -551,7 +558,7 @@
 
     <div class="modal-overlay" id="modal-taxi">
         <div class="modal-content">
-            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <h2 class="modal-title">NYC Taxi Revenue Analysis</h2>
             <div class="modal-subtitle">Statistical Analysis Project</div>
             <div class="modal-section">
@@ -575,7 +582,7 @@
 
     <div class="modal-overlay" id="modal-playstore">
         <div class="modal-content">
-            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <h2 class="modal-title">Google Play Store EDA</h2>
             <div class="modal-subtitle">Exploratory Data Analysis</div>
             <div class="modal-section">
@@ -598,7 +605,7 @@
 
     <div class="modal-overlay" id="modal-churn">
         <div class="modal-content">
-            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <h2 class="modal-title">Customer Churn Analysis</h2>
             <div class="modal-subtitle">Data Analytics Project</div>
             <div class="modal-section">
@@ -621,7 +628,7 @@
 
     <div class="modal-overlay" id="modal-diwali">
         <div class="modal-content">
-            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <h2 class="modal-title">Diwali Sales Analysis</h2>
             <div class="modal-subtitle">Retail Data Analytics</div>
             <div class="modal-section">
@@ -644,7 +651,7 @@
 
     <div class="modal-overlay" id="modal-numpy">
         <div class="modal-content">
-            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <h2 class="modal-title">NumPy Sales Analysis</h2>
             <div class="modal-subtitle">High-Speed Data Processing</div>
             <div class="modal-section">
@@ -667,7 +674,7 @@
 
     <div class="modal-overlay" id="modal-excel">
         <div class="modal-content">
-            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <h2 class="modal-title">Interactive Sales Dashboard</h2>
             <div class="modal-subtitle">Business Intelligence in Excel</div>
             <div class="modal-section">
