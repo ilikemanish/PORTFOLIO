@@ -138,4 +138,193 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 mockCards.forEach(function(card) {
                     var cardFilter = card.getAttribute('data-filter');
-                    if (cardFilter === filterTarget
+                    if (cardFilter === filterTarget) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                boxContainer.style.opacity = '1';
+            }, 250);
+        });
+    });
+
+    // 9. MODALS
+    var detailBtns = document.querySelectorAll('.btn-details');
+    var closeBtns = document.querySelectorAll('.modal-close');
+    var modals = document.querySelectorAll('.modal-overlay');
+
+    detailBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var targetModalId = btn.getAttribute('data-modal');
+            var targetModal = document.getElementById(targetModalId);
+            if (targetModal) {
+                targetModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    function closeModal(modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    closeBtns.forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var modal = btn.closest('.modal-overlay');
+            if (modal) {
+                closeModal(modal);
+            }
+        });
+    });
+
+    modals.forEach(function(modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal(modal);
+            }
+        });
+    });
+
+    // 10. METRICS COUNTER - 1.5 seconds
+    var counters = document.querySelectorAll('.counter');
+    var animationDuration = 1500;
+    
+    function animateCounters() {
+        counters.forEach(function(counter) {
+            var target = +counter.getAttribute('data-target');
+            var startTime = null;
+            
+            function updateCount(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var progress = Math.min((timestamp - startTime) / animationDuration, 1);
+                var current = Math.floor(progress * target);
+                counter.innerText = current;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCount);
+                } else {
+                    counter.innerText = target;
+                }
+            }
+            requestAnimationFrame(updateCount);
+        });
+    }
+
+    var metricsObserver = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) {
+            animateCounters();
+            metricsObserver.disconnect();
+        }
+    }, { threshold: 0.3 });
+    var impactSection = document.querySelector('.impact-section');
+    if (impactSection) {
+        metricsObserver.observe(impactSection);
+    }
+
+    // 11. SLIDER
+    var slides = document.querySelectorAll('.slide');
+    var prevBtn = document.getElementById('prevSlide');
+    var nextBtn = document.getElementById('nextSlide');
+    var currentSlide = 0;
+    var slideInterval;
+    
+    function showSlide(index) {
+        if (!slides.length) return;
+        slides.forEach(function(slide) { slide.classList.remove('active'); });
+        currentSlide = index;
+        if (currentSlide >= slides.length) currentSlide = 0;
+        if (currentSlide < 0) currentSlide = slides.length - 1;
+        slides[currentSlide].classList.add('active');
+    }
+    
+    function nextSlideFn() { showSlide(currentSlide + 1); }
+    
+    if (nextBtn && prevBtn) {
+        nextBtn.addEventListener('click', function() { nextSlideFn(); resetSliderTimer(); });
+        prevBtn.addEventListener('click', function() { showSlide(currentSlide - 1); resetSliderTimer(); });
+    }
+    
+    function startSliderTimer() { slideInterval = setInterval(nextSlideFn, 5000); }
+    function resetSliderTimer() { clearInterval(slideInterval); startSliderTimer(); }
+    startSliderTimer();
+
+    // 12. GLOW CARDS - Only for non-project cards
+    var cards = document.querySelectorAll('.glow-card:not(.mock-dashboard-card)');
+    cards.forEach(function(card) {
+        card.addEventListener('mousemove', function(e) {
+            var rect = card.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', x + 'px');
+            card.style.setProperty('--mouse-y', y + 'px');
+        });
+    });
+
+    // 13. COPY EMAIL
+    var copyBtn = document.getElementById('copyEmailBtn');
+    var emailText = document.getElementById('emailText');
+    if (copyBtn && emailText) {
+        copyBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            navigator.clipboard.writeText(emailText.innerText).then(function() {
+                copyBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
+                setTimeout(function() {
+                    copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i>';
+                }, 2500);
+            });
+        });
+    }
+
+    // 14. GITHUB STATS
+    var githubCounter = document.getElementById('githubCounter');
+    var githubPlus = document.getElementById('githubPlus');
+    var githubText = document.getElementById('githubText');
+    
+    fetch('https://api.github.com/users/Manish-kashyap')
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
+            if (data.public_repos) {
+                githubCounter.setAttribute('data-target', data.public_repos);
+                githubCounter.innerText = '0';
+                githubPlus.style.display = 'none';
+                githubText.innerText = 'GitHub Repositories';
+                var newObserver = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        animateCounters();
+                        newObserver.disconnect();
+                    }
+                }, { threshold: 0.3 });
+                if (impactSection) newObserver.observe(impactSection);
+            }
+        })
+        .catch(function() {
+            githubCounter.setAttribute('data-target', 12);
+            githubCounter.innerText = '0';
+            githubPlus.style.display = 'none';
+            githubText.innerText = 'GitHub Repositories';
+        });
+
+    // 15. VANILLA TILT
+    if (typeof VanillaTilt !== 'undefined') {
+        VanillaTilt.init(document.querySelectorAll('[data-tilt]:not(.mock-dashboard-card)'), {
+            max: 15,
+            speed: 400,
+            glare: true,
+            'max-glare': 0.2,
+        });
+    }
+
+    // 16. ESC key to close modals
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            var activeModals = document.querySelectorAll('.modal-overlay.active');
+            activeModals.forEach(function(modal) {
+                closeModal(modal);
+            });
+        }
+    });
+
+});
