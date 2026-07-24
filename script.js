@@ -1,37 +1,42 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. EXACT 0.4s LOADER
+    // 1. LOADER - Hide after 0.3s
     window.addEventListener('load', function() {
         const loader = document.getElementById('initialLoader');
-        setTimeout(function() { loader.classList.add('hidden'); }, 400);
+        setTimeout(function() { 
+            loader.classList.add('hidden'); 
+        }, 300);
     });
 
+    // Initialize AOS
     AOS.init({ duration: 300, once: true, offset: 10 });
 
     // 2. TIMING-BASED GREETING
-    const greetingSpan = document.getElementById('dynamicGreeting');
-    if (greetingSpan) {
-        const hour = new Date().getHours();
-        let timeGreeting = 'Good evening';
-        if (hour < 12) timeGreeting = 'Good morning';
-        else if (hour < 18) timeGreeting = 'Good afternoon';
-        greetingSpan.innerText = timeGreeting;
+    function updateGreeting() {
+        const greetingSpan = document.getElementById('dynamicGreeting');
+        if (greetingSpan) {
+            const hour = new Date().getHours();
+            let timeGreeting = 'Good Evening';
+            if (hour >= 5 && hour < 12) timeGreeting = 'Good Morning';
+            else if (hour >= 12 && hour < 17) timeGreeting = 'Good Afternoon';
+            else if (hour >= 17 && hour < 21) timeGreeting = 'Good Evening';
+            else timeGreeting = 'Good Night';
+            greetingSpan.textContent = timeGreeting;
+        }
     }
+    updateGreeting();
 
-    // 3. SKILLS CLICK TO VIEW PROFICIENCY - Show for 0.3 sec then auto-hide
+    // 3. SKILLS CLICK TO VIEW PROFICIENCY
     const techItems = document.querySelectorAll('.tech-item');
     techItems.forEach(function(item) {
         item.addEventListener('click', function(e) {
-            // Remove active class from all other tech items
             techItems.forEach(function(other) {
                 if (other !== item) {
                     other.classList.remove('active');
                 }
             });
-            // Toggle active on clicked item
             this.classList.toggle('active');
             
-            // Auto remove after 0.3 seconds (300ms) if still active
             const self = this;
             if (self.classList.contains('active')) {
                 setTimeout(function() {
@@ -133,189 +138,4 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 mockCards.forEach(function(card) {
                     var cardFilter = card.getAttribute('data-filter');
-                    if (cardFilter === filterTarget) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                boxContainer.style.opacity = '1';
-            }, 250);
-        });
-    });
-
-    // 9. MODALS
-    var detailBtns = document.querySelectorAll('.btn-details');
-    var closeBtns = document.querySelectorAll('.modal-close');
-    var modals = document.querySelectorAll('.modal-overlay');
-
-    detailBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            var targetModalId = btn.getAttribute('data-modal');
-            var targetModal = document.getElementById(targetModalId);
-            if (targetModal) {
-                targetModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        });
-    });
-
-    function closeModal(modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-
-    closeBtns.forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-            var modal = btn.closest('.modal-overlay');
-            closeModal(modal);
-        });
-    });
-
-    modals.forEach(function(modal) {
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal(modal);
-            }
-        });
-    });
-
-    // 10. METRICS COUNTER
-    var counters = document.querySelectorAll('.counter');
-    var speed = 100;
-    function animateCounters() {
-        counters.forEach(function(counter) {
-            function updateCount() {
-                var target = +counter.getAttribute('data-target');
-                var count = +counter.innerText;
-                var inc = target / speed;
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(updateCount, 15);
-                } else {
-                    counter.innerText = target;
-                }
-            }
-            updateCount();
-        });
-    }
-
-    var metricsObserver = new IntersectionObserver(function(entries) {
-        if (entries[0].isIntersecting) {
-            animateCounters();
-            metricsObserver.disconnect();
-        }
-    }, { threshold: 0.5 });
-    var impactSection = document.querySelector('.impact-section');
-    if (impactSection) {
-        metricsObserver.observe(impactSection);
-    }
-
-    // 11. SLIDER
-    var slides = document.querySelectorAll('.slide');
-    var prevBtn = document.getElementById('prevSlide');
-    var nextBtn = document.getElementById('nextSlide');
-    var currentSlide = 0;
-    var slideInterval;
-    
-    function showSlide(index) {
-        if (!slides.length) return;
-        slides.forEach(function(slide) { slide.classList.remove('active'); });
-        currentSlide = index;
-        if (currentSlide >= slides.length) currentSlide = 0;
-        if (currentSlide < 0) currentSlide = slides.length - 1;
-        slides[currentSlide].classList.add('active');
-    }
-    
-    function nextSlideFn() { showSlide(currentSlide + 1); }
-    
-    if (nextBtn && prevBtn) {
-        nextBtn.addEventListener('click', function() { nextSlideFn(); resetSliderTimer(); });
-        prevBtn.addEventListener('click', function() { showSlide(currentSlide - 1); resetSliderTimer(); });
-    }
-    
-    function startSliderTimer() { slideInterval = setInterval(nextSlideFn, 5000); }
-    function resetSliderTimer() { clearInterval(slideInterval); startSliderTimer(); }
-    startSliderTimer();
-
-    // 12. CURSOR
-    var cursor = document.getElementById('customCursor');
-    if (window.innerWidth > 768 && cursor) {
-        document.addEventListener('mousemove', function(e) {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-        var clickables = document.querySelectorAll('a, button, .glow-card, input, textarea, .tech-item, .project-link-btn, .copy-btn');
-        clickables.forEach(function(el) {
-            el.addEventListener('mouseenter', function() { cursor.classList.add('hover'); });
-            el.addEventListener('mouseleave', function() { cursor.classList.remove('hover'); });
-        });
-    }
-
-    // 13. GLOW CARDS
-    var cards = document.querySelectorAll('.glow-card');
-    cards.forEach(function(card) {
-        card.addEventListener('mousemove', function(e) {
-            var rect = card.getBoundingClientRect();
-            var x = e.clientX - rect.left;
-            var y = e.clientY - rect.top;
-            card.style.setProperty('--mouse-x', x + 'px');
-            card.style.setProperty('--mouse-y', y + 'px');
-        });
-    });
-
-    // 14. COPY EMAIL
-    var copyBtn = document.getElementById('copyEmailBtn');
-    var emailText = document.getElementById('emailText');
-    if (copyBtn && emailText) {
-        copyBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            navigator.clipboard.writeText(emailText.innerText).then(function() {
-                copyBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
-                setTimeout(function() {
-                    copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i>';
-                }, 2500);
-            });
-        });
-    }
-
-    // 15. GITHUB STATS (Static fallback)
-    var githubCounter = document.getElementById('githubCounter');
-    var githubPlus = document.getElementById('githubPlus');
-    var githubText = document.getElementById('githubText');
-    
-    fetch('https://api.github.com/users/Manish-kashyap')
-        .then(function(response) { return response.json(); })
-        .then(function(data) {
-            if (data.public_repos) {
-                githubCounter.setAttribute('data-target', data.public_repos);
-                githubCounter.innerText = '0';
-                githubPlus.style.display = 'none';
-                githubText.innerText = 'GitHub Repositories';
-                var newObserver = new IntersectionObserver(function(entries) {
-                    if (entries[0].isIntersecting) {
-                        animateCounters();
-                        newObserver.disconnect();
-                    }
-                }, { threshold: 0.5 });
-                if (impactSection) newObserver.observe(impactSection);
-            }
-        })
-        .catch(function() {
-            githubCounter.setAttribute('data-target', 12);
-            githubCounter.innerText = '0';
-            githubPlus.style.display = 'none';
-            githubText.innerText = 'GitHub Repositories';
-        });
-
-    // 16. VANILLA TILT
-    if (typeof VanillaTilt !== 'undefined') {
-        VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
-            max: 15,
-            speed: 400,
-            glare: true,
-            'max-glare': 0.2,
-        });
-    }
-
-});
+                    if (cardFilter === filterTarget
