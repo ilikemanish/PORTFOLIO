@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. LOADER - Hide after 0.3s
-    window.addEventListener('load', function() {
+    // 1. PREMIUM LOADER - Disappears 0.4s after execution
+    setTimeout(function() { 
         const loader = document.getElementById('initialLoader');
-        setTimeout(function() { 
-            loader.classList.add('hidden'); 
-        }, 300);
-    });
+        if (loader) loader.classList.add('hidden'); 
+    }, 400);
 
     // Initialize AOS
     AOS.init({ duration: 300, once: true, offset: 10 });
@@ -26,7 +24,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     updateGreeting();
 
-    // 3. SKILLS CLICK TO VIEW PROFICIENCY
+    // 3. SCROLL DOWN INDICATOR LOGIC
+    const scrollIndicator = document.getElementById('scrollIndicator');
+    if (scrollIndicator) {
+        window.addEventListener('scroll', () => {
+            // Hide when scrolled more than 50px
+            if (window.scrollY > 50) {
+                scrollIndicator.classList.add('hidden');
+            } else {
+                scrollIndicator.classList.remove('hidden');
+            }
+        });
+    }
+
+    // 4. SKILLS CLICK TO VIEW PROFICIENCY
     const techItems = document.querySelectorAll('.tech-item');
     techItems.forEach(function(item) {
         item.addEventListener('click', function(e) {
@@ -46,10 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 4. RESUME VIEWER
+    // 5. RESUME VIEWER
     const openResumeBtn = document.getElementById('openResumeViewerBtn');
     const resumeModal = document.getElementById('resumeViewerModal');
-
     if (openResumeBtn && resumeModal) {
         openResumeBtn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -58,10 +68,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 5. SCROLLSPY NAVIGATION
+    // 6. SCROLLSPY NAVIGATION
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
-    
     const observerOptions = { root: null, rootMargin: '-30% 0px -50% 0px', threshold: 0 };
     const scrollObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
@@ -77,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     sections.forEach(function(sec) { scrollObserver.observe(sec); });
 
-    // 6. PARTICLES.JS
+    // 7. PARTICLES.JS
     if (document.getElementById('particles-js')) {
         particlesJS('particles-js', {
             particles: {
@@ -96,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 7. THEME TOGGLE
+    // 8. THEME TOGGLE
     const themeToggle = document.getElementById('themeToggle');
     function updateThemeIcon() {
         if (!themeToggle) return;
@@ -115,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 8. PORTFOLIO FILTER
+    // 9. PORTFOLIO FILTER
     const filterTags = document.querySelectorAll('.filter-tag');
     const boxContainer = document.getElementById('projectPlaceholderBox');
     const mockCards = document.querySelectorAll('.mock-dashboard-card');
@@ -149,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 9. MODALS
+    // 10. MODALS
     var detailBtns = document.querySelectorAll('.btn-details');
     var closeBtns = document.querySelectorAll('.modal-close');
     var modals = document.querySelectorAll('.modal-overlay');
@@ -174,21 +183,17 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
             var modal = btn.closest('.modal-overlay');
-            if (modal) {
-                closeModal(modal);
-            }
+            if (modal) { closeModal(modal); }
         });
     });
 
     modals.forEach(function(modal) {
         modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal(modal);
-            }
+            if (e.target === modal) { closeModal(modal); }
         });
     });
 
-    // 10. METRICS COUNTER - 1.5 seconds
+    // 11. METRICS COUNTER
     var counters = document.querySelectorAll('.counter');
     var animationDuration = 1500;
     
@@ -196,7 +201,6 @@ document.addEventListener('DOMContentLoaded', function() {
         counters.forEach(function(counter) {
             var target = +counter.getAttribute('data-target');
             var startTime = null;
-            
             function updateCount(timestamp) {
                 if (!startTime) startTime = timestamp;
                 var progress = Math.min((timestamp - startTime) / animationDuration, 1);
@@ -220,11 +224,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, { threshold: 0.3 });
     var impactSection = document.querySelector('.impact-section');
-    if (impactSection) {
-        metricsObserver.observe(impactSection);
-    }
+    if (impactSection) { metricsObserver.observe(impactSection); }
 
-    // 11. SLIDER
+    // 12. SLIDER
     var slides = document.querySelectorAll('.slide');
     var prevBtn = document.getElementById('prevSlide');
     var nextBtn = document.getElementById('nextSlide');
@@ -251,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function resetSliderTimer() { clearInterval(slideInterval); startSliderTimer(); }
     startSliderTimer();
 
-    // 12. GLOW CARDS - Only for non-project cards
+    // 13. GLOW CARDS
     var cards = document.querySelectorAll('.glow-card:not(.mock-dashboard-card)');
     cards.forEach(function(card) {
         card.addEventListener('mousemove', function(e) {
@@ -263,7 +265,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 13. COPY EMAIL
+    // 14. COPY EMAIL
     var copyBtn = document.getElementById('copyEmailBtn');
     var emailText = document.getElementById('emailText');
     if (copyBtn && emailText) {
@@ -278,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 14. GITHUB STATS
+    // 15. GITHUB STATS
     var githubCounter = document.getElementById('githubCounter');
     var githubPlus = document.getElementById('githubPlus');
     var githubText = document.getElementById('githubText');
@@ -307,7 +309,7 @@ document.addEventListener('DOMContentLoaded', function() {
             githubText.innerText = 'GitHub Repositories';
         });
 
-    // 15. VANILLA TILT
+    // 16. VANILLA TILT
     if (typeof VanillaTilt !== 'undefined') {
         VanillaTilt.init(document.querySelectorAll('[data-tilt]:not(.mock-dashboard-card)'), {
             max: 15,
@@ -317,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 16. ESC key to close modals
+    // 17. ESC key to close modals
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             var activeModals = document.querySelectorAll('.modal-overlay.active');
@@ -326,5 +328,4 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
-
 });
