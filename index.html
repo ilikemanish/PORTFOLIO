@@ -27,6 +27,9 @@
     </div>
     <div class="scroll-progress-bar" id="scrollProgressBar"></div>
 
+    <!-- GLOBAL PARTICLES BACKGROUND -->
+    <div id="particles-js"></div>
+
     <!-- LOADER -->
     <div class="page-loader" id="initialLoader">
         <div class="loader-premium-content">
@@ -49,21 +52,17 @@
     <!-- HEADER -->
     <header>
         <div class="logo" data-aos="fade-down">Port<span>folio</span></div>
-        <div class="header-actions" data-aos="fade-down" data-aos-delay="50">
-            <nav class="nav-menu" id="navMenu">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#portfolio" class="nav-link">Projects</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
-            <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark and light mode">🌙</button>
-        </div>
+        <nav class="nav-menu" id="navMenu" data-aos="fade-down" data-aos-delay="50">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#portfolio" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+        <button id="themeToggle" class="theme-toggle-btn" data-aos="fade-down" data-aos-delay="100" aria-label="Toggle dark and light mode">🌙</button>
     </header>
 
     <!-- HERO -->
     <section id="home" class="hero-section">
-        <div id="particles-js"></div>
-
         <div class="hero-content">
             <h1 data-aos="fade-up" data-aos-delay="100">
                 <span class="greeting-line">
@@ -608,8 +607,8 @@
 
     <!-- External JS Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     
     <!-- Internal JS -->
     <script src="script.js"></script>
