@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. PREMIUM LOADER - Disappears 0.3s after execution
+    // 1. PREMIUM LOADER
     setTimeout(function() { 
         const loader = document.getElementById('initialLoader');
         if (loader) loader.classList.add('hidden'); 
@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const backToTop = document.getElementById('backToTop');
     const progressBar = document.getElementById('scrollProgressBar');
     const headerEl = document.querySelector('header');
+    
     window.addEventListener('scroll', function() {
         const scrollY = window.scrollY;
         if (scrollIndicator) {
@@ -50,7 +51,57 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, { passive: true });
 
-    // 4. SKILLS CLICK TO VIEW PROFICIENCY (3D flip)
+    // 4. GLOBAL PARTICLES - NEURAL NETWORK STYLE
+    if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 60, density: { enable: true, value_area: 1000 } },
+                color: { value: '#00f5a0' },
+                shape: { type: 'circle' },
+                opacity: { 
+                    value: 0.4, 
+                    random: true, 
+                    anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } 
+                },
+                size: { 
+                    value: 3, 
+                    random: true, 
+                    anim: { enable: false } 
+                },
+                line_linked: { 
+                    enable: true, 
+                    distance: 150, 
+                    color: '#0079ff', 
+                    opacity: 0.3, 
+                    width: 1 
+                },
+                move: { 
+                    enable: true, 
+                    speed: 1.5, 
+                    direction: 'none', 
+                    random: true, 
+                    straight: false, 
+                    out_mode: 'out', 
+                    bounce: false 
+                }
+            },
+            interactivity: {
+                detect_on: 'window',
+                events: { 
+                    onhover: { enable: true, mode: 'repulse' }, 
+                    onclick: { enable: true, mode: 'push' }, 
+                    resize: true 
+                },
+                modes: { 
+                    repulse: { distance: 100, duration: 0.4 }, 
+                    push: { particles_nb: 3 } 
+                }
+            },
+            retina_detect: true
+        });
+    }
+
+    // 5. SKILLS CLICK TO VIEW PROFICIENCY (3D flip)
     const techItems = document.querySelectorAll('.tech-item');
     techItems.forEach(function(item) {
         item.addEventListener('click', function(e) {
@@ -70,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 5. RESUME VIEWER
+    // 6. RESUME VIEWER
     const openResumeBtn = document.getElementById('openResumeViewerBtn');
     const resumeModal = document.getElementById('resumeViewerModal');
     if (openResumeBtn && resumeModal) {
@@ -81,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 6. SCROLLSPY NAVIGATION
+    // 7. SCROLLSPY NAVIGATION
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
     const observerOptions = { root: null, rootMargin: '-30% 0px -50% 0px', threshold: 0 };
@@ -99,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     sections.forEach(function(sec) { scrollObserver.observe(sec); });
 
-    // 6b. SCROLL-TRIGGERED 3D REVEAL for cards not covered by AOS attributes
+    // 8. SCROLL-TRIGGERED 3D REVEAL
     const revealTargets = document.querySelectorAll('.metric-card, .card-3d-node, .info-premium-node, .mock-dashboard-card, .testimonial-item');
     revealTargets.forEach(function(el) { el.classList.add('reveal-3d'); });
     const revealObserver = new IntersectionObserver(function(entries) {
@@ -112,26 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { threshold: 0.15 });
     revealTargets.forEach(function(el) { revealObserver.observe(el); });
 
-    // 7. PARTICLES.JS
-    if (document.getElementById('particles-js')) {
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 40, density: { enable: true, value_area: 800 } },
-                color: { value: '#00f5a0' }, shape: { type: 'circle' },
-                opacity: { value: 0.5, random: false }, size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: '#0079ff', opacity: 0.4, width: 1 },
-                move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true },
-                modes: { grab: { distance: 140, line_linked: { opacity: 1 } }, push: { particles_nb: 4 } }
-            },
-            retina_detect: true,
-        });
-    }
-
-    // 8. THEME TOGGLE
+    // 9. THEME TOGGLE
     const themeToggle = document.getElementById('themeToggle');
     function updateThemeIcon() {
         if (!themeToggle) return;
@@ -150,43 +182,45 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 9. PORTFOLIO FILTER
+    // 10. PORTFOLIO FILTER
     const filterTags = document.querySelectorAll('.filter-tag');
     const boxContainer = document.getElementById('projectPlaceholderBox');
     const mockCards = document.querySelectorAll('.mock-dashboard-card');
 
-    var initialActiveFilter = document.querySelector('.filter-tag.active').getAttribute('data-target');
-    mockCards.forEach(function(card) {
-        if (card.getAttribute('data-filter') === initialActiveFilter) {
-            card.style.display = 'flex';
-        } else {
-            card.style.display = 'none';
-        }
-    });
-
-    filterTags.forEach(function(tag) {
-        tag.addEventListener('click', function() {
-            var filterTarget = tag.getAttribute('data-target');
-            filterTags.forEach(function(t) { t.classList.remove('active'); });
-            tag.classList.add('active');
-            boxContainer.style.opacity = '0.3';
-            setTimeout(function() {
-                mockCards.forEach(function(card) {
-                    var cardFilter = card.getAttribute('data-filter');
-                    if (cardFilter === filterTarget) {
-                        card.style.display = 'flex';
-                        card.classList.remove('in-view');
-                        requestAnimationFrame(function() { card.classList.add('in-view'); });
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                boxContainer.style.opacity = '1';
-            }, 250);
+    if(filterTags.length > 0) {
+        var initialActiveFilter = document.querySelector('.filter-tag.active').getAttribute('data-target');
+        mockCards.forEach(function(card) {
+            if (card.getAttribute('data-filter') === initialActiveFilter) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
         });
-    });
 
-    // 10. MODALS
+        filterTags.forEach(function(tag) {
+            tag.addEventListener('click', function() {
+                var filterTarget = tag.getAttribute('data-target');
+                filterTags.forEach(function(t) { t.classList.remove('active'); });
+                tag.classList.add('active');
+                boxContainer.style.opacity = '0.3';
+                setTimeout(function() {
+                    mockCards.forEach(function(card) {
+                        var cardFilter = card.getAttribute('data-filter');
+                        if (cardFilter === filterTarget) {
+                            card.style.display = 'flex';
+                            card.classList.remove('in-view');
+                            requestAnimationFrame(function() { card.classList.add('in-view'); });
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    boxContainer.style.opacity = '1';
+                }, 250);
+            });
+        });
+    }
+
+    // 11. MODALS
     var detailBtns = document.querySelectorAll('.btn-details');
     var closeBtns = document.querySelectorAll('.modal-close');
     var modals = document.querySelectorAll('.modal-overlay');
@@ -221,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 11. METRICS COUNTER
+    // 12. METRICS COUNTER
     var counters = document.querySelectorAll('.counter');
     var animationDuration = 1500;
     
@@ -254,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var impactSection = document.querySelector('.impact-section');
     if (impactSection) { metricsObserver.observe(impactSection); }
 
-    // 12. SLIDER
+    // 13. SLIDER
     var slides = document.querySelectorAll('.slide');
     var prevBtn = document.getElementById('prevSlide');
     var nextBtn = document.getElementById('nextSlide');
@@ -281,7 +315,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function resetSliderTimer() { clearInterval(slideInterval); startSliderTimer(); }
     startSliderTimer();
 
-    // 13. GLOW CARDS — spotlight + real 3D perspective tilt
+    // 14. GLOW CARDS
     var cards = document.querySelectorAll('.glow-card:not(.mock-dashboard-card)');
     var isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     cards.forEach(function(card) {
@@ -292,7 +326,6 @@ document.addEventListener('DOMContentLoaded', function() {
             card.style.setProperty('--mouse-x', x + 'px');
             card.style.setProperty('--mouse-y', y + 'px');
 
-            // Skip 3D tilt on elements already handled by VanillaTilt (data-tilt)
             if (card.hasAttribute('data-tilt')) return;
 
             var midX = rect.width / 2;
@@ -307,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 14. COPY EMAIL
+    // 15. COPY EMAIL
     var copyBtn = document.getElementById('copyEmailBtn');
     var emailText = document.getElementById('emailText');
     if (copyBtn && emailText) {
@@ -322,7 +355,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 15. GITHUB STATS
+    // 16. GITHUB STATS
     var githubCounter = document.getElementById('githubCounter');
     var githubPlus = document.getElementById('githubPlus');
     var githubText = document.getElementById('githubText');
@@ -330,7 +363,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('https://api.github.com/users/Manish-kashyap')
         .then(function(response) { return response.json(); })
         .then(function(data) {
-            if (data.public_repos) {
+            if (data.public_repos && githubCounter) {
                 githubCounter.setAttribute('data-target', data.public_repos);
                 githubCounter.innerText = '0';
                 githubPlus.style.display = 'none';
@@ -345,13 +378,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(function() {
-            githubCounter.setAttribute('data-target', 12);
-            githubCounter.innerText = '0';
-            githubPlus.style.display = 'none';
-            githubText.innerText = 'GitHub Repositories';
+            if(githubCounter) {
+                githubCounter.setAttribute('data-target', 12);
+                githubCounter.innerText = '0';
+                githubPlus.style.display = 'none';
+                githubText.innerText = 'GitHub Repositories';
+            }
         });
 
-    // 16. VANILLA TILT
+    // 17. VANILLA TILT
     if (typeof VanillaTilt !== 'undefined') {
         VanillaTilt.init(document.querySelectorAll('[data-tilt]:not(.mock-dashboard-card)'), {
             max: 15,
@@ -361,7 +396,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 17. ESC key to close modals
+    // 18. ESC key to close modals
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             var activeModals = document.querySelectorAll('.modal-overlay.active');
