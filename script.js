@@ -24,20 +24,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     updateGreeting();
 
-    // 3. SCROLL DOWN INDICATOR LOGIC
+    // 3. SCROLL DOWN INDICATOR + BACK TO TOP + PROGRESS BAR + HEADER SHADOW
     const scrollIndicator = document.getElementById('scrollIndicator');
-    if (scrollIndicator) {
-        window.addEventListener('scroll', () => {
-            // Hide when scrolled more than 50px
-            if (window.scrollY > 50) {
-                scrollIndicator.classList.add('hidden');
-            } else {
-                scrollIndicator.classList.remove('hidden');
-            }
-        });
-    }
+    const backToTop = document.getElementById('backToTop');
+    const progressBar = document.getElementById('scrollProgressBar');
+    const headerEl = document.querySelector('header');
+    window.addEventListener('scroll', function() {
+        const scrollY = window.scrollY;
+        if (scrollIndicator) {
+            if (scrollY > 50) scrollIndicator.classList.add('hidden');
+            else scrollIndicator.classList.remove('hidden');
+        }
+        if (backToTop) {
+            if (scrollY > 500) backToTop.classList.add('visible');
+            else backToTop.classList.remove('visible');
+        }
+        if (headerEl) {
+            if (scrollY > 10) headerEl.classList.add('scrolled');
+            else headerEl.classList.remove('scrolled');
+        }
+        if (progressBar) {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+            progressBar.style.width = pct + '%';
+        }
+    }, { passive: true });
 
-    // 4. SKILLS CLICK TO VIEW PROFICIENCY
+    // 4. SKILLS CLICK TO VIEW PROFICIENCY (3D flip)
     const techItems = document.querySelectorAll('.tech-item');
     techItems.forEach(function(item) {
         item.addEventListener('click', function(e) {
@@ -52,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (self.classList.contains('active')) {
                 setTimeout(function() {
                     self.classList.remove('active');
-                }, 300);
+                }, 1400);
             }
         });
     });
@@ -85,6 +98,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
     sections.forEach(function(sec) { scrollObserver.observe(sec); });
+
+    // 6b. SCROLL-TRIGGERED 3D REVEAL for cards not covered by AOS attributes
+    const revealTargets = document.querySelectorAll('.metric-card, .card-3d-node, .info-premium-node, .mock-dashboard-card, .testimonial-item');
+    revealTargets.forEach(function(el) { el.classList.add('reveal-3d'); });
+    const revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+    revealTargets.forEach(function(el) { revealObserver.observe(el); });
 
     // 7. PARTICLES.JS
     if (document.getElementById('particles-js')) {
@@ -149,6 +175,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     var cardFilter = card.getAttribute('data-filter');
                     if (cardFilter === filterTarget) {
                         card.style.display = 'flex';
+                        card.classList.remove('in-view');
+                        requestAnimationFrame(function() { card.classList.add('in-view'); });
                     } else {
                         card.style.display = 'none';
                     }
@@ -253,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function resetSliderTimer() { clearInterval(slideInterval); startSliderTimer(); }
     startSliderTimer();
 
-    // 13. GLOW CARDS
+    // 13. GLOW CARDS — spotlight + real 3D perspective tilt
     var cards = document.querySelectorAll('.glow-card:not(.mock-dashboard-card)');
     cards.forEach(function(card) {
         card.addEventListener('mousemove', function(e) {
@@ -262,6 +290,19 @@ document.addEventListener('DOMContentLoaded', function() {
             var y = e.clientY - rect.top;
             card.style.setProperty('--mouse-x', x + 'px');
             card.style.setProperty('--mouse-y', y + 'px');
+
+            // Skip 3D tilt on elements already handled by VanillaTilt (data-tilt)
+            if (card.hasAttribute('data-tilt')) return;
+
+            var midX = rect.width / 2;
+            var midY = rect.height / 2;
+            var rotateY = ((x - midX) / midX) * 6;
+            var rotateX = -((y - midY) / midY) * 6;
+            card.style.transform = 'perspective(900px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-2px)';
+        });
+        card.addEventListener('mouseleave', function() {
+            if (card.hasAttribute('data-tilt')) return;
+            card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)';
         });
     });
 
@@ -328,4 +369,92 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+
+    // 18. CUSTOM 3D CURSOR
+    var cursorDot = document.getElementById('cursorDot');
+    var cursorRing = document.getElementById('cursorRing');
+    var isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (isFinePointer && cursorDot && cursorRing) {
+        var ringX = 0, ringY = 0, targetX = 0, targetY = 0;
+        document.addEventListener('mousemove', function(e) {
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+            targetX = e.clientX;
+            targetY = e.clientY;
+        });
+        function animateRing() {
+            ringX += (targetX - ringX) * 0.18;
+            ringY += (targetY - ringY) * 0.18;
+            cursorRing.style.left = ringX + 'px';
+            cursorRing.style.top = ringY + 'px';
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+        var interactiveEls = document.querySelectorAll('a, button, .skill-item, .filter-tag, .glow-card, input, textarea');
+        interactiveEls.forEach(function(el) {
+            el.addEventListener('mouseenter', function() { cursorRing.classList.add('grow'); });
+            el.addEventListener('mouseleave', function() { cursorRing.classList.remove('grow'); });
+        });
+        document.addEventListener('mouseleave', function() {
+            cursorDot.style.opacity = '0'; cursorRing.style.opacity = '0';
+        });
+        document.addEventListener('mouseenter', function() {
+            cursorDot.style.opacity = '1'; cursorRing.style.opacity = '1';
+        });
+    }
+
+    // 19. HERO PHOTO 3D PARALLAX ON MOUSE MOVE
+    var heroImageContainer = document.querySelector('.hero-image-container');
+    var heroPhotoCard = document.getElementById('heroPhotoCard');
+    if (heroImageContainer && heroPhotoCard && isFinePointer) {
+        heroImageContainer.addEventListener('mousemove', function(e) {
+            var rect = heroImageContainer.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            var midX = rect.width / 2;
+            var midY = rect.height / 2;
+            var rotateY = ((x - midX) / midX) * 12;
+            var rotateX = -((y - midY) / midY) * 12;
+            heroPhotoCard.style.animation = 'none';
+            heroPhotoCard.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale(1.02)';
+        });
+        heroImageContainer.addEventListener('mouseleave', function() {
+            heroPhotoCard.style.transform = '';
+            heroPhotoCard.style.animation = 'heroFloat 6s ease-in-out infinite';
+        });
+    }
+
+    // 20. ABOUT PHOTO SUBTLE 3D TILT
+    var aboutTiltCard = document.getElementById('aboutTiltCard');
+    if (aboutTiltCard && isFinePointer) {
+        aboutTiltCard.addEventListener('mousemove', function(e) {
+            var rect = aboutTiltCard.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            var midX = rect.width / 2;
+            var midY = rect.height / 2;
+            var rotateY = ((x - midX) / midX) * 8;
+            var rotateX = -((y - midY) / midY) * 8;
+            aboutTiltCard.style.transform = 'perspective(900px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+        });
+        aboutTiltCard.addEventListener('mouseleave', function() {
+            aboutTiltCard.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
+        });
+    }
+
+    // 21. MAGNETIC BUTTONS
+    var magneticBtns = document.querySelectorAll('.btn');
+    if (isFinePointer) {
+        magneticBtns.forEach(function(btn) {
+            btn.addEventListener('mousemove', function(e) {
+                var rect = btn.getBoundingClientRect();
+                var x = e.clientX - rect.left - rect.width / 2;
+                var y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = 'translate(' + (x * 0.18) + 'px, ' + (y * 0.35) + 'px) translateY(-3px) scale(1.02)';
+            });
+            btn.addEventListener('mouseleave', function() {
+                btn.style.transform = '';
+            });
+        });
+    }
 });
