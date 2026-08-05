@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. PREMIUM LOADER - Disappears 0.4s after execution
+    // 1. PREMIUM LOADER - Disappears 0.3s after execution
     setTimeout(function() { 
         const loader = document.getElementById('initialLoader');
         if (loader) loader.classList.add('hidden'); 
-    }, 400);
+    }, 300);
 
     // Initialize AOS
     AOS.init({ duration: 300, once: true, offset: 10 });
@@ -283,6 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 13. GLOW CARDS — spotlight + real 3D perspective tilt
     var cards = document.querySelectorAll('.glow-card:not(.mock-dashboard-card)');
+    var isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     cards.forEach(function(card) {
         card.addEventListener('mousemove', function(e) {
             var rect = card.getBoundingClientRect();
@@ -369,39 +370,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
-
-    // 18. CUSTOM 3D CURSOR
-    var cursorDot = document.getElementById('cursorDot');
-    var cursorRing = document.getElementById('cursorRing');
-    var isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (isFinePointer && cursorDot && cursorRing) {
-        var ringX = 0, ringY = 0, targetX = 0, targetY = 0;
-        document.addEventListener('mousemove', function(e) {
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top = e.clientY + 'px';
-            targetX = e.clientX;
-            targetY = e.clientY;
-        });
-        function animateRing() {
-            ringX += (targetX - ringX) * 0.18;
-            ringY += (targetY - ringY) * 0.18;
-            cursorRing.style.left = ringX + 'px';
-            cursorRing.style.top = ringY + 'px';
-            requestAnimationFrame(animateRing);
-        }
-        animateRing();
-        var interactiveEls = document.querySelectorAll('a, button, .skill-item, .filter-tag, .glow-card, input, textarea');
-        interactiveEls.forEach(function(el) {
-            el.addEventListener('mouseenter', function() { cursorRing.classList.add('grow'); });
-            el.addEventListener('mouseleave', function() { cursorRing.classList.remove('grow'); });
-        });
-        document.addEventListener('mouseleave', function() {
-            cursorDot.style.opacity = '0'; cursorRing.style.opacity = '0';
-        });
-        document.addEventListener('mouseenter', function() {
-            cursorDot.style.opacity = '1'; cursorRing.style.opacity = '1';
-        });
-    }
 
     // 19. HERO PHOTO 3D PARALLAX ON MOUSE MOVE
     var heroImageContainer = document.querySelector('.hero-image-container');
