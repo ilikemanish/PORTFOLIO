@@ -13,10 +13,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <!-- Link to external CSS -->
+    <!-- External CSS -->
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+    <!-- AMBIENT DECORATIVE LAYERS -->
+    <div class="grain-overlay"></div>
+    <div class="mesh-bg" aria-hidden="true">
+        <div class="mesh-blob b1"></div>
+        <div class="mesh-blob b2"></div>
+        <div class="mesh-blob b3"></div>
+    </div>
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
 
     <!-- LOADER -->
     <div class="page-loader" id="initialLoader">
@@ -24,7 +35,14 @@
             <div class="premium-logo-animation">
                 <div class="ring ring1"></div>
                 <div class="ring ring2"></div>
-                <i class="fa-solid fa-chart-simple data-icon"></i>
+                <div class="loader-cube">
+                    <div class="face f1"></div>
+                    <div class="face f2"></div>
+                    <div class="face f3"></div>
+                    <div class="face f4"></div>
+                    <div class="face f5"></div>
+                    <div class="face f6"></div>
+                </div>
             </div>
             <div class="loader-text">Loading Portfolio...</div>
         </div>
@@ -72,7 +90,7 @@
                     <div><span class="prompt">manish@analytics:~#</span> launch --profile</div>
                     <div>&gt; Environment: <span class="highlight">Python 3.11 / SQL Server</span></div>
                     <div>&gt; Target: <span class="highlight">Data Analytics &amp; Visualization Core</span></div>
-                    <div>&gt; Status: <span class="highlight">Active &amp; Ready for Infrastructure Deployment</span></div>
+                    <div>&gt; Status: <span class="highlight">Active &amp; Ready for Infrastructure Deployment</span><span class="type-cursor"></span></div>
                 </div>
             </div>
 
@@ -91,6 +109,8 @@
 
         <div class="hero-image-container" data-aos="zoom-in" data-aos-delay="150">
             <div style="position: relative; width: 100%; display: flex; justify-content: center; align-items: center;">
+                <div class="orbit-ring o1"><span class="orbit-dot"></span></div>
+                <div class="orbit-ring o2"><span class="orbit-dot"></span></div>
                 <div class="floating-widget widget-1">
                     <div class="widget-icon"><i class="fa-solid fa-broom"></i></div>
                     <div class="widget-text">
@@ -98,7 +118,7 @@
                         <strong>99.8%</strong>
                     </div>
                 </div>
-                <div class="hero-photo-card">
+                <div class="hero-photo-card" id="heroPhotoCard">
                     <div class="hero-photo-ring"></div>
                     <img src="assets/home-profile.jpg" alt="Manish Kashyap Profile Photo" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop'" />
                 </div>
@@ -116,6 +136,11 @@
     <!-- GEMINI-STYLE ROUND SCROLL INDICATOR -->
     <a href="#about" class="scroll-indicator" id="scrollIndicator" aria-label="Scroll down">
         <i class="fa-solid fa-arrow-down"></i>
+    </a>
+
+    <!-- BACK TO TOP -->
+    <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
     </a>
 
     <!-- IMPACT METRICS -->
@@ -144,7 +169,7 @@
         <h2 class="section-title" data-aos="fade-right">Education</h2>
         <div class="about-grid-container">
             <div class="about-premium-frame-wrapper" data-aos="zoom-in" data-aos-delay="100">
-                <div class="about-premium-glow-card">
+                <div class="about-premium-glow-card" id="aboutTiltCard">
                     <div class="about-premium-inner-frame">
                         <img src="assets/about-profile.jpg" alt="Manish Academic Premium Portrait" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop'" />
                     </div>
@@ -356,6 +381,19 @@
                     <span class="project-link-btn btn-details" data-modal="modal-excel"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
                 </div>
             </div>
+
+            <!-- Decathlon Analytics - Excel -->
+            <div class="mock-dashboard-card glow-card" data-filter="excel" style="display: none;">
+                <div class="mock-meta"><span>Customer Analytics</span></div>
+                <img src="https://raw.githubusercontent.com/Manish-kashyap/Decathlon-Retail-Sales-Customer-Analytics-Dashboard/b3f40f4d3d22e3f0261fef36f5b2b55cd5a6a6cc/Dashboard.png.jpg" alt="Decathlon Sales Dashboard" class="excel-dashboard-img">
+                <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">Decathlon Sales & Customer Analytics</h3>
+                <div class="impact-badge"><i class="fa-solid fa-bolt"></i> Impact: Transformed 30k+ records into actionable business insights.</div>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">An interactive Microsoft Excel dashboard analyzing sales performance, customer behavior, and KPIs using a synthetic Decathlon retail dataset.</p>
+                <div class="project-links-row">
+                    <a href="https://github.com/Manish-kashyap/Decathlon-Retail-Sales-Customer-Analytics-Dashboard" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> Code</a>
+                    <span class="project-link-btn btn-details" data-modal="modal-decathlon"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -543,6 +581,30 @@
             <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I built an interactive dashboard entirely in <strong>MS Excel</strong>. Raw data was connected to <strong>Pivot Tables</strong> for easy manager data understanding at a glance.</p></div>
             <div class="modal-section"><h4><i class="fa-solid fa-display"></i> Live Interactive Preview</h4><div class="iframe-placeholder"><i class="fa-solid fa-chart-pie"></i><p style="margin-bottom: 0;">Interactive Dashboard Active Here</p><span style="font-size: 0.8rem; color: var(--accent-blue);">(Simulated Web Embed)</span></div></div>
             <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Dynamic dashboard for KPI tracking and visualizing revenue trends.</li><li>Consolidated fragmented retail data, accelerating executive decision-making.</li><li>Automated KPI tracking with Pivot Tables.</li></ul></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-decathlon">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="modal-title">Decathlon Sales & Customer Analytics</h2>
+            <div class="modal-subtitle">Retail Business Intelligence in Excel</div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-circle-question"></i> The Problem</h4>
+                <p>Retail businesses generate large volumes of transactional data daily. Without proper analysis, it becomes difficult to identify sales trends, customer purchasing behavior, high-performing product categories, and business growth opportunities.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4>
+                <p>I built an interactive dashboard in <strong>Microsoft Excel</strong> utilizing over 30,000 synthetic records. After cleaning and validating the data, I implemented <strong>Pivot Tables</strong>, <strong>Pivot Charts</strong>, and dynamic <strong>Slicers</strong> to track Total Sales, Average Order Value (AOV), and customer retention trends.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4>
+                <ul>
+                    <li>Customer segmentation revealed high-value customer groups to prioritize for targeted marketing campaigns.</li>
+                    <li>Product category analysis highlighted major revenue contributors to assist with inventory optimization.</li>
+                    <li>Customer retention metrics evaluated repeat purchasing behavior, providing a baseline to design future retention programs.</li>
+                </ul>
+            </div>
         </div>
     </div>
 
