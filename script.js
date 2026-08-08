@@ -25,37 +25,46 @@ document.addEventListener('DOMContentLoaded', function() {
     updateGreeting();
 
     // 3. SCROLL DOWN INDICATOR + BACK TO TOP + PROGRESS BAR + HEADER SHADOW
+    // *OPTIMIZED* with requestAnimationFrame to fix lagging issues
     const scrollIndicator = document.getElementById('scrollIndicator');
     const backToTop = document.getElementById('backToTop');
     const progressBar = document.getElementById('scrollProgressBar');
     const headerEl = document.querySelector('header');
     
+    let isScrolling = false;
     window.addEventListener('scroll', function() {
-        const scrollY = window.scrollY;
-        if (scrollIndicator) {
-            if (scrollY > 50) scrollIndicator.classList.add('hidden');
-            else scrollIndicator.classList.remove('hidden');
-        }
-        if (backToTop) {
-            if (scrollY > 500) backToTop.classList.add('visible');
-            else backToTop.classList.remove('visible');
-        }
-        if (headerEl) {
-            if (scrollY > 10) headerEl.classList.add('scrolled');
-            else headerEl.classList.remove('scrolled');
-        }
-        if (progressBar) {
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const pct = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
-            progressBar.style.width = pct + '%';
+        if (!isScrolling) {
+            window.requestAnimationFrame(function() {
+                const scrollY = window.scrollY;
+                if (scrollIndicator) {
+                    if (scrollY > 50) scrollIndicator.classList.add('hidden');
+                    else scrollIndicator.classList.remove('hidden');
+                }
+                if (backToTop) {
+                    if (scrollY > 500) backToTop.classList.add('visible');
+                    else backToTop.classList.remove('visible');
+                }
+                if (headerEl) {
+                    if (scrollY > 10) headerEl.classList.add('scrolled');
+                    else headerEl.classList.remove('scrolled');
+                }
+                if (progressBar) {
+                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const pct = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+                    progressBar.style.width = pct + '%';
+                }
+                isScrolling = false;
+            });
+            isScrolling = true;
         }
     }, { passive: true });
 
     // 4. GLOBAL PARTICLES - NEURAL NETWORK STYLE
+    // *OPTIMIZED* Reduced particle count from 60 to 40 to save CPU
     if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
         particlesJS('particles-js', {
             particles: {
-                number: { value: 60, density: { enable: true, value_area: 1000 } },
+                number: { value: 40, density: { enable: true, value_area: 1000 } },
                 color: { value: '#00f5a0' },
                 shape: { type: 'circle' },
                 opacity: { 
@@ -70,14 +79,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 line_linked: { 
                     enable: true, 
-                    distance: 150, 
+                    distance: 120, 
                     color: '#0079ff', 
-                    opacity: 0.3, 
+                    opacity: 0.2, 
                     width: 1 
                 },
                 move: { 
                     enable: true, 
-                    speed: 1.5, 
+                    speed: 1.2, 
                     direction: 'none', 
                     random: true, 
                     straight: false, 
