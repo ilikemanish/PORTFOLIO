@@ -366,16 +366,17 @@
                 </div>
             </div>
 
-            <!-- Excel Project -->
+            <!-- Swiggy Analytics - Excel -->
             <div class="mock-dashboard-card glow-card" data-filter="excel" style="display: none;">
-                <div class="mock-meta"><span>Business Intelligence</span></div>
-                <img src="https://raw.githubusercontent.com/Manish-kashyap/SALES-DASHBOARD-EXCEL/main/DASBOARD.png" alt="Excel Dashboard" class="excel-dashboard-img">
-                <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">Interactive Sales Dashboard</h3>
-                <div class="impact-badge"><i class="fa-solid fa-bolt"></i> Impact: Automated daily reporting for executives.</div>
-                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">Built an interactive Excel dashboard to track daily sales, consolidate fragmented retail data, and automate KPI tracking.</p>
+                <div class="mock-meta"><span>Food Delivery Analytics</span></div>
+                <img src="https://raw.githubusercontent.com/Manish-kashyap/Swiggy-Sales-Analysis-Dashboard/main/DASHBOARD.png" alt="Swiggy Sales Dashboard" class="excel-dashboard-img">
+                <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">Swiggy Sales Analysis Dashboard</h3>
+                <div class="impact-badge"><i class="fa-solid fa-bolt"></i> Impact: Uncovered key ordering trends & revenue metrics.</div>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">An interactive Microsoft Excel dashboard analyzing Swiggy's food delivery data to track revenue, customer preferences, and top-performing categories.</p>
                 <div class="project-links-row">
-                    <a href="https://github.com/Manish-kashyap/SALES-DASHBOARD-EXCEL" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> Project Files</a>
-                    <span class="project-link-btn btn-details" data-modal="modal-excel"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
+                    <a href="https://github.com/Manish-kashyap/Swiggy-Sales-Analysis-Dashboard" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> Code</a>
+                    <a href="https://manish-kashyap.github.io/Swiggy-Sales-Analysis-Dashboard/" target="_blank" class="project-link-btn"><i class="fa-solid fa-eye"></i> Live</a>
+                    <span class="project-link-btn btn-details" data-modal="modal-swiggy"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
                 </div>
             </div>
 
@@ -388,6 +389,7 @@
                 <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">An interactive Microsoft Excel dashboard analyzing sales performance, customer behavior, and KPIs using a synthetic Decathlon retail dataset.</p>
                 <div class="project-links-row">
                     <a href="https://github.com/Manish-kashyap/Decathlon-Retail-Sales-Customer-Analytics-Dashboard" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> Code</a>
+                    <a href="https://manish-kashyap.github.io/Decathlon-Retail-Sales-Customer-Analytics-Dashboard/" target="_blank" class="project-link-btn"><i class="fa-solid fa-eye"></i> Live</a>
                     <span class="project-link-btn btn-details" data-modal="modal-decathlon"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
                 </div>
             </div>
@@ -569,23 +571,51 @@
         </div>
     </div>
 
-    <div class="modal-overlay" id="modal-excel">
+    <!-- NEW SWIGGY MODAL WITH LIVE PREVIEW LINK -->
+    <div class="modal-overlay" id="modal-swiggy">
         <div class="modal-content">
             <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
-            <h2 class="modal-title">Interactive Sales Dashboard</h2>
-            <div class="modal-subtitle">Business Intelligence in Excel</div>
-            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Managers needed fragmented retail data consolidated into a central view to track dynamic sales, accelerate executive decision-making, and automate KPI tracking.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I built an interactive dashboard entirely in <strong>MS Excel</strong>. Raw data was connected to <strong>Pivot Tables</strong> for easy manager data understanding at a glance.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-display"></i> Live Interactive Preview</h4><div class="iframe-placeholder"><i class="fa-solid fa-chart-pie"></i><p style="margin-bottom: 0;">Interactive Dashboard Active Here</p><span style="font-size: 0.8rem; color: var(--accent-blue);">(Simulated Web Embed)</span></div></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Dynamic dashboard for KPI tracking and visualizing revenue trends.</li><li>Consolidated fragmented retail data, accelerating executive decision-making.</li><li>Automated KPI tracking with Pivot Tables.</li></ul></div>
+            
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; margin-bottom: 20px;">
+                <div>
+                    <h2 class="modal-title" style="margin-bottom:0;">Swiggy Sales Analysis Dashboard</h2>
+                    <div class="modal-subtitle" style="margin-bottom:0; margin-top:5px;">Food Delivery Business Intelligence in Excel</div>
+                </div>
+                <a href="https://manish-kashyap.github.io/Swiggy-Sales-Analysis-Dashboard/" target="_blank" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.85rem;"><i class="fa-solid fa-eye"></i> Live Preview</a>
+            </div>
+
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-circle-question"></i> The Problem</h4>
+                <p>Food delivery platforms generate massive volumes of transactional data. The goal of this project was to consolidate this data to understand restaurant performance, customer ordering patterns, and revenue trends across different zones and food categories.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4>
+                <p>I built an interactive dashboard entirely in <strong>Microsoft Excel</strong>. After cleaning and formatting the raw transaction data, I implemented <strong>Pivot Tables</strong>, <strong>Pivot Charts</strong>, and dynamic <strong>Slicers</strong> to allow users to seamlessly filter metrics by city, restaurant, and time periods.</p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4>
+                <ul>
+                    <li>Identified peak ordering hours and top-selling food categories to optimize restaurant preparation times.</li>
+                    <li>Visualized Average Order Value (AOV) trends across different demographics and geographic zones.</li>
+                    <li>Evaluated restaurant performance, separating high-revenue generators from underperforming partners.</li>
+                </ul>
+            </div>
         </div>
     </div>
 
+    <!-- DECATHLON MODAL WITH LIVE PREVIEW LINK -->
     <div class="modal-overlay" id="modal-decathlon">
         <div class="modal-content">
             <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
-            <h2 class="modal-title">Decathlon Sales & Customer Analytics</h2>
-            <div class="modal-subtitle">Retail Business Intelligence in Excel</div>
+            
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; margin-bottom: 20px;">
+                <div>
+                    <h2 class="modal-title" style="margin-bottom:0;">Decathlon Sales & Customer Analytics</h2>
+                    <div class="modal-subtitle" style="margin-bottom:0; margin-top:5px;">Retail Business Intelligence in Excel</div>
+                </div>
+                <a href="https://manish-kashyap.github.io/Decathlon-Retail-Sales-Customer-Analytics-Dashboard/" target="_blank" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.85rem;"><i class="fa-solid fa-eye"></i> Live Preview</a>
+            </div>
+
             <div class="modal-section">
                 <h4><i class="fa-solid fa-circle-question"></i> The Problem</h4>
                 <p>Retail businesses generate large volumes of transactional data daily. Without proper analysis, it becomes difficult to identify sales trends, customer purchasing behavior, high-performing product categories, and business growth opportunities.</p>
