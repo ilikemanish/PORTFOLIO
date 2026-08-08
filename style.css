@@ -47,15 +47,17 @@ html, body {
 body { padding-top: 100px; }
 
 /* ==========================================================================
-   PREMIUM AMBIENT LAYER & GLOBAL PARTICLES
+   PREMIUM AMBIENT LAYER & GLOBAL PARTICLES (OPTIMIZED FOR PERFORMANCE)
    ========================================================================== */
 .grain-overlay {
     position: fixed; inset: 0; z-index: 9998; pointer-events: none;
-    opacity: 0.035; mix-blend-mode: overlay;
+    opacity: 0.04; /* Switched from mix-blend-mode to standard opacity to fix scroll lagging */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    will-change: transform;
+    transform: translateZ(0);
 }
 
-.mesh-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.mesh-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; transform: translateZ(0); }
 .mesh-blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.22; will-change: transform; }
 
 .mesh-blob.b1 { width: 280px; height: 280px; top: -5%; left: -5%; background: var(--accent-emerald); animation: driftA 22s ease-in-out infinite; }
@@ -74,6 +76,7 @@ body { padding-top: 100px; }
     z-index: 1; 
     pointer-events: none; 
     opacity: 0.6; 
+    transform: translateZ(0); /* Hardware acceleration */
 }
 
 body.light-theme .mesh-blob { opacity: 0.10; }
@@ -126,7 +129,7 @@ body.light-theme .loader-text { color: var(--accent-blue); }
 @keyframes pulseText { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
 /* ==========================================================================
-   HEADER & SCROLLSPY (UPDATED FIX)
+   HEADER & SCROLLSPY
    ========================================================================== */
 header { 
     position: fixed; 
