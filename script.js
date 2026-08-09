@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (loader) loader.classList.add('hidden'); 
     }, 300);
 
-    // Initialize AOS
-    AOS.init({ duration: 300, once: true, offset: 10 });
+    // Initialize AOS (Trigger immediately with 0 offset)
+    AOS.init({ duration: 400, once: true, offset: 0 });
 
     // 2. TIMING-BASED GREETING
     function updateGreeting() {
@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
     updateGreeting();
 
     // 3. SCROLL DOWN INDICATOR + BACK TO TOP + PROGRESS BAR + HEADER SHADOW
-    // *OPTIMIZED* with requestAnimationFrame to fix lagging issues
     const scrollIndicator = document.getElementById('scrollIndicator');
     const backToTop = document.getElementById('backToTop');
     const progressBar = document.getElementById('scrollProgressBar');
@@ -60,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { passive: true });
 
     // 4. GLOBAL PARTICLES - NEURAL NETWORK STYLE
-    // *OPTIMIZED* Reduced particle count from 60 to 40 to save CPU
     if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
         particlesJS('particles-js', {
             particles: {
@@ -159,9 +157,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     sections.forEach(function(sec) { scrollObserver.observe(sec); });
 
-    // 8. SCROLL-TRIGGERED 3D REVEAL
+    // 8. SCROLL-TRIGGERED 3D REVEAL - OPTIMIZED FOR PRE-LOADING
     const revealTargets = document.querySelectorAll('.metric-card, .card-3d-node, .info-premium-node, .mock-dashboard-card, .testimonial-item');
     revealTargets.forEach(function(el) { el.classList.add('reveal-3d'); });
+    
     const revealObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
             if (entry.isIntersecting) {
@@ -169,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.15 });
+    }, { threshold: 0, rootMargin: '0px 0px 100px 0px' }); // Triggers 100px BEFORE entering viewport
     revealTargets.forEach(function(el) { revealObserver.observe(el); });
 
     // 9. THEME TOGGLE
@@ -288,16 +287,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // OPTIMIZED for pre-loading metrics slightly early
     var metricsObserver = new IntersectionObserver(function(entries) {
         if (entries[0].isIntersecting) {
             animateCounters();
             metricsObserver.disconnect();
         }
-    }, { threshold: 0.3 });
+    }, { threshold: 0, rootMargin: '0px 0px 150px 0px' });
     var impactSection = document.querySelector('.impact-section');
     if (impactSection) { metricsObserver.observe(impactSection); }
 
-    // 13. SLIDER
+    // 13. SLIDER WITH AUTO-PAUSE ON TAB INACTIVE
     var slides = document.querySelectorAll('.slide');
     var prevBtn = document.getElementById('prevSlide');
     var nextBtn = document.getElementById('nextSlide');
@@ -323,6 +323,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function startSliderTimer() { slideInterval = setInterval(nextSlideFn, 5000); }
     function resetSliderTimer() { clearInterval(slideInterval); startSliderTimer(); }
     startSliderTimer();
+
+    document.addEventListener("visibilitychange", function() {
+        if (document.hidden) {
+            clearInterval(slideInterval);
+        } else {
+            startSliderTimer();
+        }
+    });
 
     // 14. GLOW CARDS
     var cards = document.querySelectorAll('.glow-card:not(.mock-dashboard-card)');
