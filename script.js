@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (loader) loader.classList.add('hidden'); 
     }, 300);
 
-    // Initialize AOS (Trigger immediately with 0 offset)
+    // Initialize AOS
     AOS.init({ duration: 400, once: true, offset: 0 });
 
     // 2. TIMING-BASED GREETING
@@ -24,41 +24,57 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     updateGreeting();
 
-    // 3. SCROLL DOWN INDICATOR + BACK TO TOP + PROGRESS BAR + HEADER SHADOW
+    // 3. SCROLL DOWN INDICATOR + BACK TO TOP + PROGRESS BAR + HEADER FADE LOGIC
     const scrollIndicator = document.getElementById('scrollIndicator');
     const backToTop = document.getElementById('backToTop');
     const progressBar = document.getElementById('scrollProgressBar');
-    const headerEl = document.querySelector('header');
+    const headerEl = document.getElementById('mainHeader');
     
     let isScrolling = false;
+    
     window.addEventListener('scroll', function() {
         if (!isScrolling) {
             window.requestAnimationFrame(function() {
-                const scrollY = window.scrollY;
+                const currentScrollY = window.scrollY;
+                
+                if (headerEl) {
+                    if (currentScrollY > 10) {
+                        headerEl.classList.add('scrolled');
+                    } else {
+                        headerEl.classList.remove('scrolled');
+                    }
+
+                    // Fade out header when scrolled down past home section (> 350px), Fade in when back at top (Home)
+                    if (currentScrollY > 350) {
+                        headerEl.classList.add('header-hidden');
+                    } else {
+                        headerEl.classList.remove('header-hidden');
+                    }
+                }
+                
                 if (scrollIndicator) {
-                    if (scrollY > 50) scrollIndicator.classList.add('hidden');
+                    if (currentScrollY > 50) scrollIndicator.classList.add('hidden');
                     else scrollIndicator.classList.remove('hidden');
                 }
+                
                 if (backToTop) {
-                    if (scrollY > 500) backToTop.classList.add('visible');
+                    if (currentScrollY > 500) backToTop.classList.add('visible');
                     else backToTop.classList.remove('visible');
                 }
-                if (headerEl) {
-                    if (scrollY > 10) headerEl.classList.add('scrolled');
-                    else headerEl.classList.remove('scrolled');
-                }
+                
                 if (progressBar) {
                     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                    const pct = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+                    const pct = docHeight > 0 ? (currentScrollY / docHeight) * 100 : 0;
                     progressBar.style.width = pct + '%';
                 }
+                
                 isScrolling = false;
             });
             isScrolling = true;
         }
     }, { passive: true });
 
-    // 4. GLOBAL PARTICLES - NEURAL NETWORK STYLE
+    // 4. GLOBAL PARTICLES
     if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
         particlesJS('particles-js', {
             particles: {
@@ -108,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 5. SKILLS CLICK TO VIEW PROFICIENCY (3D flip)
+    // 5. SKILLS CLICK TO VIEW PROFICIENCY
     const techItems = document.querySelectorAll('.tech-item');
     techItems.forEach(function(item) {
         item.addEventListener('click', function(e) {
@@ -157,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     sections.forEach(function(sec) { scrollObserver.observe(sec); });
 
-    // 8. SCROLL-TRIGGERED 3D REVEAL - OPTIMIZED FOR PRE-LOADING
+    // 8. SCROLL-TRIGGERED 3D REVEAL
     const revealTargets = document.querySelectorAll('.metric-card, .card-3d-node, .info-premium-node, .mock-dashboard-card, .testimonial-item');
     revealTargets.forEach(function(el) { el.classList.add('reveal-3d'); });
     
@@ -168,25 +184,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0, rootMargin: '0px 0px 100px 0px' }); // Triggers 100px BEFORE entering viewport
+    }, { threshold: 0, rootMargin: '0px 0px 100px 0px' });
     revealTargets.forEach(function(el) { revealObserver.observe(el); });
 
-    // 9. THEME TOGGLE
+    // 9. THEME TOGGLE 
     const themeToggle = document.getElementById('themeToggle');
+    const switchIcon = document.querySelector('.switch-icon');
+    
     function updateThemeIcon() {
-        if (!themeToggle) return;
-        themeToggle.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+        if (!themeToggle || !switchIcon) return;
+        const isLight = document.body.classList.contains('light-theme');
+        
+        if (isLight) {
+            switchIcon.classList.remove('fa-sun');
+            switchIcon.classList.add('fa-moon');
+        } else {
+            switchIcon.classList.remove('fa-moon');
+            switchIcon.classList.add('fa-sun');
+        }
     }
+
     if (themeToggle) {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'light') document.body.classList.add('light-theme');
+        
         updateThemeIcon();
+        
         themeToggle.addEventListener('click', function() {
-            themeToggle.classList.add('animating');
             document.body.classList.toggle('light-theme');
             localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
             updateThemeIcon();
-            setTimeout(function() { themeToggle.classList.remove('animating'); }, 500);
         });
     }
 
@@ -287,7 +314,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // OPTIMIZED for pre-loading metrics slightly early
     var metricsObserver = new IntersectionObserver(function(entries) {
         if (entries[0].isIntersecting) {
             animateCounters();
@@ -423,7 +449,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 19. HERO PHOTO 3D PARALLAX ON MOUSE MOVE
+    // 19. HERO PHOTO 3D PARALLAX
     var heroImageContainer = document.querySelector('.hero-image-container');
     var heroPhotoCard = document.getElementById('heroPhotoCard');
     if (heroImageContainer && heroPhotoCard && isFinePointer) {
@@ -476,5 +502,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 btn.style.transform = '';
             });
         });
+    }
+
+    // 22. SKILLS ICON ACTIVE STATE HANDLER
+    const skillsIcon = document.querySelector('.skills-icon');
+    if (skillsIcon) {
+        const navLink = skillsIcon.closest('.nav-link');
+        if (navLink) {
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.attributeName === 'class') {
+                        if (navLink.classList.contains('active')) {
+                            skillsIcon.style.color = 'var(--accent-emerald)';
+                            skillsIcon.style.filter = 'drop-shadow(0 0 6px var(--accent-glow))';
+                        } else {
+                            skillsIcon.style.color = '';
+                            skillsIcon.style.filter = '';
+                        }
+                    }
+                });
+            });
+            observer.observe(navLink, { attributes: true });
+        }
     }
 });
