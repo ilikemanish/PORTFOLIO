@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         headerEl.classList.remove('scrolled');
                     }
 
-                    // Fade out header when scrolled down past home section (> 350px), Fade in when back at top (Home)
                     if (currentScrollY > 350) {
                         headerEl.classList.add('header-hidden');
                     } else {
@@ -502,27 +501,5 @@ document.addEventListener('DOMContentLoaded', function() {
                 btn.style.transform = '';
             });
         });
-    }
-
-    // 22. SKILLS ICON ACTIVE STATE HANDLER
-    const skillsIcon = document.querySelector('.skills-icon');
-    if (skillsIcon) {
-        const navLink = skillsIcon.closest('.nav-link');
-        if (navLink) {
-            const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
-                    if (mutation.attributeName === 'class') {
-                        if (navLink.classList.contains('active')) {
-                            skillsIcon.style.color = 'var(--accent-emerald)';
-                            skillsIcon.style.filter = 'drop-shadow(0 0 6px var(--accent-glow))';
-                        } else {
-                            skillsIcon.style.color = '';
-                            skillsIcon.style.filter = '';
-                        }
-                    }
-                });
-            });
-            observer.observe(navLink, { attributes: true });
-        }
     }
 });
