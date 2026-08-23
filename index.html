@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
@@ -50,15 +50,42 @@
     </div>
 
     <!-- HEADER -->
-    <header>
-        <div class="logo" data-aos="fade-down">Port<span>folio</span></div>
+    <header id="mainHeader">
+        <div class="logo" data-aos="fade-down">
+            <i class="fa-regular fa-paper-plane logo-icon"></i>
+            <div class="logo-text-wrapper"> 
+                <span class="logo-green">Port</span><span class="logo-white">folio</span>
+            </div>
+        </div>
+        
         <nav class="nav-menu" id="navMenu" data-aos="fade-down" data-aos-delay="50">
-            <a href="#about" class="nav-link">About</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#portfolio" class="nav-link">Projects</a>
-            <a href="#contact" class="nav-link">Contact</a>
+            <a href="#about" class="nav-link">
+                <i class="fa-regular fa-user"></i>
+                <span>About</span>
+            </a>
+            <a href="#skills" class="nav-link">
+                <i class="fa-solid fa-code skills-icon"></i>
+                <span>Skills</span>
+            </a>
+            <a href="#portfolio" class="nav-link">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>Projects</span>
+            </a>
+            <a href="#contact" class="nav-link">
+                <i class="fa-regular fa-comment-dots"></i>
+                <span>Contact</span>
+            </a>
         </nav>
-        <button id="themeToggle" class="theme-toggle-btn" data-aos="fade-down" data-aos-delay="100" aria-label="Toggle dark and light mode">🌙</button>
+        
+        <div class="header-actions" data-aos="fade-down" data-aos-delay="100">
+            <button id="themeToggle" class="theme-toggle-switch" aria-label="Toggle dark and light mode">
+                <span class="switch-handle"></span>
+                <i class="fa-regular fa-sun switch-icon"></i>
+            </button>
+            <button class="mobile-menu-btn" aria-label="Open Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
     </header>
 
     <!-- HERO -->
@@ -78,7 +105,6 @@
 
             <p data-aos="fade-up" data-aos-delay="150">An aspiring Data Analyst passionate about data analysis and visualization. Skilled in Python, SQL, Excel, Power BI, and Tableau, I focus on extracting meaningful insights from data and presenting them in a clear and impactful way. I continuously work on projects to improve my analytical, technical, and problem-solving skills.</p>
 
-            <!-- Static Terminal -->
             <div class="terminal-box glow-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="terminal-header">
                     <span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span>
@@ -131,12 +157,10 @@
         </div>
     </section>
     
-    <!-- GEMINI-STYLE ROUND SCROLL INDICATOR -->
     <a href="#about" class="scroll-indicator" id="scrollIndicator" aria-label="Scroll down">
         <i class="fa-solid fa-arrow-down"></i>
     </a>
 
-    <!-- BACK TO TOP -->
     <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </a>
@@ -572,7 +596,6 @@
         </div>
     </div>
 
-    <!-- NEW SWIGGY MODAL WITH LIVE PREVIEW LINK -->
     <div class="modal-overlay" id="modal-swiggy">
         <div class="modal-content">
             <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
@@ -604,7 +627,6 @@
         </div>
     </div>
 
-    <!-- DECATHLON MODAL WITH LIVE PREVIEW LINK -->
     <div class="modal-overlay" id="modal-decathlon">
         <div class="modal-content">
             <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
@@ -641,7 +663,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     
-    <!-- External JS -->
+    <!-- Main JS -->
     <script src="script.js"></script>
 </body>
 </html>
