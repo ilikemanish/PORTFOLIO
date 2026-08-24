@@ -639,9 +639,9 @@ footer { padding: 2.5rem 6%; color: #4b5563; font-size: 0.9rem; font-weight: 600
         z-index: 20; 
     } 
     
-    /* MODIFIED POSITION: Top widget pushed down 25px */
-    .widget-1 { top: 25px; left: -25px; } 
-    .widget-2 { bottom: 0px; right: -25px; }
+    /* MODIFIED POSITION: Swapped sides. Top widget on right, bottom widget on left */
+    .widget-1 { top: 25px; left: auto; right: -25px; } 
+    .widget-2 { bottom: 0px; right: auto; left: -25px; }
     
     .widget-icon { width: 20px; height: 20px; font-size: 0.65rem; border-radius: 6px; }
     .widget-text p { font-size: 0.55rem; margin-bottom: 1px; }
@@ -678,9 +678,9 @@ footer { padding: 2.5rem 6%; color: #4b5563; font-size: 0.9rem; font-weight: 600
     .pipeline-flow { gap: 8px; }
     .pipeline-flow span { font-size: 0.7rem; padding: 4px 8px; }
     
-    /* MODIFIED POSITION: Top widget pushed down 30px on smaller screens */
-    .widget-1 { top: 30px; left: -20px; }
-    .widget-2 { bottom: -5px; right: -20px; }
+    /* FURTHER ADJUSTED POSITIONING FOR SMALLER SCREENS */
+    .widget-1 { top: 30px; left: auto; right: -20px; }
+    .widget-2 { bottom: -5px; right: auto; left: -20px; }
 }
 
 /* Respect reduced motion preference */
