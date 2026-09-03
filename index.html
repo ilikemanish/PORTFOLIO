@@ -20,11 +20,8 @@
 
     <!-- AMBIENT DECORATIVE LAYERS -->
     <div class="grain-overlay"></div>
-    <div class="mesh-bg" aria-hidden="true">
-        <div class="mesh-blob b1"></div>
-        <div class="mesh-blob b2"></div>
-        <div class="mesh-blob b3"></div>
-    </div>
+    <div class="data-wave wave-1"></div>
+    <div class="data-wave wave-2"></div>
     <div class="scroll-progress-bar" id="scrollProgressBar"></div>
 
     <!-- GLOBAL PARTICLES BACKGROUND -->
@@ -109,48 +106,82 @@
                 <div class="terminal-header">
                     <span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span>
                 </div>
+                <!-- LIVE EXECUTION TERMINAL: Terminal lines animated via CSS -->
                 <div class="terminal-body">
-                    <div><span class="prompt">manish@analytics:~#</span> launch --profile</div>
-                    <div>&gt; Environment: <span class="highlight">Python 3.11 / SQL Server</span></div>
-                    <div>&gt; Target: <span class="highlight">Data Analytics &amp; Visualization Core</span></div>
-                    <div>&gt; Status: <span class="highlight">Data Analyst intern @3Skill</span></div>
-                    <div>&gt; Availability: <span class="highlight">Open to full-time opportunities</span><span class="type-cursor"></span></div>
+                    <div class="terminal-line"><span class="prompt">manish@analytics:~#</span> launch --profile</div>
+                    <div class="terminal-line">&gt; Environment: <span class="highlight">Python 3.11 / SQL Server</span></div>
+                    <div class="terminal-line">&gt; Target: <span class="highlight">Data Analytics &amp; Visualization Core</span></div>
+                    <div class="terminal-line">&gt; Status: <span class="highlight">Data Analyst intern @3Skill</span></div>
+                    <div class="terminal-line">&gt; Availability: <span class="highlight">Open to full-time opportunities</span><span class="type-cursor"></span></div>
                 </div>
             </div>
 
+            <!-- BUTTONS IN ONE ROW -->
             <div class="hero-actions" data-aos="fade-up" data-aos-delay="250">
                 <a href="#contact" class="btn btn-primary">Contact Me</a>
                 <button id="openResumeViewerBtn" class="btn btn-secondary"><i class="fa-solid fa-file-pdf"></i> View Resume</button>
             </div>
 
+            <!-- SOCIAL MEDIA ICONS -->
             <div class="social-links" data-aos="fade-up" data-aos-delay="300">
                 <a href="https://github.com/Manish-kashyap" target="_blank" aria-label="GitHub Profile"><i class="fa-brands fa-github"></i></a>
                 <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn Network"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="https://instagram.com" target="_blank" aria-label="Instagram Stream"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://facebook.com" target="_blank" aria-label="Facebook Connection"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://wa.me/919568110788" target="_blank" aria-label="WhatsApp Connection"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
+
+            <!-- PREMIUM MOVING TECH RIBBON -->
+            <div class="tech-ticker-container" data-aos="fade-up" data-aos-delay="350">
+                <div class="tech-ticker-wrap">
+                    <!-- Set 1 -->
+                    <span class="ticker-item"><i class="devicon-python-plain"></i> Python</span>
+                    <span class="ticker-item"><i class="devicon-mysql-plain"></i> SQL</span>
+                    <span class="ticker-item"><i class="fa-solid fa-file-excel"></i> Excel</span>
+                    <span class="ticker-item"><i class="fa-solid fa-chart-pie"></i> Power BI</span>
+                    <span class="ticker-item"><i class="fa-solid fa-chart-line"></i> Tableau</span>
+                    <!-- Set 2 -->
+                    <span class="ticker-item"><i class="devicon-python-plain"></i> Python</span>
+                    <span class="ticker-item"><i class="devicon-mysql-plain"></i> SQL</span>
+                    <span class="ticker-item"><i class="fa-solid fa-file-excel"></i> Excel</span>
+                    <span class="ticker-item"><i class="fa-solid fa-chart-pie"></i> Power BI</span>
+                    <span class="ticker-item"><i class="fa-solid fa-chart-line"></i> Tableau</span>
+                </div>
+            </div>
+
         </div>
 
         <div class="hero-image-container" data-aos="zoom-in" data-aos-delay="150">
             <div style="position: relative; width: 100%; display: flex; justify-content: center; align-items: center;">
                 <div class="orbit-ring o1"><span class="orbit-dot"></span></div>
                 <div class="orbit-ring o2"><span class="orbit-dot"></span></div>
-                <div class="floating-widget widget-1">
-                    <div class="widget-icon"><i class="fa-solid fa-broom"></i></div>
-                    <div class="widget-text">
-                        <p>Data Accuracy</p>
-                        <strong>99.8%</strong>
+                
+                <!-- PARALLAX WRAPPER 1 -->
+                <div id="parallax-w1" style="position: absolute; inset: 0; z-index: 20; pointer-events: none;">
+                    <div class="floating-widget widget-1" style="pointer-events: auto;">
+                        <div class="widget-icon"><i class="fa-solid fa-broom"></i></div>
+                        <div class="widget-text">
+                            <p>Data Accuracy</p>
+                            <strong>99.8%</strong>
+                        </div>
                     </div>
                 </div>
-                <div class="hero-photo-card" id="heroPhotoCard">
-                    <div class="hero-photo-ring"></div>
-                    <img src="assets/home-profile.jpg" loading="eager" alt="Manish Kashyap Profile Photo" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop'" />
+
+                <!-- PARALLAX HERO PHOTO -->
+                <div id="parallax-hero" style="position: relative; z-index: 2; width: 100%; display: flex; justify-content: center;">
+                    <div class="hero-photo-card" id="heroPhotoCard">
+                        <div class="hero-photo-ring"></div>
+                        <img src="assets/home-profile.jpg" loading="eager" alt="Manish Kashyap Profile Photo" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop'" />
+                    </div>
                 </div>
-                <div class="floating-widget widget-2">
-                    <div class="widget-icon" style="color: var(--accent-blue); background: rgba(0, 121, 255, 0.1);"><i class="fa-solid fa-database"></i></div>
-                    <div class="widget-text">
-                        <p>SQL Script</p>
-                        <strong>Optimized</strong>
+
+                <!-- PARALLAX WRAPPER 2 -->
+                <div id="parallax-w2" style="position: absolute; inset: 0; z-index: 20; pointer-events: none;">
+                    <div class="floating-widget widget-2" style="pointer-events: auto;">
+                        <div class="widget-icon" style="color: var(--accent-blue); background: rgba(0, 121, 255, 0.1);"><i class="fa-solid fa-database"></i></div>
+                        <div class="widget-text">
+                            <p>SQL Script</p>
+                            <strong>Optimized</strong>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -306,6 +337,9 @@
             <span class="filter-tag" data-target="python">Python</span>
             <span class="filter-tag" data-target="statistics">Statistics</span>
             <span class="filter-tag" data-target="excel">MS Excel</span>
+            <span class="filter-tag" data-target="sql">SQL</span>
+            <span class="filter-tag" data-target="powerbi">Power BI</span>
+            <span class="filter-tag" data-target="tableau">Tableau</span>
         </div>
 
         <div class="projects-grid-container" id="projectPlaceholderBox" data-aos="fade-up" data-aos-delay="0">
@@ -325,7 +359,43 @@
                     </div>
 
                     <div class="mock-meta" style="justify-content: center; margin-top: 15px;">
-                        <span style="border: 1px solid #ffbd2e; color: #ffbd2e; padding: 5px 15px; border-radius: 20px; font-weight: 800; letter-spacing: 1px;">COMING SOON</span>
+                        <span class="coming-soon-badge">COMING SOON</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SQL Project - Coming Soon -->
+            <div class="mock-dashboard-card glow-card" data-filter="sql" style="display: none;">
+                <div style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
+                    <i class="devicon-mysql-plain" style="font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 10px; opacity: 0.8; filter: drop-shadow(0 0 8px rgba(0, 121, 255, 0.4));"></i>
+                    <h3 style="color:var(--text-main); margin-bottom: 5px;">Advanced SQL Queries & Optimization</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 5px;">A collection of complex database schemas, stored procedures, and optimized queries for large datasets.</p>
+                    <div class="mock-meta" style="justify-content: center; margin-top: 15px;">
+                        <span class="coming-soon-badge">COMING SOON</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Power BI Project - Coming Soon -->
+            <div class="mock-dashboard-card glow-card" data-filter="powerbi" style="display: none;">
+                <div style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
+                    <img src="assets/icons/powerbi.svg" style="width: 40px; margin-bottom: 10px; opacity: 0.8; filter: drop-shadow(0 0 8px rgba(242, 200, 17, 0.4));" onerror="this.src='https://img.icons8.com/color/480/power-bi.png'" alt="Power BI" />
+                    <h3 style="color:var(--text-main); margin-bottom: 5px;">Business Intelligence Dashboard</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 5px;">Interactive enterprise dashboard highlighting revenue streams, YoY growth, and regional KPIs.</p>
+                    <div class="mock-meta" style="justify-content: center; margin-top: 15px;">
+                        <span class="coming-soon-badge">COMING SOON</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tableau Project - Coming Soon -->
+            <div class="mock-dashboard-card glow-card" data-filter="tableau" style="display: none;">
+                <div style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
+                    <img src="assets/icons/tableau.svg" style="width: 40px; margin-bottom: 10px; opacity: 0.8; filter: drop-shadow(0 0 8px rgba(233, 118, 39, 0.4));" onerror="this.src='https://img.icons8.com/color/480/tableau-software.png'" alt="Tableau" />
+                    <h3 style="color:var(--text-main); margin-bottom: 5px;">Tableau Data Storytelling</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 5px;">End-to-end data storytelling emphasizing geographical sales distribution and predictive trends.</p>
+                    <div class="mock-meta" style="justify-content: center; margin-top: 15px;">
+                        <span class="coming-soon-badge">COMING SOON</span>
                     </div>
                 </div>
             </div>
@@ -599,7 +669,6 @@
     <div class="modal-overlay" id="modal-swiggy">
         <div class="modal-content">
             <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
-            
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; margin-bottom: 20px;">
                 <div>
                     <h2 class="modal-title" style="margin-bottom:0;">Swiggy Sales Analysis Dashboard</h2>
@@ -607,30 +676,15 @@
                 </div>
                 <a href="https://manish-kashyap.github.io/Swiggy-Sales-Analysis-Dashboard/" target="_blank" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.85rem;"><i class="fa-solid fa-eye"></i> Live Preview</a>
             </div>
-
-            <div class="modal-section">
-                <h4><i class="fa-solid fa-circle-question"></i> The Problem</h4>
-                <p>Food delivery platforms generate massive volumes of transactional data. The goal of this project was to consolidate this data to understand restaurant performance, customer ordering patterns, and revenue trends across different zones and food categories.</p>
-            </div>
-            <div class="modal-section">
-                <h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4>
-                <p>I built an interactive dashboard entirely in <strong>Microsoft Excel</strong>. After cleaning and formatting the raw transaction data, I implemented <strong>Pivot Tables</strong>, <strong>Pivot Charts</strong>, and dynamic <strong>Slicers</strong> to allow users to seamlessly filter metrics by city, restaurant, and time periods.</p>
-            </div>
-            <div class="modal-section">
-                <h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4>
-                <ul>
-                    <li>Identified peak ordering hours and top-selling food categories to optimize restaurant preparation times.</li>
-                    <li>Visualized Average Order Value (AOV) trends across different demographics and geographic zones.</li>
-                    <li>Evaluated restaurant performance, separating high-revenue generators from underperforming partners.</li>
-                </ul>
-            </div>
+            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Food delivery platforms generate massive volumes of transactional data. The goal of this project was to consolidate this data to understand restaurant performance, customer ordering patterns, and revenue trends across different zones and food categories.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I built an interactive dashboard entirely in <strong>Microsoft Excel</strong>. After cleaning and formatting the raw transaction data, I implemented <strong>Pivot Tables</strong>, <strong>Pivot Charts</strong>, and dynamic <strong>Slicers</strong> to allow users to seamlessly filter metrics by city, restaurant, and time periods.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Identified peak ordering hours and top-selling food categories to optimize restaurant preparation times.</li><li>Visualized Average Order Value (AOV) trends across different demographics and geographic zones.</li><li>Evaluated restaurant performance, separating high-revenue generators from underperforming partners.</li></ul></div>
         </div>
     </div>
 
     <div class="modal-overlay" id="modal-decathlon">
         <div class="modal-content">
             <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
-            
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; margin-bottom: 20px;">
                 <div>
                     <h2 class="modal-title" style="margin-bottom:0;">Decathlon Sales & Customer Analytics</h2>
@@ -638,23 +692,9 @@
                 </div>
                 <a href="https://manish-kashyap.github.io/Decathlon-Retail-Sales-Customer-Analytics-Dashboard/" target="_blank" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.85rem;"><i class="fa-solid fa-eye"></i> Live Preview</a>
             </div>
-
-            <div class="modal-section">
-                <h4><i class="fa-solid fa-circle-question"></i> The Problem</h4>
-                <p>Retail businesses generate large volumes of transactional data daily. Without proper analysis, it becomes difficult to identify sales trends, customer purchasing behavior, high-performing product categories, and business growth opportunities.</p>
-            </div>
-            <div class="modal-section">
-                <h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4>
-                <p>I built an interactive dashboard in <strong>Microsoft Excel</strong> utilizing over 30,000 synthetic records. After cleaning and validating the data, I implemented <strong>Pivot Tables</strong>, <strong>Pivot Charts</strong>, and dynamic <strong>Slicers</strong> to track Total Sales, Average Order Value (AOV), and customer retention trends.</p>
-            </div>
-            <div class="modal-section">
-                <h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4>
-                <ul>
-                    <li>Customer segmentation revealed high-value customer groups to prioritize for targeted marketing campaigns.</li>
-                    <li>Product category analysis highlighted major revenue contributors to assist with inventory optimization.</li>
-                    <li>Customer retention metrics evaluated repeat purchasing behavior, providing a baseline to design future retention programs.</li>
-                </ul>
-            </div>
+            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Retail businesses generate large volumes of transactional data daily. Without proper analysis, it becomes difficult to identify sales trends, customer purchasing behavior, high-performing product categories, and business growth opportunities.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I built an interactive dashboard in <strong>Microsoft Excel</strong> utilizing over 30,000 synthetic records. After cleaning and validating the data, I implemented <strong>Pivot Tables</strong>, <strong>Pivot Charts</strong>, and dynamic <strong>Slicers</strong> to track Total Sales, Average Order Value (AOV), and customer retention trends.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Customer segmentation revealed high-value customer groups to prioritize for targeted marketing campaigns.</li><li>Product category analysis highlighted major revenue contributors to assist with inventory optimization.</li><li>Customer retention metrics evaluated repeat purchasing behavior, providing a baseline to design future retention programs.</li></ul></div>
         </div>
     </div>
 
@@ -663,7 +703,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     
-    <!-- Main JS -->
+    <!-- External JS -->
     <script src="script.js"></script>
 </body>
 </html>
