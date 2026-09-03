@@ -24,11 +24,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     updateGreeting();
 
-    // 3. SCROLL DOWN INDICATOR + BACK TO TOP + PROGRESS BAR + HEADER FADE LOGIC
+    // 3. SCROLL DOWN INDICATOR + BACK TO TOP + PROGRESS BAR + HEADER FADE + PARALLAX LOGIC
     const scrollIndicator = document.getElementById('scrollIndicator');
     const backToTop = document.getElementById('backToTop');
     const progressBar = document.getElementById('scrollProgressBar');
     const headerEl = document.getElementById('mainHeader');
+    
+    // Parallax Elements
+    const parallaxW1 = document.getElementById('parallax-w1');
+    const parallaxW2 = document.getElementById('parallax-w2');
+    const parallaxHero = document.getElementById('parallax-hero');
     
     let isScrolling = false;
     
@@ -37,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             window.requestAnimationFrame(function() {
                 const currentScrollY = window.scrollY;
                 
+                // Header Scroll Logic
                 if (headerEl) {
                     if (currentScrollY > 10) {
                         headerEl.classList.add('scrolled');
@@ -51,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 
+                // Scroll Indicators Logic
                 if (scrollIndicator) {
                     if (currentScrollY > 50) scrollIndicator.classList.add('hidden');
                     else scrollIndicator.classList.remove('hidden');
@@ -61,10 +68,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     else backToTop.classList.remove('visible');
                 }
                 
+                // Progress Bar Logic
                 if (progressBar) {
                     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
                     const pct = docHeight > 0 ? (currentScrollY / docHeight) * 100 : 0;
                     progressBar.style.width = pct + '%';
+                }
+                
+                // Hero Parallax Logic
+                if (currentScrollY < 800) { 
+                    if (parallaxW1) parallaxW1.style.transform = `translateY(${currentScrollY * 0.15}px)`;
+                    if (parallaxW2) parallaxW2.style.transform = `translateY(${currentScrollY * -0.1}px)`;
+                    if (parallaxHero) parallaxHero.style.transform = `translateY(${currentScrollY * 0.05}px)`;
                 }
                 
                 isScrolling = false;
@@ -73,49 +88,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, { passive: true });
 
-    // 4. GLOBAL PARTICLES
+    // 4. AGGRESSIVE DATA-WEB PARTICLES JS
     if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
         particlesJS('particles-js', {
             particles: {
                 number: { value: 40, density: { enable: true, value_area: 1000 } },
                 color: { value: '#00f5a0' },
                 shape: { type: 'circle' },
-                opacity: { 
-                    value: 0.4, 
-                    random: true, 
-                    anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } 
-                },
-                size: { 
-                    value: 3, 
-                    random: true, 
-                    anim: { enable: false } 
-                },
-                line_linked: { 
-                    enable: true, 
-                    distance: 120, 
-                    color: '#0079ff', 
-                    opacity: 0.2, 
-                    width: 1 
-                },
-                move: { 
-                    enable: true, 
-                    speed: 1.2, 
-                    direction: 'none', 
-                    random: true, 
-                    straight: false, 
-                    out_mode: 'out', 
-                    bounce: false 
-                }
+                opacity: { value: 0.4, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } },
+                size: { value: 3, random: true, anim: { enable: false } },
+                line_linked: { enable: true, distance: 120, color: '#0079ff', opacity: 0.2, width: 1 },
+                move: { enable: true, speed: 1.2, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false }
             },
             interactivity: {
                 detect_on: 'window',
                 events: { 
-                    onhover: { enable: true, mode: 'repulse' }, 
+                    onhover: { enable: true, mode: 'grab' }, // Aggressive "Data-Web" Grab Mode
                     onclick: { enable: true, mode: 'push' }, 
                     resize: true 
                 },
                 modes: { 
-                    repulse: { distance: 100, duration: 0.4 }, 
+                    grab: { distance: 200, line_linked: { opacity: 0.8 } }, 
                     push: { particles_nb: 3 } 
                 }
             },
@@ -172,14 +165,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     sections.forEach(function(sec) { scrollObserver.observe(sec); });
 
-    // 8. SCROLL-TRIGGERED 3D REVEAL
-    const revealTargets = document.querySelectorAll('.metric-card, .card-3d-node, .info-premium-node, .mock-dashboard-card, .testimonial-item');
+    // 8. SCROLL-TRIGGERED 3D REVEAL & TERMINAL ANIMATION
+    const revealTargets = document.querySelectorAll('.terminal-box, .metric-card, .card-3d-node, .info-premium-node, .mock-dashboard-card, .testimonial-item');
     revealTargets.forEach(function(el) { el.classList.add('reveal-3d'); });
     
     const revealObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
             if (entry.isIntersecting) {
                 entry.target.classList.add('in-view');
+                // Custom AOS class trigger for Terminal Box Live Execution
+                if (entry.target.classList.contains('terminal-box')) {
+                    entry.target.classList.add('aos-animate');
+                }
                 revealObserver.unobserve(entry.target);
             }
         });
@@ -289,27 +286,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 12. METRICS COUNTER
+    // 12. METRICS COUNTER (DATA CRUNCH EFFECT)
     var counters = document.querySelectorAll('.counter');
-    var animationDuration = 1500;
     
     function animateCounters() {
         counters.forEach(function(counter) {
             var target = +counter.getAttribute('data-target');
-            var startTime = null;
-            function updateCount(timestamp) {
-                if (!startTime) startTime = timestamp;
-                var progress = Math.min((timestamp - startTime) / animationDuration, 1);
-                var current = Math.floor(progress * target);
-                counter.innerText = current;
+            var iterations = 0;
+            var maxIterations = 30; // How long the "crunching" lasts
+            
+            var interval = setInterval(function() {
+                // Display a random 2 or 3 digit number during the crunch phase
+                counter.innerText = Math.floor(Math.random() * 999);
+                iterations++;
                 
-                if (progress < 1) {
-                    requestAnimationFrame(updateCount);
-                } else {
-                    counter.innerText = target;
+                if (iterations >= maxIterations) {
+                    clearInterval(interval);
+                    // Lock in the real number
+                    counter.innerText = target; 
                 }
-            }
-            requestAnimationFrame(updateCount);
+            }, 35); // Speed of the number cycling
         });
     }
 
@@ -448,28 +444,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 19. HERO PHOTO 3D PARALLAX
-    var heroImageContainer = document.querySelector('.hero-image-container');
-    var heroPhotoCard = document.getElementById('heroPhotoCard');
-    if (heroImageContainer && heroPhotoCard && isFinePointer) {
-        heroImageContainer.addEventListener('mousemove', function(e) {
-            var rect = heroImageContainer.getBoundingClientRect();
-            var x = e.clientX - rect.left;
-            var y = e.clientY - rect.top;
-            var midX = rect.width / 2;
-            var midY = rect.height / 2;
-            var rotateY = ((x - midX) / midX) * 12;
-            var rotateX = -((y - midY) / midY) * 12;
-            heroPhotoCard.style.animation = 'none';
-            heroPhotoCard.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale(1.02)';
-        });
-        heroImageContainer.addEventListener('mouseleave', function() {
-            heroPhotoCard.style.transform = '';
-            heroPhotoCard.style.animation = 'heroFloat 6s ease-in-out infinite';
-        });
-    }
-
-    // 20. ABOUT PHOTO SUBTLE 3D TILT
+    // 19. ABOUT PHOTO SUBTLE 3D TILT
     var aboutTiltCard = document.getElementById('aboutTiltCard');
     if (aboutTiltCard && isFinePointer) {
         aboutTiltCard.addEventListener('mousemove', function(e) {
@@ -487,18 +462,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 21. MAGNETIC BUTTONS
-    var magneticBtns = document.querySelectorAll('.btn');
+    // 20. MAGNETIC BUTTONS & SOCIALS & NAV
+    var magneticElements = document.querySelectorAll('.btn, .social-links a, .nav-link');
     if (isFinePointer) {
-        magneticBtns.forEach(function(btn) {
-            btn.addEventListener('mousemove', function(e) {
-                var rect = btn.getBoundingClientRect();
+        magneticElements.forEach(function(el) {
+            el.addEventListener('mousemove', function(e) {
+                var rect = el.getBoundingClientRect();
                 var x = e.clientX - rect.left - rect.width / 2;
                 var y = e.clientY - rect.top - rect.height / 2;
-                btn.style.transform = 'translate(' + (x * 0.18) + 'px, ' + (y * 0.35) + 'px) translateY(-3px) scale(1.02)';
+                el.style.transform = 'translate(' + (x * 0.15) + 'px, ' + (y * 0.25) + 'px) scale(1.05)';
             });
-            btn.addEventListener('mouseleave', function() {
-                btn.style.transform = '';
+            el.addEventListener('mouseleave', function() {
+                el.style.transform = '';
             });
         });
     }
