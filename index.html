@@ -24,7 +24,7 @@
     <div class="data-wave wave-2"></div>
     <div class="scroll-progress-bar" id="scrollProgressBar"></div>
 
-    <!-- GLOBAL PARTICLES BACKGROUND -->
+    <!-- GLOBAL PARTICLES BACKGROUND (NEURAL NETWORK THEME) -->
     <div id="particles-js"></div>
 
     <!-- LOADER -->
@@ -106,7 +106,7 @@
                 <div class="terminal-header">
                     <span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span>
                 </div>
-                <!-- LIVE EXECUTION TERMINAL: Terminal lines animated via CSS -->
+                <!-- LIVE EXECUTION TERMINAL -->
                 <div class="terminal-body">
                     <div class="terminal-line"><span class="prompt">manish@analytics:~#</span> launch --profile</div>
                     <div class="terminal-line">&gt; Environment: <span class="highlight">Python 3.11 / SQL Server</span></div>
@@ -133,13 +133,11 @@
             <!-- PREMIUM MOVING TECH RIBBON -->
             <div class="tech-ticker-container" data-aos="fade-up" data-aos-delay="350">
                 <div class="tech-ticker-wrap">
-                    <!-- Set 1 -->
                     <span class="ticker-item"><i class="devicon-python-plain"></i> Python</span>
                     <span class="ticker-item"><i class="devicon-mysql-plain"></i> SQL</span>
                     <span class="ticker-item"><i class="fa-solid fa-file-excel"></i> Excel</span>
                     <span class="ticker-item"><i class="fa-solid fa-chart-pie"></i> Power BI</span>
                     <span class="ticker-item"><i class="fa-solid fa-chart-line"></i> Tableau</span>
-                    <!-- Set 2 -->
                     <span class="ticker-item"><i class="devicon-python-plain"></i> Python</span>
                     <span class="ticker-item"><i class="devicon-mysql-plain"></i> SQL</span>
                     <span class="ticker-item"><i class="fa-solid fa-file-excel"></i> Excel</span>
@@ -147,7 +145,6 @@
                     <span class="ticker-item"><i class="fa-solid fa-chart-line"></i> Tableau</span>
                 </div>
             </div>
-
         </div>
 
         <div class="hero-image-container" data-aos="zoom-in" data-aos-delay="150">
@@ -155,7 +152,6 @@
                 <div class="orbit-ring o1"><span class="orbit-dot"></span></div>
                 <div class="orbit-ring o2"><span class="orbit-dot"></span></div>
                 
-                <!-- PARALLAX WRAPPER 1 -->
                 <div id="parallax-w1" style="position: absolute; inset: 0; z-index: 20; pointer-events: none;">
                     <div class="floating-widget widget-1" style="pointer-events: auto;">
                         <div class="widget-icon"><i class="fa-solid fa-broom"></i></div>
@@ -166,7 +162,6 @@
                     </div>
                 </div>
 
-                <!-- PARALLAX HERO PHOTO -->
                 <div id="parallax-hero" style="position: relative; z-index: 2; width: 100%; display: flex; justify-content: center;">
                     <div class="hero-photo-card" id="heroPhotoCard">
                         <div class="hero-photo-ring"></div>
@@ -174,7 +169,6 @@
                     </div>
                 </div>
 
-                <!-- PARALLAX WRAPPER 2 -->
                 <div id="parallax-w2" style="position: absolute; inset: 0; z-index: 20; pointer-events: none;">
                     <div class="floating-widget widget-2" style="pointer-events: auto;">
                         <div class="widget-icon" style="color: var(--accent-blue); background: rgba(0, 121, 255, 0.1);"><i class="fa-solid fa-database"></i></div>
@@ -192,7 +186,8 @@
         <i class="fa-solid fa-arrow-down"></i>
     </a>
 
-    <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">
+    <!-- REDIRECT COMPLETELY TO TOP -->
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </a>
 
@@ -217,9 +212,9 @@
         </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- ABOUT / EXPERIENCE (CHAIN TIMELINE) -->
     <section id="about">
-        <h2 class="section-title" data-aos="fade-right">Education</h2>
+        <h2 class="section-title" data-aos="fade-right">Education & Experience</h2>
         <div class="about-grid-container">
             <div class="about-premium-frame-wrapper" data-aos="zoom-in" data-aos-delay="100">
                 <div class="about-premium-glow-card" id="aboutTiltCard">
@@ -229,22 +224,71 @@
                 </div>
             </div>
             <div class="about-details" data-aos="fade-left" data-aos-delay="150">
-                <h3>B.Tech in Computer Science</h3>
-                <div class="batch-tag">2023 - 2027 Batch</div>
-                <p><strong>Institution:</strong> Teerthanker Mahaveer University, Moradabad</p>
-                <p><strong>Specialization:</strong> Artificial Intelligence, Machine Learning, Deep Learning</p>
-                <p><strong>Focus Areas:</strong> Data Analytics, Python, Machine Learning, Data Science</p>
+                
+                <div class="about-timeline-chain">
+                    <!-- NODE 1: Schooling -->
+                    <div class="chain-item">
+                        <div class="chain-dot"></div>
+                        <div class="chain-content">
+                            <div class="timeline-logo"><img src="assets/school-logo.png" alt="School Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3304/3304313.png'" /></div>
+                            <div>
+                                <h3>Schooling (CBSE)</h3>
+                                <p><strong>St Anthony's Sr Sec School, Dugawar</strong></p>
+                                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:5px;">
+                                    <span class="batch-tag">10th Grade (2021)</span>
+                                    <span class="batch-tag">12th Grade (2023)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- NODE 2: College -->
+                    <div class="chain-item">
+                        <div class="chain-dot"></div>
+                        <div class="chain-content">
+                            <div class="timeline-logo"><img src="assets/tmu-logo.png" alt="TMU Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/8074/8074804.png'" /></div>
+                            <div>
+                                <h3>B.Tech in Computer Science</h3>
+                                <p><strong>Teerthanker Mahaveer University, Moradabad</strong></p>
+                                <p style="color:var(--accent-emerald); font-size:0.9rem; margin-top:5px;"><strong>Specialization:</strong> Artificial Intelligence, Machine Learning, Deep Learning</p>
+                                <p style="color:var(--text-muted); font-size:0.85rem; margin-top:2px;"><strong>Focus Areas:</strong> Data Analytics, Data Science, Machine Learning, Python</p>
+                                <div style="margin-top:5px;"><span class="batch-tag">2023 - 2027</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NODE 3: Internship -->
+                    <div class="chain-item">
+                        <div class="chain-dot"></div>
+                        <div class="chain-content">
+                            <div class="timeline-logo"><img src="assets/3skill-logo.png" alt="3Skill Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2942/2942789.png'" /></div>
+                            <div>
+                                <h3>Data Analyst Intern</h3>
+                                <p><strong>3Skill</strong></p>
+                                <p>Gained hands-on experience in analytical tools and machine learning.</p>
+                                <div style="margin-top:5px;"><span class="batch-tag">2 Months Duration</span></div>
+                                <div style="margin-top:10px;">
+                                    <a href="assets/3skill-cert.pdf" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-certificate"></i> View Certificate</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- SKILLS -->
+    <!-- SKILLS (COMPACT HORIZONTAL VIEW) -->
     <section id="skills">
         <h2 class="section-title" data-aos="fade-right">My Skills Hub</h2>
         <div class="skills-container-box">
+            
             <div class="subsection-title" data-aos="fade-right"><i class="fa-solid fa-code"></i> Technical Expertise <span style="font-size:0.7rem; color:var(--text-muted); font-weight:400; margin-left:10px;">(Click to view proficiency)</span></div>
+            
             <div class="skills-row">
-                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="50" style="--progress: 90%;">
+                <!-- Python -->
+                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="0" style="--progress: 90%;">
                     <div class="skill-main-view">
                         <img src="assets/icons/python.svg" loading="lazy" alt="Python" onerror="this.src='https://cdn-icons-png.flaticon.com/512/5968/5968350.png'" />
                         <span>Python</span>
@@ -256,7 +300,9 @@
                         <div class="track-bg"><div class="fill-bar"></div></div>
                     </div>
                 </div>
-                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="100" style="--progress: 85%;">
+
+                <!-- SQL -->
+                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="50" style="--progress: 85%;">
                     <div class="skill-main-view">
                         <img src="assets/icons/sql.svg" loading="lazy" alt="SQL" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2772/2772128.png'" />
                         <span>SQL</span>
@@ -268,7 +314,9 @@
                         <div class="track-bg"><div class="fill-bar"></div></div>
                     </div>
                 </div>
-                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="150" style="--progress: 80%;">
+
+                <!-- Power BI -->
+                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="100" style="--progress: 80%;">
                     <div class="skill-main-view">
                         <img src="assets/icons/powerbi.svg" loading="lazy" alt="Power BI" onerror="this.src='https://img.icons8.com/color/480/power-bi.png'" />
                         <span>Power BI</span>
@@ -280,7 +328,9 @@
                         <div class="track-bg"><div class="fill-bar"></div></div>
                     </div>
                 </div>
-                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="200" style="--progress: 75%;">
+
+                <!-- Tableau -->
+                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="150" style="--progress: 75%;">
                     <div class="skill-main-view">
                         <img src="assets/icons/tableau.svg" loading="lazy" alt="Tableau" onerror="this.src='https://img.icons8.com/color/480/tableau-software.png'" />
                         <span>Tableau</span>
@@ -292,14 +342,30 @@
                         <div class="track-bg"><div class="fill-bar"></div></div>
                     </div>
                 </div>
-                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="250" style="--progress: 90%;">
+
+                <!-- Excel -->
+                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="200" style="--progress: 90%;">
                     <div class="skill-main-view">
                         <img src="assets/icons/excel.svg" loading="lazy" alt="Excel" onerror="this.src='https://cdn-icons-png.flaticon.com/512/732/732220.png'" />
-                        <span>Excel</span>
+                        <span>MS Excel</span>
                     </div>
                     <div class="skill-loading-view">
                         <div class="skill-loading-header">
                             <p>Proficiency</p><span class="pct-txt">90%</span>
+                        </div>
+                        <div class="track-bg"><div class="fill-bar"></div></div>
+                    </div>
+                </div>
+
+                <!-- Machine Learning -->
+                <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="250" style="--progress: 60%;">
+                    <div class="skill-main-view">
+                        <i class="fa-solid fa-network-wired soft-icon"></i>
+                        <span>Machine Learning</span>
+                    </div>
+                    <div class="skill-loading-view">
+                        <div class="skill-loading-header">
+                            <p>Proficiency</p><span class="pct-txt">60%</span>
                         </div>
                         <div class="track-bg"><div class="fill-bar"></div></div>
                     </div>
@@ -507,10 +573,25 @@
         <div class="slider-container glow-card" data-aos="fade-up" data-aos-delay="0">
             <div class="slider">
                 <div class="slide active">
-                    <img src="assets/cert1.jpg" loading="lazy" alt="Python for Data Science - IBM" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=800'" />
+                    <img src="assets/cert1.jpg" loading="lazy" alt="Certificate 1" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=800'" />
                 </div>
                 <div class="slide">
-                    <img src="assets/cert2.jpg" loading="lazy" alt="AI for Beginners - HP LIFE" onerror="this.src='https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800'" />
+                    <img src="assets/cert2.jpg" loading="lazy" alt="Certificate 2" onerror="this.src='https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800'" />
+                </div>
+                <div class="slide">
+                    <img src="assets/cert3.jpg" loading="lazy" alt="Certificate 3" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=800'" />
+                </div>
+                <div class="slide">
+                    <img src="assets/cert4.jpg" loading="lazy" alt="Certificate 4" onerror="this.src='https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800'" />
+                </div>
+                <div class="slide">
+                    <img src="assets/cert5.jpg" loading="lazy" alt="Certificate 5" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=800'" />
+                </div>
+                <div class="slide">
+                    <img src="assets/cert6.jpg" loading="lazy" alt="Certificate 6" onerror="this.src='https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800'" />
+                </div>
+                <div class="slide">
+                    <img src="assets/cert7.jpg" loading="lazy" alt="Certificate 7" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=800'" />
                 </div>
             </div>
             <button class="slide-btn prev" id="prevSlide" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
@@ -703,7 +784,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     
-    <!-- External JS -->
+    <!-- External Script Logic -->
     <script src="script.js"></script>
 </body>
 </html>
