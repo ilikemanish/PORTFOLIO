@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() { 
         const loader = document.getElementById('initialLoader');
         if (loader) loader.classList.add('hidden'); 
-    }, 300);
+    }, 400);
 
     // Initialize AOS
     AOS.init({ duration: 400, once: true, offset: 0 });
@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressBar = document.getElementById('scrollProgressBar');
     const headerEl = document.getElementById('mainHeader');
     
-    // Parallax Elements
     const parallaxW1 = document.getElementById('parallax-w1');
     const parallaxW2 = document.getElementById('parallax-w2');
     const parallaxHero = document.getElementById('parallax-hero');
@@ -42,22 +41,14 @@ document.addEventListener('DOMContentLoaded', function() {
             window.requestAnimationFrame(function() {
                 const currentScrollY = window.scrollY;
                 
-                // Header Scroll Logic
                 if (headerEl) {
-                    if (currentScrollY > 10) {
-                        headerEl.classList.add('scrolled');
-                    } else {
-                        headerEl.classList.remove('scrolled');
-                    }
+                    if (currentScrollY > 10) headerEl.classList.add('scrolled');
+                    else headerEl.classList.remove('scrolled');
 
-                    if (currentScrollY > 350) {
-                        headerEl.classList.add('header-hidden');
-                    } else {
-                        headerEl.classList.remove('header-hidden');
-                    }
+                    if (currentScrollY > 350) headerEl.classList.add('header-hidden');
+                    else headerEl.classList.remove('header-hidden');
                 }
                 
-                // Scroll Indicators Logic
                 if (scrollIndicator) {
                     if (currentScrollY > 50) scrollIndicator.classList.add('hidden');
                     else scrollIndicator.classList.remove('hidden');
@@ -68,14 +59,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     else backToTop.classList.remove('visible');
                 }
                 
-                // Progress Bar Logic
                 if (progressBar) {
                     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
                     const pct = docHeight > 0 ? (currentScrollY / docHeight) * 100 : 0;
                     progressBar.style.width = pct + '%';
                 }
                 
-                // Hero Parallax Logic
                 if (currentScrollY < 800) { 
                     if (parallaxW1) parallaxW1.style.transform = `translateY(${currentScrollY * 0.15}px)`;
                     if (parallaxW2) parallaxW2.style.transform = `translateY(${currentScrollY * -0.1}px)`;
@@ -88,35 +77,55 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, { passive: true });
 
-    // 4. AGGRESSIVE DATA-WEB PARTICLES JS
+    // FULL REDIRECT FOR BACK TO TOP BUTTON
+    if(backToTop) {
+        backToTop.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            history.replaceState(null, null, ' '); // Clean URL Display
+        });
+    }
+
+    // 4. NEURAL NETWORK PARTICLES JS UPDATE
     if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
         particlesJS('particles-js', {
             particles: {
-                number: { value: 40, density: { enable: true, value_area: 1000 } },
-                color: { value: '#00f5a0' },
+                number: { value: 70, density: { enable: true, value_area: 800 } },
+                color: { value: ['#00f5a0', '#0079ff'] }, 
                 shape: { type: 'circle' },
-                opacity: { value: 0.4, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } },
-                size: { value: 3, random: true, anim: { enable: false } },
-                line_linked: { enable: true, distance: 120, color: '#0079ff', opacity: 0.2, width: 1 },
-                move: { enable: true, speed: 1.2, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false }
+                opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } },
+                size: { value: 3.5, random: true, anim: { enable: false } },
+                line_linked: { enable: true, distance: 160, color: '#00f5a0', opacity: 0.35, width: 1.5 },
+                move: { enable: true, speed: 1.8, direction: 'none', random: true, straight: false, out_mode: 'bounce', bounce: true }
             },
             interactivity: {
                 detect_on: 'window',
                 events: { 
-                    onhover: { enable: true, mode: 'grab' }, // Aggressive "Data-Web" Grab Mode
+                    onhover: { enable: true, mode: 'grab' },
                     onclick: { enable: true, mode: 'push' }, 
                     resize: true 
                 },
                 modes: { 
-                    grab: { distance: 200, line_linked: { opacity: 0.8 } }, 
-                    push: { particles_nb: 3 } 
+                    grab: { distance: 180, line_linked: { opacity: 0.8 } }, 
+                    push: { particles_nb: 4 } 
                 }
             },
             retina_detect: true
         });
     }
 
-    // 5. SKILLS CLICK TO VIEW PROFICIENCY
+    // 5. RESUME VIEWER
+    const openResumeBtn = document.getElementById('openResumeViewerBtn');
+    const resumeModal = document.getElementById('resumeViewerModal');
+    if (openResumeBtn && resumeModal) {
+        openResumeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            resumeModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    // 6. SKILLS CLICK TO VIEW PROFICIENCY (COMPACT DATA FLOW)
     const techItems = document.querySelectorAll('.tech-item');
     techItems.forEach(function(item) {
         item.addEventListener('click', function(e) {
@@ -131,21 +140,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (self.classList.contains('active')) {
                 setTimeout(function() {
                     self.classList.remove('active');
-                }, 1400);
+                }, 2500); 
             }
         });
     });
-
-    // 6. RESUME VIEWER
-    const openResumeBtn = document.getElementById('openResumeViewerBtn');
-    const resumeModal = document.getElementById('resumeViewerModal');
-    if (openResumeBtn && resumeModal) {
-        openResumeBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            resumeModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    }
 
     // 7. SCROLLSPY NAVIGATION
     const sections = document.querySelectorAll('section');
@@ -166,14 +164,13 @@ document.addEventListener('DOMContentLoaded', function() {
     sections.forEach(function(sec) { scrollObserver.observe(sec); });
 
     // 8. SCROLL-TRIGGERED 3D REVEAL & TERMINAL ANIMATION
-    const revealTargets = document.querySelectorAll('.terminal-box, .metric-card, .card-3d-node, .info-premium-node, .mock-dashboard-card, .testimonial-item');
+    const revealTargets = document.querySelectorAll('.terminal-box, .metric-card, .card-3d-node, .info-premium-node, .mock-dashboard-card, .testimonial-item, .chain-item, .skill-item');
     revealTargets.forEach(function(el) { el.classList.add('reveal-3d'); });
     
     const revealObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
             if (entry.isIntersecting) {
                 entry.target.classList.add('in-view');
-                // Custom AOS class trigger for Terminal Box Live Execution
                 if (entry.target.classList.contains('terminal-box')) {
                     entry.target.classList.add('aos-animate');
                 }
@@ -286,26 +283,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 12. METRICS COUNTER (DATA CRUNCH EFFECT)
+    // 12. METRICS COUNTER
     var counters = document.querySelectorAll('.counter');
     
     function animateCounters() {
         counters.forEach(function(counter) {
             var target = +counter.getAttribute('data-target');
             var iterations = 0;
-            var maxIterations = 30; // How long the "crunching" lasts
+            var maxIterations = 30;
             
             var interval = setInterval(function() {
-                // Display a random 2 or 3 digit number during the crunch phase
                 counter.innerText = Math.floor(Math.random() * 999);
                 iterations++;
-                
                 if (iterations >= maxIterations) {
                     clearInterval(interval);
-                    // Lock in the real number
                     counter.innerText = target; 
                 }
-            }, 35); // Speed of the number cycling
+            }, 35);
         });
     }
 
@@ -318,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var impactSection = document.querySelector('.impact-section');
     if (impactSection) { metricsObserver.observe(impactSection); }
 
-    // 13. SLIDER WITH AUTO-PAUSE ON TAB INACTIVE
+    // 13. PREMIUM 3D SLIDER 
     var slides = document.querySelectorAll('.slide');
     var prevBtn = document.getElementById('prevSlide');
     var nextBtn = document.getElementById('nextSlide');
@@ -341,7 +335,7 @@ document.addEventListener('DOMContentLoaded', function() {
         prevBtn.addEventListener('click', function() { showSlide(currentSlide - 1); resetSliderTimer(); });
     }
     
-    function startSliderTimer() { slideInterval = setInterval(nextSlideFn, 5000); }
+    function startSliderTimer() { slideInterval = setInterval(nextSlideFn, 4500); }
     function resetSliderTimer() { clearInterval(slideInterval); startSliderTimer(); }
     startSliderTimer();
 
@@ -353,7 +347,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 14. GLOW CARDS
+    // 14. GLOW CARDS TILT LOGIC
     var cards = document.querySelectorAll('.glow-card:not(.mock-dashboard-card)');
     var isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     cards.forEach(function(card) {
