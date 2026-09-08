@@ -8,7 +8,7 @@
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
@@ -24,71 +24,54 @@
     <div class="data-wave wave-2"></div>
     <div class="scroll-progress-bar" id="scrollProgressBar"></div>
 
-    <!-- GLOBAL PARTICLES BACKGROUND (NEURAL NETWORK THEME) -->
+    <!-- GLOBAL PARTICLES BACKGROUND -->
     <div id="particles-js"></div>
 
-    <!-- LOADER -->
+    <!-- LOADER (Premium Modern Orbital Spin) -->
     <div class="page-loader" id="initialLoader">
         <div class="loader-premium-content">
-            <div class="premium-logo-animation">
-                <div class="ring ring1"></div>
-                <div class="ring ring2"></div>
-                <div class="loader-cube">
-                    <div class="face f1"></div>
-                    <div class="face f2"></div>
-                    <div class="face f3"></div>
-                    <div class="face f4"></div>
-                    <div class="face f5"></div>
-                    <div class="face f6"></div>
-                </div>
-            </div>
-            <div class="loader-text">Loading Portfolio...</div>
+            <div class="modern-orbital-spinner"></div>
+            <div class="loader-text">Loading System</div>
         </div>
     </div>
 
     <!-- HEADER -->
     <header id="mainHeader">
-        <div class="logo" data-aos="fade-down">
-            <i class="fa-regular fa-paper-plane logo-icon"></i>
-            <div class="logo-text-wrapper"> 
-                <span class="logo-green">Port</span><span class="logo-white">folio</span>
-            </div>
-        </div>
+        <!-- Logo -->
+        <a href="#home" class="logo" data-aos="fade-down" data-aos-delay="50">
+            <span class="logo-bracket">&lt;</span>
+            <span class="logo-signature">Manish Kashyap</span>
+            <span class="logo-bracket">/&gt;</span>
+        </a>
         
-        <nav class="nav-menu" id="navMenu" data-aos="fade-down" data-aos-delay="50">
-            <a href="#about" class="nav-link">
-                <i class="fa-regular fa-user"></i>
-                <span>About</span>
-            </a>
-            <a href="#skills" class="nav-link">
-                <i class="fa-solid fa-code skills-icon"></i>
-                <span>Skills</span>
-            </a>
-            <a href="#portfolio" class="nav-link">
-                <i class="fa-solid fa-layer-group"></i>
-                <span>Projects</span>
-            </a>
-            <a href="#contact" class="nav-link">
-                <i class="fa-regular fa-comment-dots"></i>
-                <span>Contact</span>
-            </a>
-        </nav>
-        
+        <!-- Actions: Theme Toggle + Animated Hamburger -->
         <div class="header-actions" data-aos="fade-down" data-aos-delay="100">
-            <button id="themeToggle" class="theme-toggle-switch" aria-label="Toggle dark and light mode">
-                <span class="switch-handle"></span>
-                <i class="fa-regular fa-sun switch-icon"></i>
+            <button id="themeToggleBtn" aria-label="Toggle Theme">
+                <i class="fa-regular fa-sun" id="themeIcon"></i>
             </button>
-            <button class="mobile-menu-btn" aria-label="Open Menu">
-                <i class="fa-solid fa-bars"></i>
+            <button id="hamburgerBtn" aria-label="Open Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </button>
         </div>
     </header>
 
+    <!-- PREMIUM DROPDOWN MENU -->
+    <div id="dropdownMenu" class="dropdown-menu">
+        <nav class="dropdown-nav">
+            <a href="#home" class="drop-link active"><i class="fa-solid fa-house"></i> <span>Home</span></a>
+            <a href="#about" class="drop-link"><i class="fa-regular fa-user"></i> <span>About</span></a>
+            <a href="#skills" class="drop-link"><i class="fa-solid fa-code"></i> <span>Skills</span></a>
+            <a href="#portfolio" class="drop-link"><i class="fa-solid fa-layer-group"></i> <span>Projects</span></a>
+            <a href="#contact" class="drop-link"><i class="fa-regular fa-comment-dots"></i> <span>Contact</span></a>
+        </nav>
+    </div>
+
     <!-- HERO -->
     <section id="home" class="hero-section">
         <div class="hero-content">
-            <h1 data-aos="fade-up" data-aos-delay="100">
+            <h1 data-aos="fade-up" data-aos-delay="50">
                 <span class="greeting-line">
                     <span class="greeting-text" id="dynamicGreeting">Good Morning</span><span class="white-text">, I'm </span>
                 </span>
@@ -100,13 +83,12 @@
                 </span>
             </h1>
 
-            <p data-aos="fade-up" data-aos-delay="150">An aspiring Data Analyst passionate about data analysis and visualization. Skilled in Python, SQL, Excel, Power BI, and Tableau, I focus on extracting meaningful insights from data and presenting them in a clear and impactful way. I continuously work on projects to improve my analytical, technical, and problem-solving skills.</p>
+            <p data-aos="fade-up" data-aos-delay="100">An aspiring Data Analyst passionate about data analysis and visualization. Skilled in Python, SQL, Excel, Power BI, and Tableau, I focus on extracting meaningful insights from data and presenting them in a clear and impactful way. I continuously work on projects to improve my analytical, technical, and problem-solving skills.</p>
 
-            <div class="terminal-box glow-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="terminal-box glow-card" data-aos="fade-up" data-aos-delay="150">
                 <div class="terminal-header">
                     <span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span>
                 </div>
-                <!-- LIVE EXECUTION TERMINAL -->
                 <div class="terminal-body">
                     <div class="terminal-line"><span class="prompt">manish@analytics:~#</span> launch --profile</div>
                     <div class="terminal-line">&gt; Environment: <span class="highlight">Python 3.11 / SQL Server</span></div>
@@ -117,13 +99,13 @@
             </div>
 
             <!-- BUTTONS IN ONE ROW -->
-            <div class="hero-actions" data-aos="fade-up" data-aos-delay="250">
+            <div class="hero-actions" data-aos="fade-up" data-aos-delay="200">
                 <a href="#contact" class="btn btn-primary">Contact Me</a>
                 <button id="openResumeViewerBtn" class="btn btn-secondary"><i class="fa-solid fa-file-pdf"></i> View Resume</button>
             </div>
 
             <!-- SOCIAL MEDIA ICONS -->
-            <div class="social-links" data-aos="fade-up" data-aos-delay="300">
+            <div class="social-links" data-aos="fade-up" data-aos-delay="250">
                 <a href="https://github.com/Manish-kashyap" target="_blank" aria-label="GitHub Profile"><i class="fa-brands fa-github"></i></a>
                 <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn Network"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="https://instagram.com" target="_blank" aria-label="Instagram Stream"><i class="fa-brands fa-instagram"></i></a>
@@ -131,7 +113,7 @@
             </div>
 
             <!-- PREMIUM MOVING TECH RIBBON -->
-            <div class="tech-ticker-container" data-aos="fade-up" data-aos-delay="350">
+            <div class="tech-ticker-container" data-aos="fade-up" data-aos-delay="300">
                 <div class="tech-ticker-wrap">
                     <span class="ticker-item"><i class="devicon-python-plain"></i> Python</span>
                     <span class="ticker-item"><i class="devicon-mysql-plain"></i> SQL</span>
@@ -147,7 +129,7 @@
             </div>
         </div>
 
-        <div class="hero-image-container" data-aos="zoom-in" data-aos-delay="150">
+        <div class="hero-image-container" data-aos="zoom-in" data-aos-delay="100">
             <div style="position: relative; width: 100%; display: flex; justify-content: center; align-items: center;">
                 <div class="orbit-ring o1"><span class="orbit-dot"></span></div>
                 <div class="orbit-ring o2"><span class="orbit-dot"></span></div>
@@ -194,25 +176,25 @@
     <!-- IMPACT METRICS -->
     <section id="impact-metrics" class="impact-section">
         <div class="metrics-grid">
-            <div class="metric-card glow-card" data-tilt data-tilt-max="10">
-                <i class="fa-solid fa-table-list metric-icon"></i>
+            <div class="premium-metric-card" data-tilt data-tilt-max="10" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                <i class="fa-solid fa-table-list premium-metric-icon"></i><br>
                 <h3 class="counter" data-target="500">0</h3><span>K+</span>
                 <p>Rows Analyzed</p>
             </div>
-            <div class="metric-card glow-card" data-tilt data-tilt-max="10">
-                <i class="fa-solid fa-chart-pie metric-icon"></i>
+            <div class="premium-metric-card" data-tilt data-tilt-max="10" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">
+                <i class="fa-solid fa-chart-pie premium-metric-icon"></i><br>
                 <h3 class="counter" data-target="25">0</h3><span>+</span>
                 <p>Dashboards Built</p>
             </div>
-            <div class="metric-card glow-card" data-tilt data-tilt-max="10" id="githubStatCard">
-                <i class="fa-brands fa-github metric-icon"></i>
+            <div class="premium-metric-card" data-tilt data-tilt-max="10" id="githubStatCard" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                <i class="fa-brands fa-github premium-metric-icon"></i><br>
                 <h3 class="counter" id="githubCounter" data-target="12">0</h3><span id="githubPlus">+</span>
                 <p id="githubText">GitHub Repositories</p>
             </div>
         </div>
     </section>
 
-    <!-- ABOUT / EXPERIENCE (CHAIN TIMELINE) -->
+    <!-- ABOUT / EXPERIENCE -->
     <section id="about">
         <h2 class="section-title" data-aos="fade-right">Education & Experience</h2>
         <div class="about-grid-container">
@@ -279,7 +261,7 @@
         </div>
     </section>
 
-    <!-- SKILLS (COMPACT HORIZONTAL VIEW) -->
+    <!-- SKILLS -->
     <section id="skills">
         <h2 class="section-title" data-aos="fade-right">My Skills Hub</h2>
         <div class="skills-container-box">
@@ -287,86 +269,68 @@
             <div class="subsection-title" data-aos="fade-right"><i class="fa-solid fa-code"></i> Technical Expertise <span style="font-size:0.7rem; color:var(--text-muted); font-weight:400; margin-left:10px;">(Click to view proficiency)</span></div>
             
             <div class="skills-row">
-                <!-- Python -->
                 <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="0" style="--progress: 90%;">
                     <div class="skill-main-view">
                         <img src="assets/icons/python.svg" loading="lazy" alt="Python" onerror="this.src='https://cdn-icons-png.flaticon.com/512/5968/5968350.png'" />
                         <span>Python</span>
                     </div>
                     <div class="skill-loading-view">
-                        <div class="skill-loading-header">
-                            <p>Proficiency</p><span class="pct-txt">90%</span>
-                        </div>
+                        <div class="skill-loading-header"><p>Proficiency</p><span class="pct-txt">90%</span></div>
                         <div class="track-bg"><div class="fill-bar"></div></div>
                     </div>
                 </div>
 
-                <!-- SQL -->
                 <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="50" style="--progress: 85%;">
                     <div class="skill-main-view">
                         <img src="assets/icons/sql.svg" loading="lazy" alt="SQL" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2772/2772128.png'" />
                         <span>SQL</span>
                     </div>
                     <div class="skill-loading-view">
-                        <div class="skill-loading-header">
-                            <p>Proficiency</p><span class="pct-txt">85%</span>
-                        </div>
+                        <div class="skill-loading-header"><p>Proficiency</p><span class="pct-txt">85%</span></div>
                         <div class="track-bg"><div class="fill-bar"></div></div>
                     </div>
                 </div>
 
-                <!-- Power BI -->
                 <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="100" style="--progress: 80%;">
                     <div class="skill-main-view">
                         <img src="assets/icons/powerbi.svg" loading="lazy" alt="Power BI" onerror="this.src='https://img.icons8.com/color/480/power-bi.png'" />
                         <span>Power BI</span>
                     </div>
                     <div class="skill-loading-view">
-                        <div class="skill-loading-header">
-                            <p>Proficiency</p><span class="pct-txt">80%</span>
-                        </div>
+                        <div class="skill-loading-header"><p>Proficiency</p><span class="pct-txt">80%</span></div>
                         <div class="track-bg"><div class="fill-bar"></div></div>
                     </div>
                 </div>
 
-                <!-- Tableau -->
                 <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="150" style="--progress: 75%;">
                     <div class="skill-main-view">
                         <img src="assets/icons/tableau.svg" loading="lazy" alt="Tableau" onerror="this.src='https://img.icons8.com/color/480/tableau-software.png'" />
                         <span>Tableau</span>
                     </div>
                     <div class="skill-loading-view">
-                        <div class="skill-loading-header">
-                            <p>Proficiency</p><span class="pct-txt">75%</span>
-                        </div>
+                        <div class="skill-loading-header"><p>Proficiency</p><span class="pct-txt">75%</span></div>
                         <div class="track-bg"><div class="fill-bar"></div></div>
                     </div>
                 </div>
 
-                <!-- Excel -->
                 <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="200" style="--progress: 90%;">
                     <div class="skill-main-view">
                         <img src="assets/icons/excel.svg" loading="lazy" alt="Excel" onerror="this.src='https://cdn-icons-png.flaticon.com/512/732/732220.png'" />
                         <span>MS Excel</span>
                     </div>
                     <div class="skill-loading-view">
-                        <div class="skill-loading-header">
-                            <p>Proficiency</p><span class="pct-txt">90%</span>
-                        </div>
+                        <div class="skill-loading-header"><p>Proficiency</p><span class="pct-txt">90%</span></div>
                         <div class="track-bg"><div class="fill-bar"></div></div>
                     </div>
                 </div>
 
-                <!-- Machine Learning -->
                 <div class="skill-item tech-item glow-card" data-aos="fade-up" data-aos-delay="250" style="--progress: 60%;">
                     <div class="skill-main-view">
                         <i class="fa-solid fa-network-wired soft-icon"></i>
                         <span>Machine Learning</span>
                     </div>
                     <div class="skill-loading-view">
-                        <div class="skill-loading-header">
-                            <p>Proficiency</p><span class="pct-txt">60%</span>
-                        </div>
+                        <div class="skill-loading-header"><p>Proficiency</p><span class="pct-txt">60%</span></div>
                         <div class="track-bg"><div class="fill-bar"></div></div>
                     </div>
                 </div>
@@ -430,7 +394,7 @@
                 </div>
             </div>
 
-            <!-- SQL Project - Coming Soon -->
+            <!-- SQL Project -->
             <div class="mock-dashboard-card glow-card" data-filter="sql" style="display: none;">
                 <div style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
                     <i class="devicon-mysql-plain" style="font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 10px; opacity: 0.8; filter: drop-shadow(0 0 8px rgba(0, 121, 255, 0.4));"></i>
@@ -442,7 +406,7 @@
                 </div>
             </div>
 
-            <!-- Power BI Project - Coming Soon -->
+            <!-- Power BI Project -->
             <div class="mock-dashboard-card glow-card" data-filter="powerbi" style="display: none;">
                 <div style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
                     <img src="assets/icons/powerbi.svg" style="width: 40px; margin-bottom: 10px; opacity: 0.8; filter: drop-shadow(0 0 8px rgba(242, 200, 17, 0.4));" onerror="this.src='https://img.icons8.com/color/480/power-bi.png'" alt="Power BI" />
@@ -454,7 +418,7 @@
                 </div>
             </div>
 
-            <!-- Tableau Project - Coming Soon -->
+            <!-- Tableau Project -->
             <div class="mock-dashboard-card glow-card" data-filter="tableau" style="display: none;">
                 <div style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
                     <img src="assets/icons/tableau.svg" style="width: 40px; margin-bottom: 10px; opacity: 0.8; filter: drop-shadow(0 0 8px rgba(233, 118, 39, 0.4));" onerror="this.src='https://img.icons8.com/color/480/tableau-software.png'" alt="Tableau" />
@@ -536,7 +500,7 @@
                 <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">An interactive Microsoft Excel dashboard analyzing Swiggy's food delivery data to track revenue, customer preferences, and top-performing categories.</p>
                 <div class="project-links-row">
                     <a href="https://github.com/Manish-kashyap/Swiggy-Sales-Analysis-Dashboard" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> Code</a>
-                    <a href="https://manish-kashyap.github.io/Swiggy-Sales-Analysis-Dashboard/" target="_blank" class="project-link-btn"><i class="fa-solid fa-eye"></i> Live</a>
+                    <a href="https://ilikemanish.github.io/Swiggy-Sales-Analysis-Dashboard/" target="_blank" class="project-link-btn"><i class="fa-solid fa-eye"></i> Live</a>
                     <span class="project-link-btn btn-details" data-modal="modal-swiggy"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
                 </div>
             </div>
@@ -550,7 +514,7 @@
                 <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">An interactive Microsoft Excel dashboard analyzing sales performance, customer behavior, and KPIs using a synthetic Decathlon retail dataset.</p>
                 <div class="project-links-row">
                     <a href="https://github.com/Manish-kashyap/Decathlon-Retail-Sales-Customer-Analytics-Dashboard" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> Code</a>
-                    <a href="https://manish-kashyap.github.io/Decathlon-Retail-Sales-Customer-Analytics-Dashboard/" target="_blank" class="project-link-btn"><i class="fa-solid fa-eye"></i> Live</a>
+                    <a href="https://ilikemanish.github.io/Decathlon-Retail-Sales-Customer-Analytics-Dashboard/" target="_blank" class="project-link-btn"><i class="fa-solid fa-eye"></i> Live</a>
                     <span class="project-link-btn btn-details" data-modal="modal-decathlon"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
                 </div>
             </div>
@@ -755,7 +719,7 @@
                     <h2 class="modal-title" style="margin-bottom:0;">Swiggy Sales Analysis Dashboard</h2>
                     <div class="modal-subtitle" style="margin-bottom:0; margin-top:5px;">Food Delivery Business Intelligence in Excel</div>
                 </div>
-                <a href="https://manish-kashyap.github.io/Swiggy-Sales-Analysis-Dashboard/" target="_blank" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.85rem;"><i class="fa-solid fa-eye"></i> Live Preview</a>
+                <a href="https://ilikemanish.github.io/Swiggy-Sales-Analysis-Dashboard/" target="_blank" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.85rem;"><i class="fa-solid fa-eye"></i> Live Preview</a>
             </div>
             <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Food delivery platforms generate massive volumes of transactional data. The goal of this project was to consolidate this data to understand restaurant performance, customer ordering patterns, and revenue trends across different zones and food categories.</p></div>
             <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I built an interactive dashboard entirely in <strong>Microsoft Excel</strong>. After cleaning and formatting the raw transaction data, I implemented <strong>Pivot Tables</strong>, <strong>Pivot Charts</strong>, and dynamic <strong>Slicers</strong> to allow users to seamlessly filter metrics by city, restaurant, and time periods.</p></div>
@@ -771,7 +735,7 @@
                     <h2 class="modal-title" style="margin-bottom:0;">Decathlon Sales & Customer Analytics</h2>
                     <div class="modal-subtitle" style="margin-bottom:0; margin-top:5px;">Retail Business Intelligence in Excel</div>
                 </div>
-                <a href="https://manish-kashyap.github.io/Decathlon-Retail-Sales-Customer-Analytics-Dashboard/" target="_blank" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.85rem;"><i class="fa-solid fa-eye"></i> Live Preview</a>
+                <a href="https://ilikemanish.github.io/Decathlon-Retail-Sales-Customer-Analytics-Dashboard/" target="_blank" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.85rem;"><i class="fa-solid fa-eye"></i> Live Preview</a>
             </div>
             <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Retail businesses generate large volumes of transactional data daily. Without proper analysis, it becomes difficult to identify sales trends, customer purchasing behavior, high-performing product categories, and business growth opportunities.</p></div>
             <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I built an interactive dashboard in <strong>Microsoft Excel</strong> utilizing over 30,000 synthetic records. After cleaning and validating the data, I implemented <strong>Pivot Tables</strong>, <strong>Pivot Charts</strong>, and dynamic <strong>Slicers</strong> to track Total Sales, Average Order Value (AOV), and customer retention trends.</p></div>
@@ -780,11 +744,10 @@
     </div>
 
     <!-- External JS Libraries -->
+    <!-- Scripts properly deferred to separate file -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    
-    <!-- External Script Logic -->
     <script src="script.js"></script>
 </body>
 </html>
