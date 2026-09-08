@@ -1,13 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // 1. PREMIUM LOADER
+            
+    // 1. PREMIUM LOADER (Fast 0.4s and UI snaps quickly after)
     setTimeout(function() { 
         const loader = document.getElementById('initialLoader');
         if (loader) loader.classList.add('hidden'); 
+        
+        // Initialize AOS exactly when the loader vanishes for a snappy reveal.
+        AOS.init({ 
+            duration: 600, 
+            once: true, 
+            offset: 50,
+            easing: 'ease-out-cubic' 
+        });
     }, 400);
-
-    // Initialize AOS
-    AOS.init({ duration: 400, once: true, offset: 0 });
 
     // 2. TIMING-BASED GREETING
     function updateGreeting() {
@@ -125,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 6. SKILLS CLICK TO VIEW PROFICIENCY (COMPACT DATA FLOW)
+    // 6. SKILLS CLICK TO VIEW PROFICIENCY
     const techItems = document.querySelectorAll('.tech-item');
     techItems.forEach(function(item) {
         item.addEventListener('click', function(e) {
@@ -145,14 +150,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 7. SCROLLSPY NAVIGATION
+    // 7. NEW HAMBURGER MENU & DROPDOWN LOGIC
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const dropLinks = document.querySelectorAll('.drop-link');
     const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Toggle menu open/close
+    hamburgerBtn.addEventListener('click', () => {
+        hamburgerBtn.classList.toggle('active');
+        dropdownMenu.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    dropLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburgerBtn.classList.remove('active');
+            dropdownMenu.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!hamburgerBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+            hamburgerBtn.classList.remove('active');
+            dropdownMenu.classList.remove('active');
+        }
+    });
+
+    // Scrollspy logic to automatically select the active drop-link
     const observerOptions = { root: null, rootMargin: '-30% 0px -50% 0px', threshold: 0 };
     const scrollObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
             if (entry.isIntersecting) {
-                navLinks.forEach(function(link) {
+                dropLinks.forEach(function(link) {
                     link.classList.remove('active');
                     if (link.getAttribute('href').substring(1) === entry.target.id) {
                         link.classList.add('active');
@@ -164,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
     sections.forEach(function(sec) { scrollObserver.observe(sec); });
 
     // 8. SCROLL-TRIGGERED 3D REVEAL & TERMINAL ANIMATION
-    const revealTargets = document.querySelectorAll('.terminal-box, .metric-card, .card-3d-node, .info-premium-node, .mock-dashboard-card, .testimonial-item, .chain-item, .skill-item');
+    const revealTargets = document.querySelectorAll('.terminal-box, .premium-metric-card, .card-3d-node, .info-premium-node, .mock-dashboard-card, .testimonial-item, .chain-item, .skill-item');
     revealTargets.forEach(function(el) { el.classList.add('reveal-3d'); });
     
     const revealObserver = new IntersectionObserver(function(entries) {
@@ -180,30 +211,30 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { threshold: 0, rootMargin: '0px 0px 100px 0px' });
     revealTargets.forEach(function(el) { revealObserver.observe(el); });
 
-    // 9. THEME TOGGLE 
-    const themeToggle = document.getElementById('themeToggle');
-    const switchIcon = document.querySelector('.switch-icon');
+    // 9. THEME TOGGLE
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeIcon = document.getElementById('themeIcon');
     
     function updateThemeIcon() {
-        if (!themeToggle || !switchIcon) return;
+        if (!themeToggleBtn || !themeIcon) return;
         const isLight = document.body.classList.contains('light-theme');
         
         if (isLight) {
-            switchIcon.classList.remove('fa-sun');
-            switchIcon.classList.add('fa-moon');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
         } else {
-            switchIcon.classList.remove('fa-moon');
-            switchIcon.classList.add('fa-sun');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
         }
     }
 
-    if (themeToggle) {
+    if (themeToggleBtn) {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'light') document.body.classList.add('light-theme');
         
         updateThemeIcon();
         
-        themeToggle.addEventListener('click', function() {
+        themeToggleBtn.addEventListener('click', function() {
             document.body.classList.toggle('light-theme');
             localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
             updateThemeIcon();
@@ -216,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mockCards = document.querySelectorAll('.mock-dashboard-card');
 
     if(filterTags.length > 0) {
-        var initialActiveFilter = document.querySelector('.filter-tag.active').getAttribute('data-target');
+        let initialActiveFilter = document.querySelector('.filter-tag.active').getAttribute('data-target');
         mockCards.forEach(function(card) {
             if (card.getAttribute('data-filter') === initialActiveFilter) {
                 card.style.display = 'flex';
@@ -227,13 +258,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         filterTags.forEach(function(tag) {
             tag.addEventListener('click', function() {
-                var filterTarget = tag.getAttribute('data-target');
+                let filterTarget = tag.getAttribute('data-target');
                 filterTags.forEach(function(t) { t.classList.remove('active'); });
                 tag.classList.add('active');
                 boxContainer.style.opacity = '0.3';
                 setTimeout(function() {
                     mockCards.forEach(function(card) {
-                        var cardFilter = card.getAttribute('data-filter');
+                        let cardFilter = card.getAttribute('data-filter');
                         if (cardFilter === filterTarget) {
                             card.style.display = 'flex';
                             card.classList.remove('in-view');
@@ -249,14 +280,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 11. MODALS
-    var detailBtns = document.querySelectorAll('.btn-details');
-    var closeBtns = document.querySelectorAll('.modal-close');
-    var modals = document.querySelectorAll('.modal-overlay');
+    const detailBtns = document.querySelectorAll('.btn-details');
+    const closeBtns = document.querySelectorAll('.modal-close');
+    const modals = document.querySelectorAll('.modal-overlay');
 
     detailBtns.forEach(function(btn) {
         btn.addEventListener('click', function() {
-            var targetModalId = btn.getAttribute('data-modal');
-            var targetModal = document.getElementById(targetModalId);
+            const targetModalId = btn.getAttribute('data-modal');
+            const targetModal = document.getElementById(targetModalId);
             if (targetModal) {
                 targetModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -272,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
     closeBtns.forEach(function(btn) {
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
-            var modal = btn.closest('.modal-overlay');
+            const modal = btn.closest('.modal-overlay');
             if (modal) { closeModal(modal); }
         });
     });
@@ -283,41 +314,51 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 12. METRICS COUNTER
-    var counters = document.querySelectorAll('.counter');
+    // 12. METRICS COUNTER (Exactly 0.6 seconds / 600ms Stopwatch style)
+    const counters = document.querySelectorAll('.counter');
+    let hasCounted = false;
     
     function animateCounters() {
         counters.forEach(function(counter) {
-            var target = +counter.getAttribute('data-target');
-            var iterations = 0;
-            var maxIterations = 30;
-            
-            var interval = setInterval(function() {
-                counter.innerText = Math.floor(Math.random() * 999);
-                iterations++;
-                if (iterations >= maxIterations) {
-                    clearInterval(interval);
+            const target = +counter.getAttribute('data-target');
+            const duration = 600; // 600ms = 0.6 seconds stopwatch effect
+            let startTime = null;
+
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                // Smooth cubic ease out for a fast, stopwatch-like snap
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                
+                counter.innerText = Math.floor(easeProgress * target);
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
                     counter.innerText = target; 
                 }
-            }, 35);
+            }
+            window.requestAnimationFrame(step);
         });
     }
 
-    var metricsObserver = new IntersectionObserver(function(entries) {
-        if (entries[0].isIntersecting) {
+    const metricsObserver = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting && !hasCounted) {
+            hasCounted = true;
             animateCounters();
             metricsObserver.disconnect();
         }
-    }, { threshold: 0, rootMargin: '0px 0px 150px 0px' });
-    var impactSection = document.querySelector('.impact-section');
+    }, { threshold: 0.4 }); 
+    
+    const impactSection = document.querySelector('.impact-section');
     if (impactSection) { metricsObserver.observe(impactSection); }
 
     // 13. PREMIUM 3D SLIDER 
-    var slides = document.querySelectorAll('.slide');
-    var prevBtn = document.getElementById('prevSlide');
-    var nextBtn = document.getElementById('nextSlide');
-    var currentSlide = 0;
-    var slideInterval;
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    let currentSlide = 0;
+    let slideInterval;
     
     function showSlide(index) {
         if (!slides.length) return;
@@ -348,22 +389,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 14. GLOW CARDS TILT LOGIC
-    var cards = document.querySelectorAll('.glow-card:not(.mock-dashboard-card)');
-    var isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const cards = document.querySelectorAll('.glow-card:not(.mock-dashboard-card), .premium-metric-card');
+    const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     cards.forEach(function(card) {
         card.addEventListener('mousemove', function(e) {
-            var rect = card.getBoundingClientRect();
-            var x = e.clientX - rect.left;
-            var y = e.clientY - rect.top;
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             card.style.setProperty('--mouse-x', x + 'px');
             card.style.setProperty('--mouse-y', y + 'px');
 
             if (card.hasAttribute('data-tilt')) return;
 
-            var midX = rect.width / 2;
-            var midY = rect.height / 2;
-            var rotateY = ((x - midX) / midX) * 6;
-            var rotateX = -((y - midY) / midY) * 6;
+            const midX = rect.width / 2;
+            const midY = rect.height / 2;
+            const rotateY = ((x - midX) / midX) * 6;
+            const rotateX = -((y - midY) / midY) * 6;
             card.style.transform = 'perspective(900px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-2px)';
         });
         card.addEventListener('mouseleave', function() {
@@ -373,8 +414,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 15. COPY EMAIL
-    var copyBtn = document.getElementById('copyEmailBtn');
-    var emailText = document.getElementById('emailText');
+    const copyBtn = document.getElementById('copyEmailBtn');
+    const emailText = document.getElementById('emailText');
     if (copyBtn && emailText) {
         copyBtn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -388,9 +429,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 16. GITHUB STATS
-    var githubCounter = document.getElementById('githubCounter');
-    var githubPlus = document.getElementById('githubPlus');
-    var githubText = document.getElementById('githubText');
+    const githubCounter = document.getElementById('githubCounter');
+    const githubPlus = document.getElementById('githubPlus');
+    const githubText = document.getElementById('githubText');
     
     fetch('https://api.github.com/users/Manish-kashyap')
         .then(function(response) { return response.json(); })
@@ -400,13 +441,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 githubCounter.innerText = '0';
                 githubPlus.style.display = 'none';
                 githubText.innerText = 'GitHub Repositories';
-                var newObserver = new IntersectionObserver(function(entries) {
-                    if (entries[0].isIntersecting) {
-                        animateCounters();
-                        newObserver.disconnect();
-                    }
-                }, { threshold: 0.3 });
-                if (impactSection) newObserver.observe(impactSection);
             }
         })
         .catch(function() {
@@ -420,7 +454,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 17. VANILLA TILT
     if (typeof VanillaTilt !== 'undefined') {
-        VanillaTilt.init(document.querySelectorAll('[data-tilt]:not(.mock-dashboard-card)'), {
+        VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
             max: 15,
             speed: 400,
             glare: true,
@@ -431,7 +465,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 18. ESC key to close modals
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-            var activeModals = document.querySelectorAll('.modal-overlay.active');
+            const activeModals = document.querySelectorAll('.modal-overlay.active');
             activeModals.forEach(function(modal) {
                 closeModal(modal);
             });
@@ -439,16 +473,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 19. ABOUT PHOTO SUBTLE 3D TILT
-    var aboutTiltCard = document.getElementById('aboutTiltCard');
+    const aboutTiltCard = document.getElementById('aboutTiltCard');
     if (aboutTiltCard && isFinePointer) {
         aboutTiltCard.addEventListener('mousemove', function(e) {
-            var rect = aboutTiltCard.getBoundingClientRect();
-            var x = e.clientX - rect.left;
-            var y = e.clientY - rect.top;
-            var midX = rect.width / 2;
-            var midY = rect.height / 2;
-            var rotateY = ((x - midX) / midX) * 8;
-            var rotateX = -((y - midY) / midY) * 8;
+            const rect = aboutTiltCard.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const midX = rect.width / 2;
+            const midY = rect.height / 2;
+            const rotateY = ((x - midX) / midX) * 8;
+            const rotateX = -((y - midY) / midY) * 8;
             aboutTiltCard.style.transform = 'perspective(900px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
         });
         aboutTiltCard.addEventListener('mouseleave', function() {
@@ -457,13 +491,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 20. MAGNETIC BUTTONS & SOCIALS & NAV
-    var magneticElements = document.querySelectorAll('.btn, .social-links a, .nav-link');
+    const magneticElements = document.querySelectorAll('.btn, .social-links a, .logo');
     if (isFinePointer) {
         magneticElements.forEach(function(el) {
             el.addEventListener('mousemove', function(e) {
-                var rect = el.getBoundingClientRect();
-                var x = e.clientX - rect.left - rect.width / 2;
-                var y = e.clientY - rect.top - rect.height / 2;
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
                 el.style.transform = 'translate(' + (x * 0.15) + 'px, ' + (y * 0.25) + 'px) scale(1.05)';
             });
             el.addEventListener('mouseleave', function() {
