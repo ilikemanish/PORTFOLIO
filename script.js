@@ -1,18 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
             
-    // 1. PREMIUM LOADER (Fast 0.4s and UI snaps quickly after)
+    // 1. PREMIUM LOADER
     setTimeout(function() { 
         const loader = document.getElementById('initialLoader');
         if (loader) loader.classList.add('hidden'); 
         
-        // Initialize AOS exactly when the loader vanishes for a snappy reveal.
         AOS.init({ 
-            duration: 600, 
+            duration: 800, 
             once: true, 
             offset: 50,
             easing: 'ease-out-cubic' 
         });
-    }, 400);
+    }, 600);
 
     // 2. TIMING-BASED GREETING
     function updateGreeting() {
@@ -96,11 +95,11 @@ document.addEventListener('DOMContentLoaded', function() {
         particlesJS('particles-js', {
             particles: {
                 number: { value: 70, density: { enable: true, value_area: 800 } },
-                color: { value: ['#00f5a0', '#0079ff'] }, 
+                color: { value: ['#00f0ff', '#b05cff'] }, 
                 shape: { type: 'circle' },
                 opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } },
                 size: { value: 3.5, random: true, anim: { enable: false } },
-                line_linked: { enable: true, distance: 160, color: '#00f5a0', opacity: 0.35, width: 1.5 },
+                line_linked: { enable: true, distance: 160, color: '#00f0ff', opacity: 0.35, width: 1.5 },
                 move: { enable: true, speed: 1.8, direction: 'none', random: true, straight: false, out_mode: 'bounce', bounce: true }
             },
             interactivity: {
@@ -314,7 +313,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 12. METRICS COUNTER (Exactly 0.6 seconds / 600ms Stopwatch style)
+    // 12. METRICS COUNTER
     const counters = document.querySelectorAll('.counter');
     let hasCounted = false;
     
@@ -327,7 +326,6 @@ document.addEventListener('DOMContentLoaded', function() {
             function step(timestamp) {
                 if (!startTime) startTime = timestamp;
                 const progress = Math.min((timestamp - startTime) / duration, 1);
-                // Smooth cubic ease out for a fast, stopwatch-like snap
                 const easeProgress = 1 - Math.pow(1 - progress, 3);
                 
                 counter.innerText = Math.floor(easeProgress * target);
@@ -433,12 +431,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const githubPlus = document.getElementById('githubPlus');
     const githubText = document.getElementById('githubText');
     
-    fetch('https://api.github.com/users/Manish-kashyap')
+    fetch('https://api.github.com/users/ilikemanish')
         .then(function(response) { return response.json(); })
         .then(function(data) {
-            if (data.public_repos && githubCounter) {
+            if (data.public_repos !== undefined && githubCounter) {
                 githubCounter.setAttribute('data-target', data.public_repos);
-                githubCounter.innerText = '0';
+                if(githubCounter.innerText !== '0') {
+                    githubCounter.innerText = data.public_repos;
+                }
                 githubPlus.style.display = 'none';
                 githubText.innerText = 'GitHub Repositories';
             }
@@ -446,7 +446,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(function() {
             if(githubCounter) {
                 githubCounter.setAttribute('data-target', 12);
-                githubCounter.innerText = '0';
                 githubPlus.style.display = 'none';
                 githubText.innerText = 'GitHub Repositories';
             }
