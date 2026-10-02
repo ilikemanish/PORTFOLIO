@@ -1,11 +1,46 @@
 document.addEventListener('DOMContentLoaded', function() {
     const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+    /* ============================================================
+       LIVE BAR CHART GROWTH — inject bars into every project card
+       ============================================================ */
+    (function injectDataBars() {
+        const cards = document.querySelectorAll('.mock-dashboard-card');
+        if (!cards.length) return;
+
+        // Beautiful fixed height pattern (percent of container height)
+        const basePattern = [38, 52, 68, 60, 82, 56, 72, 88, 46, 64];
+
+        cards.forEach(function(card, index) {
+            // Don't add bars to the "Coming Soon" placeholder card
+            const filter = card.getAttribute('data-filter');
+            if (filter === 'major') return;
+
+            // Rotate pattern per card so each looks slightly different
+            const offset = index % basePattern.length;
+            const rotated = basePattern.slice(offset).concat(basePattern.slice(0, offset));
+
+            const wrap = document.createElement('div');
+            wrap.className = 'data-bars';
+            wrap.setAttribute('aria-hidden', 'true');
+
+            rotated.forEach(function(h) {
+                const bar = document.createElement('span');
+                bar.style.setProperty('--h', h + '%');
+                wrap.appendChild(bar);
+            });
+
+            card.insertBefore(wrap, card.firstChild);
+        });
+    })();
+
     /* 1. LOADER */
-    setTimeout(function() { 
+    setTimeout(function() {
         const loader = document.getElementById('initialLoader');
-        if (loader) loader.classList.add('hidden'); 
-        AOS.init({ duration: 800, once: true, offset: 50, easing: 'ease-out-cubic' });
+        if (loader) loader.classList.add('hidden');
+        if (typeof AOS !== 'undefined') {
+            AOS.init({ duration: 800, once: true, offset: 50, easing: 'ease-out-cubic' });
+        }
     }, 400);
 
     /* 2. GREETING */
@@ -43,6 +78,50 @@ document.addEventListener('DOMContentLoaded', function() {
             void next.offsetWidth;
             next.classList.add('active');
         }, 2600);
+    })();
+
+    /* POWER BI VIDEO */
+    (function initPowerBIVideo() {
+        const video = document.getElementById('powerbiDemoVideo');
+        const container = document.getElementById('powerbiVideoContainer');
+        if (!video || !container) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            video.removeAttribute('autoplay');
+            video.pause();
+            return;
+        }
+        const tryPlay = function() {
+            const p = video.play();
+            if (p && typeof p.catch === 'function') {
+                p.catch(function() { video.setAttribute('controls', 'controls'); });
+            }
+        };
+        if (video.readyState >= 1) tryPlay();
+        else video.addEventListener('loadedmetadata', tryPlay, { once: true });
+
+        const vObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    tryPlay();
+                    vObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.25 });
+        vObserver.observe(container);
+
+        container.addEventListener('mouseenter', function() { if (!video.paused) video.pause(); });
+        container.addEventListener('mouseleave', function() {
+            if (video.paused) {
+                const p = video.play();
+                if (p && typeof p.catch === 'function') p.catch(function(){});
+            }
+        });
+
+        video.addEventListener('error', function() {
+            container.style.backgroundImage = "url('https://github.com/ilikemanish/Smoking_Health_Risk_Analysis_PowerBI/raw/main/Dashboard%20preview.jpeg')";
+            container.style.backgroundSize = 'cover';
+            container.style.backgroundPosition = 'center';
+        });
     })();
 
     /* 4. SOUND EFFECTS */
@@ -100,38 +179,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* =========================================================
-       FEATURE 14: KONAMI CODE EASTER EGG
-       ========================================================= */
+    /* KONAMI CODE */
     (function initKonami() {
         const sequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
         let idx = 0;
         let goldActive = false;
         const toast = document.getElementById('konamiToast');
-
         function fireConfetti() {
             if (typeof confetti === 'undefined') return;
             const duration = 3200;
             const end = Date.now() + duration;
             const colors = ['#ffd700', '#ffa500', '#ffec8b', '#ffffff', '#00f0ff', '#b05cff'];
             (function frame() {
-                confetti({
-                    particleCount: 4, angle: 60, spread: 65,
-                    origin: { x: 0, y: 0.7 }, colors: colors, scalar: 1.05
-                });
-                confetti({
-                    particleCount: 4, angle: 120, spread: 65,
-                    origin: { x: 1, y: 0.7 }, colors: colors, scalar: 1.05
-                });
+                confetti({ particleCount: 4, angle: 60, spread: 65, origin: { x: 0, y: 0.7 }, colors: colors, scalar: 1.05 });
+                confetti({ particleCount: 4, angle: 120, spread: 65, origin: { x: 1, y: 0.7 }, colors: colors, scalar: 1.05 });
                 if (Date.now() < end) requestAnimationFrame(frame);
             })();
-            confetti({
-                particleCount: 180, spread: 100,
-                origin: { y: 0.5 }, colors: colors,
-                startVelocity: 42, scalar: 1.15
-            });
+            confetti({ particleCount: 180, spread: 100, origin: { y: 0.5 }, colors: colors, startVelocity: 42, scalar: 1.15 });
         }
-
         function toggleGoldMode() {
             if (goldActive) return;
             goldActive = true;
@@ -154,15 +219,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }, 10000);
         }
-
         document.addEventListener('keydown', function(e) {
             const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
             if (key === sequence[idx]) {
                 idx++;
-                if (idx === sequence.length) {
-                    idx = 0;
-                    toggleGoldMode();
-                }
+                if (idx === sequence.length) { idx = 0; toggleGoldMode(); }
             } else {
                 idx = (key === sequence[0]) ? 1 : 0;
             }
@@ -177,7 +238,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const parallaxW1 = document.getElementById('parallax-w1');
     const parallaxW2 = document.getElementById('parallax-w2');
     const parallaxHero = document.getElementById('parallax-hero');
+    const heroSection = document.getElementById('home');
+    const ghStack = document.getElementById('githubStack');
     let isScrolling = false;
+
+    function updateGithubToggleVisibility() {
+        if (!ghStack || !heroSection) return;
+        const threshold = heroSection.offsetTop + heroSection.offsetHeight - 150;
+        if (window.scrollY >= threshold) {
+            ghStack.classList.add('revealed');
+        } else {
+            ghStack.classList.remove('revealed');
+        }
+    }
+
     window.addEventListener('scroll', function() {
         if (!isScrolling) {
             window.requestAnimationFrame(function() {
@@ -198,11 +272,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (parallaxHero) parallaxHero.style.transform = `translateY(${y * 0.05}px)`;
                 }
                 updateHireBarVisibility();
+                updateGithubToggleVisibility();
                 isScrolling = false;
             });
             isScrolling = true;
         }
     }, { passive: true });
+
+    setTimeout(updateGithubToggleVisibility, 100);
+    window.addEventListener('resize', updateGithubToggleVisibility, { passive: true });
 
     if (backToTop) {
         backToTop.addEventListener('click', function(e) {
@@ -237,6 +315,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalVeil = document.getElementById('modalVeil');
     const allModals = document.querySelectorAll('.modal-overlay');
     const closeBtns = document.querySelectorAll('.modal-close');
+    let activeStoryObserver = null;
 
     function closeModal(modal) {
         if (!modal) return;
@@ -249,9 +328,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (activeStoryObserver) { activeStoryObserver.disconnect(); activeStoryObserver = null; }
         }
     }
-    function closeAllModals() {
-        allModals.forEach(function(m) { closeModal(m); });
-    }
+    function closeAllModals() { allModals.forEach(function(m) { closeModal(m); }); }
     function openModalSmooth(modalEl) {
         if (!modalEl) return;
         const currentlyOpen = document.querySelector('.modal-overlay.active');
@@ -353,7 +430,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeModes = ['dark', 'light', 'contrast'];
     let themeMode = localStorage.getItem('themeMode') || localStorage.getItem('theme') || 'dark';
     if (!themeModes.includes(themeMode)) themeMode = 'dark';
-
     function applyTheme(mode) {
         document.body.classList.remove('light-theme', 'contrast-theme');
         if (mode === 'light') document.body.classList.add('light-theme');
@@ -507,6 +583,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    /* Track cursor for project card spotlight */
+    if (isFinePointer) {
+        document.querySelectorAll('.mock-dashboard-card').forEach(function(card) {
+            card.addEventListener('mousemove', function(e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', x + 'px');
+                card.style.setProperty('--mouse-y', y + 'px');
+            });
+        });
+    }
+
     /* 18. COPY EMAIL */
     const copyBtn = document.getElementById('copyEmailBtn');
     const emailText = document.getElementById('emailText');
@@ -574,7 +663,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /* 21. SCROLLYTELLING STORY MODALS */
-    let activeStoryObserver = null;
     function resetStoryModal(modalEl) {
         modalEl.querySelectorAll('.story-step').forEach(s => s.classList.remove('visible'));
         const content = modalEl.querySelector('.modal-content');
@@ -751,54 +839,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* =========================================================
-       24. GITHUB FEED — FADES IN FROM THE 2ND PAGE (Impact Metrics)
-       ========================================================= */
+    /* 24. GITHUB FEED */
     const ghToggle = document.getElementById('githubToggleBtn');
     const ghWidget = document.getElementById('githubFeedWidget');
     const ghBody = document.getElementById('githubFeedBody');
-    const ghStack = document.getElementById('githubStack');
-
-    // Fade in the GitHub toggle as soon as the 2nd page (Impact Metrics section)
-    // enters the viewport — using the section itself as the trigger.
-    (function setupGithubReveal() {
-        if (!ghStack) return;
-        let revealed = false;
-        const trigger = function() {
-            if (revealed) return;
-            revealed = true;
-            ghStack.classList.add('revealed');
-        };
-        const target = document.getElementById('impact-metrics');
-        if (!target) return;
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) trigger();
-            });
-        }, { threshold: 0.2 });
-        observer.observe(target);
-        // Fallback: if user jumps past the section quickly, still reveal it
-        setTimeout(function() {
-            if (!revealed) {
-                const rect = target.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.8) trigger();
-            }
-        }, 2000);
-    })();
-
     const fallbackRepos = [
+        { name: 'Smoking_Health_Risk_Analysis_PowerBI', description: 'An interactive Power BI dashboard analysing 2,500 patient records across smoking exposure, organ condition, and health-risk indicators.', language: 'Power BI', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Smoking_Health_Risk_Analysis_PowerBI' },
         { name: 'Netflix-SQL-Data-Analysis', description: 'A PostgreSQL-based analysis exploring content types, ratings, genres, and release trends to answer 15 practical business questions.', language: 'SQL', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Netflix-SQL-Data-Analysis' },
         { name: 'Online_Book_Store_Analysis_Using_SQL', description: 'An end-to-end data analysis project using PostgreSQL to analyze books, customers, orders, sales, and inventory.', language: 'SQL', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Online_Book_Store_Analysis_Using_SQL' },
         { name: 'Swiggy-Sales-Analysis-Dashboard', description: 'An interactive Microsoft Excel dashboard analyzing Swiggy food delivery data to track revenue and customer preferences.', language: 'HTML', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/Manish-kashyap/Swiggy-Sales-Analysis-Dashboard' },
         { name: 'Decathlon-Retail-Sales-Customer-Analytics-Dashboard', description: 'An interactive Microsoft Excel dashboard analyzing sales performance, customer behavior, and KPIs.', language: 'HTML', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/Manish-kashyap/Decathlon-Retail-Sales-Customer-Analytics-Dashboard' },
-        { name: 'Google_Play_Store-EDA', description: 'Exploratory Data Analysis on Google Play Store apps to uncover patterns and factors that contribute to app success.', language: 'Jupyter Notebook', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/Manish-kashyap/Google_Play_Store-EDA' },
-        { name: 'Diwali_Sales_Analysis-Python-', description: 'Analyzed Diwali festival sales data to understand customer behavior and optimize marketing strategies.', language: 'Jupyter Notebook', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/Manish-kashyap/Diwali_Sales_Analysis-Python-' }
+        { name: 'Google_Play_Store-EDA', description: 'Exploratory Data Analysis on Google Play Store apps to uncover patterns and factors that contribute to app success.', language: 'Jupyter Notebook', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/Manish-kashyap/Google_Play_Store-EDA' }
     ];
     function getLangColor(lang) {
         const colors = {
             Python: '#3572A5', SQL: '#e38c00', 'Jupyter Notebook': '#DA5B0B',
             JavaScript: '#f1e05a', HTML: '#e34c26', CSS: '#563d7c',
-            TypeScript: '#3178c6', PLpgSQL: '#336790'
+            TypeScript: '#3178c6', PLpgSQL: '#336790', 'Power BI': '#F2C811'
         };
         return colors[lang] || '#00f0ff';
     }
