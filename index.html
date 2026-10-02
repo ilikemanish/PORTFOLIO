@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <!-- INTERNAL STYLESHEET -->
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -21,10 +20,8 @@
     <div class="data-wave wave-1"></div>
     <div class="data-wave wave-2"></div>
     <div class="scroll-progress-bar" id="scrollProgressBar"></div>
-
     <div id="particles-js"></div>
 
-    <!-- FEATURE 14: KONAMI TOAST -->
     <div class="konami-toast" id="konamiToast">
         <i class="fa-solid fa-crown"></i> KONAMI UNLOCKED · GOLD MODE
     </div>
@@ -68,7 +65,7 @@
         </nav>
     </div>
 
-    <!-- ============ PAGE 1: HERO ============ -->
+    <!-- HERO -->
     <section id="home" class="hero-section">
         <div class="hero-content">
             <h1 data-aos="fade-up" data-aos-delay="50">
@@ -135,7 +132,7 @@
             <div style="position: relative; width: 100%; display: flex; justify-content: center; align-items: center;">
                 <div class="orbit-ring o1"><span class="orbit-dot"></span></div>
                 <div class="orbit-ring o2"><span class="orbit-dot"></span></div>
-
+                
                 <div id="parallax-w1" style="position: absolute; inset: 0; z-index: 20; pointer-events: none;">
                     <div class="floating-widget widget-1" style="pointer-events: auto;">
                         <div class="widget-icon"><i class="fa-solid fa-broom"></i></div>
@@ -164,11 +161,11 @@
             </div>
         </div>
     </section>
-
+    
     <a href="#about" class="scroll-indicator" id="scrollIndicator" aria-label="Scroll down"><i class="fa-solid fa-arrow-down"></i></a>
     <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
 
-    <!-- ============ PAGE 2: IMPACT METRICS (GitHub toggle fades in here) ============ -->
+    <!-- IMPACT METRICS -->
     <section id="impact-metrics" class="impact-section">
         <div class="metrics-grid">
             <div class="premium-metric-card" id="rowsAnalyzedCard" data-tilt data-tilt-max="10" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
@@ -189,7 +186,7 @@
         </div>
     </section>
 
-    <!-- ============ PAGE 3: ABOUT ============ -->
+    <!-- ABOUT -->
     <section id="about">
         <h2 class="section-title" data-aos="fade-right">Education & Experience</h2>
         <div class="about-grid-container">
@@ -249,7 +246,7 @@
         </div>
     </section>
 
-    <!-- ============ PAGE 4: SKILLS ============ -->
+    <!-- SKILLS -->
     <section id="skills">
         <h2 class="section-title" data-aos="fade-right">My Skills Hub</h2>
         <div class="skills-container-box">
@@ -303,7 +300,7 @@
         </div>
     </section>
 
-    <!-- ============ PAGE 5: PORTFOLIO ============ -->
+    <!-- PORTFOLIO -->
     <section id="portfolio">
         <h2 class="section-title" data-aos="fade-right">Projects & Analytics</h2>
         <div class="portfolio-filter-bar" data-aos="fade-up">
@@ -330,6 +327,34 @@
                         <span><i class="fa-solid fa-chart-line"></i> Tableau</span>
                     </div>
                     <div class="mock-meta" style="justify-content: center; margin-top: 15px;"><span class="coming-soon-badge">COMING SOON</span></div>
+                </div>
+            </div>
+
+            <!-- POWER BI -->
+            <div class="mock-dashboard-card glow-card" data-filter="powerbi" style="display: none;">
+                <div class="mock-meta">
+                    <span>Power BI · DAX · Healthcare</span>
+                    <span class="pbi-inline-badge"><span class="pbi-live-dot"></span><i class="fa-solid fa-play" style="font-size:0.55rem;"></i> Live Demo</span>
+                </div>
+
+                <div class="powerbi-video-container" id="powerbiVideoContainer">
+                    <video id="powerbiDemoVideo" autoplay muted loop playsinline preload="metadata" poster="https://github.com/ilikemanish/Smoking_Health_Risk_Analysis_PowerBI/raw/main/Dashboard%20preview.jpeg" aria-label="Smoking Health Risk Analysis Power BI dashboard demo video">
+                        <source src="https://github.com/ilikemanish/Smoking_Health_Risk_Analysis_PowerBI/raw/main/power%20bi%20working.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/ilikemanish/Smoking_Health_Risk_Analysis_PowerBI/main/power%20bi%20working.mp4" type="video/mp4">
+                        <source src="https://media.githubusercontent.com/media/ilikemanish/Smoking_Health_Risk_Analysis_PowerBI/main/power%20bi%20working.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <span class="powerbi-video-pause-hint"><i class="fa-solid fa-pause"></i> Hover to Pause</span>
+                </div>
+
+                <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">Smoking Health Risk Analysis Dashboard</h3>
+                <div class="impact-badge"><i class="fa-solid fa-bolt"></i> Impact: Explored 2,500 patient records across 13 health fields with interactive filter-first dashboard.</div>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">An interactive Power BI healthcare dashboard analyzing smoking exposure, organ damage conditions, and multi-dimensional health-risk indicators.</p>
+                <div class="project-links-row">
+                    <a href="https://github.com/ilikemanish/Smoking_Health_Risk_Analysis_PowerBI" target="_blank" rel="noopener noreferrer" class="project-link-btn"><i class="fa-brands fa-github"></i> Code</a>
+                    <a href="https://github.com/ilikemanish/Smoking_Health_Risk_Analysis_PowerBI/blob/main/Smoking%20Health%20care.pbix" target="_blank" rel="noopener noreferrer" class="project-link-btn"><i class="fa-solid fa-file-arrow-down"></i> PBIX</a>
+                    <span class="project-link-btn btn-details" data-modal="modal-powerbi"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
+                    <span class="project-link-btn btn-story" data-story="story-powerbi"><i class="fa-solid fa-scroll"></i> Story</span>
                 </div>
             </div>
 
@@ -361,21 +386,9 @@
                 </div>
             </div>
 
-            <div class="mock-dashboard-card glow-card" data-filter="powerbi" style="display: none;">
-                <div style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
-                    <img src="assets/icons/powerbi.svg" style="width: 40px; margin-bottom: 10px; opacity: 0.8; filter: drop-shadow(0 0 8px rgba(242, 200, 17, 0.4));" onerror="this.src='https://img.icons8.com/color/480/power-bi.png'" alt="Power BI" />
-                    <h3 style="color:var(--text-main); margin-bottom: 5px;">Business Intelligence Dashboard</h3>
-                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 5px;">Interactive enterprise dashboard highlighting revenue streams, YoY growth, and regional KPIs.</p>
-                    <div class="mock-meta" style="justify-content: center; margin-top: 15px;"><span class="coming-soon-badge">COMING SOON</span></div>
-                    <div class="project-links-row" style="justify-content: center;">
-                        <span class="project-link-btn btn-story" data-story="story-powerbi"><i class="fa-solid fa-scroll"></i> Story</span>
-                    </div>
-                </div>
-            </div>
-
             <div class="mock-dashboard-card glow-card" data-filter="tableau" style="display: none;">
                 <div style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
-                    <img src="assets/icons/tableau.svg" style="width: 40px; margin-bottom: 10px; opacity: 0.8; filter: drop-shadow(0 0 8px rgba(233, 118, 39, 0.4));" onerror="this.src='https://img.icons8.com/color/480/tableau-software.png'" alt="Tableau" />
+                    <img src="assets/icons/tableau.svg" style="width: 40px; margin-bottom: 10px; opacity: 0.8;" onerror="this.src='https://img.icons8.com/color/480/tableau-software.png'" alt="Tableau" />
                     <h3 style="color:var(--text-main); margin-bottom: 5px;">Tableau Data Storytelling</h3>
                     <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 5px;">End-to-end data storytelling emphasizing geographical sales distribution and predictive trends.</p>
                     <div class="mock-meta" style="justify-content: center; margin-top: 15px;"><span class="coming-soon-badge">COMING SOON</span></div>
@@ -477,7 +490,7 @@
         </div>
     </section>
 
-    <!-- ============ PAGE 6: TESTIMONIALS ============ -->
+    <!-- TESTIMONIALS -->
     <section id="testimonials">
         <h2 class="section-title" data-aos="fade-right">Testimonials</h2>
         <div class="testimonials-stack">
@@ -487,7 +500,7 @@
         </div>
     </section>
 
-    <!-- ============ PAGE 7: ACHIEVEMENTS ============ -->
+    <!-- ACHIEVEMENTS -->
     <section id="certifications">
         <h2 class="section-title" data-aos="fade-right">Achievements</h2>
         <div class="slider-container glow-card" data-aos="fade-up" data-aos-delay="0">
@@ -505,7 +518,7 @@
         </div>
     </section>
 
-    <!-- ============ PAGE 8: CONTACT ============ -->
+    <!-- CONTACT -->
     <section id="contact">
         <h2 class="section-title" data-aos="fade-right">Contact Me</h2>
         <div class="contact-grid-wrapper">
@@ -542,7 +555,7 @@
         </div>
     </section>
 
-    <!-- ============ PAGE 9: MORE INFO ============ -->
+    <!-- MORE INFO -->
     <section id="more-info">
         <h2 class="section-title" data-aos="fade-right">More About Me</h2>
         <div class="info-grid-hub">
@@ -596,7 +609,7 @@
         </div>
     </div>
 
-    <!-- GITHUB FEED — Fades in when 2nd page (Impact Metrics) is reached -->
+    <!-- GITHUB FEED -->
     <div class="github-toggle-stack" id="githubStack">
         <div class="github-feed-widget" id="githubFeedWidget" role="region" aria-label="GitHub live activity">
             <div class="gh-feed-header">
@@ -625,28 +638,46 @@
                     <h2 class="modal-title">Manish Kashyap Resume</h2>
                     <div class="modal-subtitle">Full PDF Preview</div>
                 </div>
-                <a href="assets/manish-resume.pdf" download id="resumeDownloadBtnModal" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.85rem;"><i class="fa-solid fa-download"></i> Download</a>
+                <a href="assets/manish-resume.pdf" download id="resumeDownloadBtnModal" class="btn btn-primary" style="padding: 0.65rem 1.3rem; font-size: 0.8rem;"><i class="fa-solid fa-download"></i> Download</a>
             </div>
             <iframe src="assets/manish-resume.pdf" class="resume-iframe" title="Manish Kashyap Resume"></iframe>
         </div>
     </div>
 
-    <!-- PROJECT DETAILS MODALS -->
-    <div class="modal-overlay" id="modal-netflix">
+    <!-- POWER BI DETAILS MODAL -->
+    <div class="modal-overlay" id="modal-powerbi">
         <div class="modal-content">
             <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <div class="modal-header-row">
                 <div>
-                    <h2 class="modal-title">Netflix SQL Data Analysis</h2>
-                    <div class="modal-subtitle">15 Business Problems & SQL Solutions</div>
+                    <h2 class="modal-title">Smoking Health Risk Analysis</h2>
+                    <div class="modal-subtitle">Power BI · DAX · 2,500 Patient Records</div>
                 </div>
-                <a href="https://ilikemanish.github.io/Netflix-SQL-Data-Analysis/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.85rem;"><i class="fa-solid fa-eye"></i> Live Preview</a>
+                <a href="https://github.com/ilikemanish/Smoking_Health_Risk_Analysis_PowerBI" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.65rem 1.3rem; font-size: 0.8rem;"><i class="fa-brands fa-github"></i> View Repo</a>
             </div>
-            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Netflix contains a massive catalog of movie and TV-show metadata. The goal was to convert practical business questions into SQL-based analytical solutions, addressing queries about content availability, rating distributions, geographical production, release trends, and keyword categorizations.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>Using <strong>PostgreSQL</strong> and <strong>pgAdmin</strong>, I developed an end-to-end data workflow. The analysis leveraged advanced SQL techniques including CTEs, Window Functions, <code>RANK()</code>, Subqueries, and complex string/date processing to aggregate and filter the dataset effectively.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li><strong>Multi-Dimensional Analysis:</strong> Explored content distribution across movies vs. TV shows, country of origin, genres, and release years.</li><li><strong>Advanced SQL Execution:</strong> Demonstrated practical application of complex PostgreSQL functions for data cleaning and metric generation.</li><li><strong>Business-Oriented Output:</strong> Bridged the gap between raw metadata and actionable analytical insights by solving 15 distinct business questions.</li></ul></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Healthcare datasets often hide critical risk patterns behind flat tables. The goal was to build an <strong>interactive, filter-first dashboard</strong> that lets stakeholders explore smoking exposure, organ damage conditions, and multi-dimensional health indicators across 2,500 patient records.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I modelled a star-schema Power BI report with a <strong>health_dataset.csv</strong> fact table (13 fields, 2,500 rows, 0 nulls) plus dimension tables for condition and organ. I built a <strong>DAX Age Group</strong> column and two comparison measures — <code>vs Avg Age</code> and <code>vs Avg BMI</code>.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li><strong>Smoking split:</strong> Never 45.4%, Current 29.3%, Former 25.2%.</li><li><strong>Exposure contrast:</strong> Current smokers avg <strong>16.8 cig/day</strong> and <strong>22.2 yrs</strong>.</li><li><strong>Organ damage range:</strong> Only 5 pts spread (Liver 37.7% → Human Body 32.7%).</li></ul></div>
             <div class="project-nav-row">
                 <button type="button" class="project-nav-btn" data-nav-project="modal-decathlon"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+                <button type="button" class="project-nav-btn" data-nav-project="modal-netflix">Next <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROJECT DETAIL MODALS -->
+    <div class="modal-overlay" id="modal-netflix">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header-row">
+                <div><h2 class="modal-title">Netflix SQL Data Analysis</h2><div class="modal-subtitle">15 Business Problems & SQL Solutions</div></div>
+                <a href="https://ilikemanish.github.io/Netflix-SQL-Data-Analysis/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.65rem 1.3rem; font-size: 0.8rem;"><i class="fa-solid fa-eye"></i> Live Preview</a>
+            </div>
+            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Netflix contains a massive catalog of movie and TV-show metadata. The goal was to convert practical business questions into SQL-based analytical solutions covering content availability, ratings, geography, and release trends.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>Using <strong>PostgreSQL</strong> and <strong>pgAdmin</strong>, I developed an end-to-end data workflow with CTEs, Window Functions, <code>RANK()</code>, Subqueries, and complex string/date processing.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Explored content distribution across movies vs. TV shows, country, genres, and years.</li><li>Demonstrated practical application of complex PostgreSQL functions.</li><li>Solved 15 distinct business questions with production-ready SQL.</li></ul></div>
+            <div class="project-nav-row">
+                <button type="button" class="project-nav-btn" data-nav-project="modal-powerbi"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                 <button type="button" class="project-nav-btn" data-nav-project="modal-bookstore">Next <i class="fa-solid fa-arrow-right"></i></button>
             </div>
         </div>
@@ -656,15 +687,12 @@
         <div class="modal-content">
             <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <div class="modal-header-row">
-                <div>
-                    <h2 class="modal-title">Online Book Store Analysis</h2>
-                    <div class="modal-subtitle">20 Business Problems & SQL Solutions</div>
-                </div>
-                <a href="https://github.com/ilikemanish/Online_Book_Store_Analysis_Using_SQL/blob/main/Online_Book_Store.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.85rem;"><i class="fa-solid fa-file-pdf"></i> Report</a>
+                <div><h2 class="modal-title">Online Book Store Analysis</h2><div class="modal-subtitle">20 Business Problems & SQL Solutions</div></div>
+                <a href="https://github.com/ilikemanish/Online_Book_Store_Analysis_Using_SQL/blob/main/Online_Book_Store.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.65rem 1.3rem; font-size: 0.8rem;"><i class="fa-solid fa-file-pdf"></i> Report</a>
             </div>
-            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>An online bookstore generates continuous data related to books, customers, orders, prices, genres, authors, and inventory. The challenge was to analyze this data to extract actionable business insights, such as identifying best-selling genres, tracking inventory, and highlighting high-spending customers.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I loaded raw CSV datasets into a <strong>PostgreSQL</strong> database and executed a comprehensive SQL-based analysis. I applied both basic and advanced SQL concepts, including <code>JOIN</code>, <code>GROUP BY</code>, <code>HAVING</code>, <code>COALESCE()</code>, top-N analysis, and complex aggregations to solve 20 targeted business questions.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li><strong>Product & Inventory Performance:</strong> Monitored low-stock books and calculated remaining inventory after fulfilling customer orders.</li><li><strong>Revenue & Sales Trends:</strong> Identified the most frequently ordered books and calculated the total revenue generated from customer orders.</li><li><strong>Customer Behavior:</strong> Analyzed customer demographics to identify repeat buyers and top-spending customers, aiding in retention strategies.</li></ul></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>An online bookstore generates continuous data across books, customers, orders, prices, genres, authors, and inventory. The challenge was to extract actionable business insights from this data.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I loaded raw CSVs into <strong>PostgreSQL</strong> and executed a comprehensive SQL-based analysis using <code>JOIN</code>, <code>GROUP BY</code>, <code>HAVING</code>, <code>COALESCE()</code>, and top-N analysis to solve 20 targeted questions.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Monitored low-stock books and calculated remaining inventory after orders.</li><li>Identified most frequently ordered books and total revenue.</li><li>Analyzed customer demographics to spot top-spenders and repeat buyers.</li></ul></div>
             <div class="project-nav-row">
                 <button type="button" class="project-nav-btn" data-nav-project="modal-netflix"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                 <button type="button" class="project-nav-btn" data-nav-project="modal-taxi">Next <i class="fa-solid fa-arrow-right"></i></button>
@@ -676,14 +704,11 @@
         <div class="modal-content">
             <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <div class="modal-header-row">
-                <div>
-                    <h2 class="modal-title">NYC Taxi Revenue Analysis</h2>
-                    <div class="modal-subtitle">Statistical Analysis Project</div>
-                </div>
+                <div><h2 class="modal-title">NYC Taxi Revenue Analysis</h2><div class="modal-subtitle">Statistical Analysis Project</div></div>
             </div>
-            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Drivers wanted to maximize their daily income, but it's hard to know which trip variables actually lead to higher fares and tips.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I performed statistical analysis on NYC taxi data using Python to identify patterns and prove mathematically what drives revenue, rather than just guessing.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Identified critical fare variables and optimal operating timeframes.</li><li>Found specific times of day that yield a 20% higher tip rate.</li><li>Proved that shorter, high-frequency trips in certain zones are more profitable.</li></ul></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Drivers wanted to maximize daily income but weren't sure which trip variables actually lead to higher fares and tips.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I performed statistical analysis on NYC taxi data using Python to identify patterns and prove mathematically what drives revenue.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Identified critical fare variables and optimal operating timeframes.</li><li>Found specific times of day that yield 20% higher tip rate.</li><li>Proved shorter, high-frequency trips in certain zones are more profitable.</li></ul></div>
             <div class="project-nav-row">
                 <button type="button" class="project-nav-btn" data-nav-project="modal-bookstore"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                 <button type="button" class="project-nav-btn" data-nav-project="modal-playstore">Next <i class="fa-solid fa-arrow-right"></i></button>
@@ -695,14 +720,11 @@
         <div class="modal-content">
             <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <div class="modal-header-row">
-                <div>
-                    <h2 class="modal-title">Google Play Store EDA</h2>
-                    <div class="modal-subtitle">Exploratory Data Analysis</div>
-                </div>
+                <div><h2 class="modal-title">Google Play Store EDA</h2><div class="modal-subtitle">Exploratory Data Analysis</div></div>
             </div>
-            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Developers face app visibility challenges. I wanted to resolve these challenges by uncovering market trends, user engagement patterns, and key rating factors.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I cleaned messy app data using <strong>Pandas</strong> and <strong>NumPy</strong> and visualized user patterns using <strong>Seaborn</strong> and <strong>Matplotlib</strong>, creating charts to examine app size, pricing, and ratings.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Identified key correlations between app size, pricing, and user ratings.</li><li>Highlighted key features of highly-rated and heavily-downloaded apps.</li></ul></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Developers face app visibility challenges. I wanted to uncover market trends, user engagement patterns, and key rating factors.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I cleaned messy app data using <strong>Pandas</strong> and <strong>NumPy</strong> and visualized patterns with <strong>Seaborn</strong> and <strong>Matplotlib</strong>.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Identified key correlations between app size, pricing, and ratings.</li><li>Highlighted features of highly-rated and heavily-downloaded apps.</li></ul></div>
             <div class="project-nav-row">
                 <button type="button" class="project-nav-btn" data-nav-project="modal-taxi"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                 <button type="button" class="project-nav-btn" data-nav-project="modal-churn">Next <i class="fa-solid fa-arrow-right"></i></button>
@@ -714,14 +736,11 @@
         <div class="modal-content">
             <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <div class="modal-header-row">
-                <div>
-                    <h2 class="modal-title">Customer Churn Analysis</h2>
-                    <div class="modal-subtitle">Data Analytics Project</div>
-                </div>
+                <div><h2 class="modal-title">Customer Churn Analysis</h2><div class="modal-subtitle">Data Analytics Project</div></div>
             </div>
-            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>A subscription business was losing customers. They needed to understand the factors contributing to churn to develop effective retention strategies.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I analyzed customer data using <strong>Pandas</strong> and performed in-depth analysis to identify patterns and key indicators of customer churn.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Identified top churn indicators, enabling data-driven retention strategies.</li><li>Created customer risk profiles to guide targeted retention campaigns.</li></ul></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>A subscription business was losing customers. They needed to understand factors contributing to churn to develop retention strategies.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I analyzed customer data using <strong>Pandas</strong> and performed in-depth analysis to identify patterns and key churn indicators.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Identified top churn indicators for data-driven retention strategies.</li><li>Created customer risk profiles to guide targeted campaigns.</li></ul></div>
             <div class="project-nav-row">
                 <button type="button" class="project-nav-btn" data-nav-project="modal-playstore"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                 <button type="button" class="project-nav-btn" data-nav-project="modal-diwali">Next <i class="fa-solid fa-arrow-right"></i></button>
@@ -733,14 +752,11 @@
         <div class="modal-content">
             <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <div class="modal-header-row">
-                <div>
-                    <h2 class="modal-title">Diwali Sales Analysis</h2>
-                    <div class="modal-subtitle">Retail Data Analytics</div>
-                </div>
+                <div><h2 class="modal-title">Diwali Sales Analysis</h2><div class="modal-subtitle">Retail Data Analytics</div></div>
             </div>
             <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>A retail store needed to optimize seasonal inventory by understanding customer behavioral trends across different demographics.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I visualized festive season sales patterns using <strong>Matplotlib</strong> and <strong>Seaborn</strong>, grouping buyers by age, gender, and category to analyze preferences.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Targeted marketing informed by segmenting customer behavior and product demographics.</li><li>Highlighted top 3 best-selling product categories for inventory planning.</li></ul></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I visualized festive season sales patterns using <strong>Matplotlib</strong> and <strong>Seaborn</strong>, grouping buyers by age, gender, and category.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Targeted marketing informed by segmenting customer behavior.</li><li>Highlighted top 3 best-selling product categories for inventory.</li></ul></div>
             <div class="project-nav-row">
                 <button type="button" class="project-nav-btn" data-nav-project="modal-churn"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                 <button type="button" class="project-nav-btn" data-nav-project="modal-numpy">Next <i class="fa-solid fa-arrow-right"></i></button>
@@ -752,14 +768,11 @@
         <div class="modal-content">
             <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <div class="modal-header-row">
-                <div>
-                    <h2 class="modal-title">NumPy Sales Analysis</h2>
-                    <div class="modal-subtitle">High-Speed Data Processing</div>
-                </div>
+                <div><h2 class="modal-title">NumPy Sales Analysis</h2><div class="modal-subtitle">High-Speed Data Processing</div></div>
             </div>
-            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Processing millions of rows of sales data was taking too long. Standard loops were slowing down messy array processing and business trend extraction.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I rewrote the data processing using vectorized array operations in <strong>NumPy</strong> and implemented efficient data manipulation with <strong>Pandas</strong>.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Vectorized array operations cut down massive data processing computation time.</li><li>Cleaned messy arrays to uncover useful business trends with significantly reduced overhead.</li></ul></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Processing millions of rows with standard Python loops was taking too long and slowing the reporting pipeline.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I rewrote the processing using vectorized array operations in <strong>NumPy</strong> and efficient manipulation with <strong>Pandas</strong>.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Vectorized operations cut processing time drastically.</li><li>Cleaned messy arrays to uncover useful business trends.</li></ul></div>
             <div class="project-nav-row">
                 <button type="button" class="project-nav-btn" data-nav-project="modal-diwali"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                 <button type="button" class="project-nav-btn" data-nav-project="modal-swiggy">Next <i class="fa-solid fa-arrow-right"></i></button>
@@ -771,15 +784,12 @@
         <div class="modal-content">
             <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <div class="modal-header-row">
-                <div>
-                    <h2 class="modal-title">Swiggy Sales Analysis Dashboard</h2>
-                    <div class="modal-subtitle">Food Delivery BI in Excel</div>
-                </div>
-                <a href="https://ilikemanish.github.io/Swiggy-Sales-Analysis-Dashboard/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.85rem;"><i class="fa-solid fa-eye"></i> Live Preview</a>
+                <div><h2 class="modal-title">Swiggy Sales Analysis Dashboard</h2><div class="modal-subtitle">Food Delivery BI in Excel</div></div>
+                <a href="https://ilikemanish.github.io/Swiggy-Sales-Analysis-Dashboard/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.65rem 1.3rem; font-size: 0.8rem;"><i class="fa-solid fa-eye"></i> Live Preview</a>
             </div>
-            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Food delivery platforms generate massive volumes of transactional data. The goal was to consolidate this data to understand restaurant performance, customer ordering patterns, and revenue trends across different zones and food categories.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I built an interactive dashboard entirely in <strong>Microsoft Excel</strong>. After cleaning and formatting the raw transaction data, I implemented <strong>Pivot Tables</strong>, <strong>Pivot Charts</strong>, and dynamic <strong>Slicers</strong> to allow users to seamlessly filter metrics by city, restaurant, and time periods.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Identified peak ordering hours and top-selling food categories to optimize restaurant preparation times.</li><li>Visualized Average Order Value (AOV) trends across different demographics and geographic zones.</li><li>Evaluated restaurant performance, separating high-revenue generators from underperforming partners.</li></ul></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Food delivery platforms generate massive volumes of transactional data. The goal was to consolidate it to understand restaurant performance and ordering patterns.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I built an interactive dashboard entirely in <strong>Microsoft Excel</strong> with <strong>Pivot Tables</strong>, <strong>Pivot Charts</strong>, and dynamic <strong>Slicers</strong>.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Identified peak ordering hours and top-selling categories.</li><li>Visualized AOV trends across demographics and zones.</li><li>Evaluated restaurant performance to spot underperformers.</li></ul></div>
             <div class="project-nav-row">
                 <button type="button" class="project-nav-btn" data-nav-project="modal-numpy"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                 <button type="button" class="project-nav-btn" data-nav-project="modal-decathlon">Next <i class="fa-solid fa-arrow-right"></i></button>
@@ -791,49 +801,107 @@
         <div class="modal-content">
             <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
             <div class="modal-header-row">
-                <div>
-                    <h2 class="modal-title">Decathlon Sales & Customer Analytics</h2>
-                    <div class="modal-subtitle">Retail BI in Excel</div>
-                </div>
-                <a href="https://ilikemanish.github.io/Decathlon-Retail-Sales-Customer-Analytics-Dashboard/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.85rem;"><i class="fa-solid fa-eye"></i> Live Preview</a>
+                <div><h2 class="modal-title">Decathlon Sales & Customer Analytics</h2><div class="modal-subtitle">Retail BI in Excel</div></div>
+                <a href="https://ilikemanish.github.io/Decathlon-Retail-Sales-Customer-Analytics-Dashboard/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.65rem 1.3rem; font-size: 0.8rem;"><i class="fa-solid fa-eye"></i> Live Preview</a>
             </div>
-            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Retail businesses generate large volumes of transactional data daily. Without proper analysis, it becomes difficult to identify sales trends, customer purchasing behavior, high-performing product categories, and business growth opportunities.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I built an interactive dashboard in <strong>Microsoft Excel</strong> utilizing over 30,000 synthetic records. After cleaning and validating the data, I implemented <strong>Pivot Tables</strong>, <strong>Pivot Charts</strong>, and dynamic <strong>Slicers</strong> to track Total Sales, Average Order Value (AOV), and customer retention trends.</p></div>
-            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Customer segmentation revealed high-value customer groups to prioritize for targeted marketing campaigns.</li><li>Product category analysis highlighted major revenue contributors to assist with inventory optimization.</li><li>Customer retention metrics evaluated repeat purchasing behavior, providing a baseline to design future retention programs.</li></ul></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Sports retail generates massive daily transaction data, but most teams lack a fast way to know which customers are worth retaining and which categories drive profit.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>I built an interactive dashboard in <strong>Microsoft Excel</strong> using 30,000+ synthetic records, <strong>Pivot Tables</strong>, <strong>Pivot Charts</strong>, and dynamic <strong>Slicers</strong>.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Customer segmentation revealed high-value customer groups.</li><li>Product category analysis highlighted major revenue contributors.</li><li>Retention metrics provided baseline for future retention programs.</li></ul></div>
             <div class="project-nav-row">
                 <button type="button" class="project-nav-btn" data-nav-project="modal-swiggy"><i class="fa-solid fa-arrow-left"></i> Prev</button>
-                <button type="button" class="project-nav-btn" data-nav-project="modal-netflix">Next <i class="fa-solid fa-arrow-right"></i></button>
+                <button type="button" class="project-nav-btn" data-nav-project="modal-powerbi">Next <i class="fa-solid fa-arrow-right"></i></button>
             </div>
         </div>
     </div>
 
-    <!-- SCROLLYTELLING STORY MODALS -->
+    <!-- STORY MODALS -->
+    <div class="modal-overlay story-modal" id="story-powerbi">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close story"><i class="fa-solid fa-xmark"></i></button>
+            <div class="story-hero">
+                <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
+                <h2 class="story-title">Smoking Health Risk Analysis</h2>
+                <p class="story-intro">How an interactive Power BI dashboard turned 2,500 patient records into a filter-first exploration of smoking exposure, organ condition, and multi-dimensional health risk.</p>
+            </div>
+            <div class="story-body">
+                <div class="story-step">
+                    <div class="story-step-num">01</div>
+                    <h3><i class="fa-solid fa-circle-exclamation"></i> The Business Problem</h3>
+                    <p>Healthcare data rarely lives in a single, clean view. The dataset packed <strong>2,500 patient records</strong> across <strong>13 fields</strong> — but no interactive layer existed to explore it.</p>
+                </div>
+                <div class="story-step">
+                    <div class="story-step-num">02</div>
+                    <h3><i class="fa-solid fa-code"></i> The Approach</h3>
+                    <p>I built a single-page Power BI report with a <strong>filter-first interaction model</strong>. Two slicers drive everything: a condition toggle and an icon-based organ selector.</p>
+                    <div class="story-code">
+                        <div class="story-code-header"><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="story-code-lang">DAX</span></div>
+<pre><code><span class="fn">Age Group</span> <span class="op">=</span>
+<span class="kw">SWITCH</span>(
+    <span class="kw">TRUE</span>(),
+    health[Age] <span class="op">&lt;=</span> <span class="num">28</span>, <span class="str">"18-28"</span>,
+    health[Age] <span class="op">&lt;=</span> <span class="num">38</span>, <span class="str">"29-38"</span>,
+    health[Age] <span class="op">&lt;=</span> <span class="num">48</span>, <span class="str">"39-48"</span>,
+    health[Age] <span class="op">&lt;=</span> <span class="num">58</span>, <span class="str">"49-58"</span>,
+    health[Age] <span class="op">&lt;=</span> <span class="num">68</span>, <span class="str">"59-68"</span>,
+    <span class="str">"69+"</span>
+)</code></pre>
+                    </div>
+                </div>
+                <div class="story-step">
+                    <div class="story-step-num">03</div>
+                    <h3><i class="fa-solid fa-chart-column"></i> What the Data Revealed</h3>
+                    <div class="story-bars">
+                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 38%;"><span class="story-bar-val">37.7%</span></div><div class="story-bar-label">Liver</div></div>
+                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 37%;"><span class="story-bar-val">37.0%</span></div><div class="story-bar-label">Kidney</div></div>
+                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 36.5%;"><span class="story-bar-val">36.5%</span></div><div class="story-bar-label">Heart</div></div>
+                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 35%;"><span class="story-bar-val">35.1%</span></div><div class="story-bar-label">Lungs</div></div>
+                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 32.7%;"><span class="story-bar-val">32.7%</span></div><div class="story-bar-label">Body</div></div>
+                    </div>
+                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Only 5 percentage points separate the highest and lowest organ — organ category alone isn't a strong differentiator.</div>
+                </div>
+                <div class="story-step">
+                    <div class="story-step-num">04</div>
+                    <h3><i class="fa-solid fa-users"></i> Smoking Exposure Tells the Sharper Story</h3>
+                    <div class="story-bars">
+                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 45%;"><span class="story-bar-val">45.4%</span></div><div class="story-bar-label">Never</div></div>
+                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 29%;"><span class="story-bar-val">29.3%</span></div><div class="story-bar-label">Current</div></div>
+                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 25%;"><span class="story-bar-val">25.2%</span></div><div class="story-bar-label">Former</div></div>
+                    </div>
+                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Current smokers carry over <strong>2× the exposure</strong> of former smokers.</div>
+                </div>
+                <div class="story-step">
+                    <div class="story-step-num">05</div>
+                    <h3><i class="fa-solid fa-trophy"></i> The Final Result</h3>
+                    <div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A healthcare-themed dashboard that transforms 2,500 flat records into an explorable, filter-driven risk-analysis narrative.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional story modals follow the same structure (netflix/bookstore/tableau/taxi/playstore/churn/diwali/numpy/swiggy/decathlon) -->
     <div class="modal-overlay story-modal" id="story-netflix">
         <div class="modal-content">
             <button class="modal-close" aria-label="Close story"><i class="fa-solid fa-xmark"></i></button>
             <div class="story-hero">
                 <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
                 <h2 class="story-title">Netflix SQL Data Analysis</h2>
-                <p class="story-intro">How a single PostgreSQL database of ~8,800 Netflix titles was interrogated with 15 business questions to reveal what the platform is really made of.</p>
+                <p class="story-intro">Interrogating ~8,800 Netflix titles with 15 business questions to reveal the catalog's true composition.</p>
             </div>
             <div class="story-body">
                 <div class="story-step">
                     <div class="story-step-num">01</div>
                     <h3><i class="fa-solid fa-circle-exclamation"></i> The Business Problem</h3>
-                    <p>Netflix's catalog is a black box. Executives needed clear answers: What's the movie-to-show split? Which countries produce the most content? Are older titles still relevant?</p>
-                    <p>The raw dataset — <strong>8,807 rows</strong> of title, type, country, rating, and date — was dumped into PostgreSQL with no analysis layer.</p>
+                    <p>Netflix's catalog is a black box. Executives needed clear answers on movie-to-show split, top producing countries, and whether older titles still matter.</p>
                 </div>
                 <div class="story-step">
                     <div class="story-step-num">02</div>
                     <h3><i class="fa-solid fa-code"></i> The Approach</h3>
-                    <p>I loaded the CSV into PostgreSQL and used progressively harder queries — from simple <code>GROUP BY</code> aggregations to <code>RANK()</code> window functions — to slice the catalog.</p>
+                    <p>Progressive SQL from <code>GROUP BY</code> to <code>RANK()</code> window functions.</p>
                     <div class="story-code">
                         <div class="story-code-header"><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="story-code-lang">SQL</span></div>
-<pre><code><span class="cm">-- Movies vs TV Shows distribution</span>
-<span class="kw">SELECT</span> type, <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total
+<pre><code><span class="kw">SELECT</span> type, <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total
 <span class="kw">FROM</span> netflix_titles
-<span class="kw">GROUP BY</span> type
-<span class="kw">ORDER BY</span> total <span class="kw">DESC</span>;</code></pre>
+<span class="kw">GROUP BY</span> type;</code></pre>
                     </div>
                 </div>
                 <div class="story-step">
@@ -844,14 +912,12 @@
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 30%;"><span class="story-bar-val">30%</span></div><div class="story-bar-label">TV Shows</div></div>
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 45%;"><span class="story-bar-val">45%</span></div><div class="story-bar-label">Drama</div></div>
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 35%;"><span class="story-bar-val">35%</span></div><div class="story-bar-label">Comedy</div></div>
-                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 20%;"><span class="story-bar-val">20%</span></div><div class="story-bar-label">Docs</div></div>
                     </div>
-                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Movies dominate the catalog, but TV Shows are growing disproportionately — a signal for long-form content investment.</div>
+                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Movies dominate, but TV Shows are growing disproportionately.</div>
                 </div>
                 <div class="story-step">
                     <div class="story-step-num">04</div>
                     <h3><i class="fa-solid fa-earth-americas"></i> Country-Level Insight</h3>
-                    <p>A <code>RANK()</code> query on <code>country</code> revealed the top producers. The United States dominates, but India and the UK are close behind.</p>
                     <div class="story-stat-row">
                         <div class="story-stat"><strong>3,690</strong><span>US Titles</span></div>
                         <div class="story-stat"><strong>1,046</strong><span>India Titles</span></div>
@@ -861,8 +927,7 @@
                 <div class="story-step">
                     <div class="story-step-num">05</div>
                     <h3><i class="fa-solid fa-trophy"></i> The Final Result</h3>
-                    <p>All 15 business questions were answered with clean, production-ready SQL. The full query set ships with the project as a downloadable report.</p>
-                    <div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A 15-question SQL playbook covering catalog composition, ratings, geography, and time trends — reusable by any streaming analytics team.</div>
+                    <div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A 15-question SQL playbook reusable by any streaming analytics team.</div>
                 </div>
             </div>
         </div>
@@ -874,28 +939,25 @@
             <div class="story-hero">
                 <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
                 <h2 class="story-title">Online Book Store Analysis</h2>
-                <p class="story-intro">A PostgreSQL deep dive into 20 business questions spanning books, customers, orders, and inventory for a fictional online bookstore.</p>
+                <p class="story-intro">A PostgreSQL deep dive into 20 business questions across books, customers, orders, and inventory.</p>
             </div>
             <div class="story-body">
                 <div class="story-step">
                     <div class="story-step-num">01</div>
                     <h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3>
-                    <p>The store had plenty of raw data — books, genres, customers, orders — but no single source of truth. Which genres sell best? Who are the top 5 spenders? Which inventory is running low?</p>
+                    <p>The store had plenty of raw data but no single source of truth. Which genres sell best? Which inventory is running low?</p>
                 </div>
                 <div class="story-step">
                     <div class="story-step-num">02</div>
                     <h3><i class="fa-solid fa-code"></i> The Approach</h3>
-                    <p>I loaded four CSV tables into PostgreSQL, established primary/foreign keys, and wrote progressive SQL from simple joins to correlated subqueries and window functions.</p>
+                    <p>Progressive SQL from joins to correlated subqueries.</p>
                     <div class="story-code">
                         <div class="story-code-header"><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="story-code-lang">SQL</span></div>
-<pre><code><span class="cm">-- Top 5 customers by total spend</span>
-<span class="kw">SELECT</span> c.name,
-       <span class="fn">SUM</span>(o.total_amount) <span class="kw">AS</span> spend
+<pre><code><span class="kw">SELECT</span> c.name, <span class="fn">SUM</span>(o.total_amount) <span class="kw">AS</span> spend
 <span class="kw">FROM</span> customers c
 <span class="kw">JOIN</span> orders o <span class="kw">ON</span> o.customer_id <span class="op">=</span> c.id
 <span class="kw">GROUP BY</span> c.name
-<span class="kw">ORDER BY</span> spend <span class="kw">DESC</span>
-<span class="kw">LIMIT</span> <span class="num">5</span>;</code></pre>
+<span class="kw">ORDER BY</span> spend <span class="kw">DESC</span> <span class="kw">LIMIT</span> <span class="num">5</span>;</code></pre>
                     </div>
                 </div>
                 <div class="story-step">
@@ -907,100 +969,34 @@
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 48%;"><span class="story-bar-val">48%</span></div><div class="story-bar-label">Mystery</div></div>
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 35%;"><span class="story-bar-val">35%</span></div><div class="story-bar-label">Romance</div></div>
                     </div>
-                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Fiction alone accounts for over 80% of revenue — a strong signal for inventory prioritization.</div>
+                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Fiction alone accounts for over 80% of revenue.</div>
                 </div>
                 <div class="story-step">
                     <div class="story-step-num">04</div>
                     <h3><i class="fa-solid fa-boxes-stacked"></i> Inventory Reality Check</h3>
-                    <p>Using <code>LEFT JOIN</code> and <code>COALESCE</code>, I computed remaining stock per book after all orders were fulfilled.</p>
-                    <ul><li>14 titles out of stock — immediate restock needed.</li><li>3 high-demand titles with fewer than 5 units left.</li><li>2 slow-movers with surplus inventory — prime candidates for promotion.</li></ul>
+                    <ul><li>14 titles out of stock.</li><li>3 high-demand titles with fewer than 5 units.</li><li>2 slow-movers with surplus inventory.</li></ul>
                 </div>
                 <div class="story-step">
                     <div class="story-step-num">05</div>
                     <h3><i class="fa-solid fa-trophy"></i> The Final Result</h3>
-                    <div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A 20-query SQL suite covering customer segmentation, revenue trends, and inventory health — packaged as a downloadable PDF report.</div>
+                    <div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A 20-query SQL suite packaged as a downloadable PDF report.</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal-overlay story-modal" id="story-powerbi">
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Close story"><i class="fa-solid fa-xmark"></i></button>
-            <div class="story-hero">
-                <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
-                <h2 class="story-title">Power BI Business Intelligence Dashboard</h2>
-                <p class="story-intro">Designing a KPI dashboard that turns scattered sales data into a single, executive-ready view of revenue, growth, and regional performance.</p>
-            </div>
-            <div class="story-body">
-                <div class="story-step">
-                    <div class="story-step-num">01</div>
-                    <h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3>
-                    <p>Leadership needed a single page they could open every Monday morning and instantly see: this week's revenue, YoY growth, and which regions are underperforming.</p>
-                </div>
-                <div class="story-step">
-                    <div class="story-step-num">02</div>
-                    <h3><i class="fa-solid fa-diagram-project"></i> The Approach</h3>
-                    <p>I built a star schema model with a fact table for sales and dimension tables for date, product, and geography. All measures are DAX-based, so they auto-update with the data.</p>
-                    <div class="story-code">
-                        <div class="story-code-header"><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="story-code-lang">DAX</span></div>
-<pre><code><span class="cm">-- YTD Revenue measure</span>
-<span class="fn">Total Revenue YTD</span> <span class="op">=</span>
-<span class="fn">TOTALYTD</span>(
-    <span class="fn">SUM</span>(Sales[Revenue]),
-    <span class="str">'Date'</span>[Date]
-)</code></pre>
-                    </div>
-                </div>
-                <div class="story-step">
-                    <div class="story-step-num">03</div>
-                    <h3><i class="fa-solid fa-chart-column"></i> Regional Revenue Snapshot</h3>
-                    <div class="story-bars">
-                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 88%;"><span class="story-bar-val">88%</span></div><div class="story-bar-label">North</div></div>
-                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 72%;"><span class="story-bar-val">72%</span></div><div class="story-bar-label">West</div></div>
-                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 64%;"><span class="story-bar-val">64%</span></div><div class="story-bar-label">South</div></div>
-                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 51%;"><span class="story-bar-val">51%</span></div><div class="story-bar-label">East</div></div>
-                    </div>
-                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> The North region drives over 35% of total revenue — a strong candidate for expanded sales coverage.</div>
-                </div>
-                <div class="story-step">
-                    <div class="story-step-num">04</div>
-                    <h3><i class="fa-solid fa-arrow-trend-up"></i> YoY Growth Story</h3>
-                    <p>I layered YoY growth as a secondary measure on every visual. Combined with dynamic slicers, executives can now drill into any region, product, or month.</p>
-                    <div class="story-stat-row">
-                        <div class="story-stat"><strong>+18%</strong><span>YoY Rev</span></div>
-                        <div class="story-stat"><strong>+9%</strong><span>YoY Units</span></div>
-                        <div class="story-stat"><strong>-3%</strong><span>YoY Margin</span></div>
-                    </div>
-                </div>
-                <div class="story-step">
-                    <div class="story-step-num">05</div>
-                    <h3><i class="fa-solid fa-trophy"></i> The Final Result</h3>
-                    <div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A single-page Power BI dashboard with 8 KPI cards, drill-through pages, and live regional maps — reducing weekly reporting time by ~90%.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <!-- Story modals for other projects follow the same pattern -->
     <div class="modal-overlay story-modal" id="story-tableau">
         <div class="modal-content">
             <button class="modal-close" aria-label="Close story"><i class="fa-solid fa-xmark"></i></button>
             <div class="story-hero">
                 <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
                 <h2 class="story-title">Tableau Data Storytelling</h2>
-                <p class="story-intro">An end-to-end Tableau story that blends geography, time, and product performance into a single narrative for non-technical stakeholders.</p>
+                <p class="story-intro">An end-to-end Tableau story blending geography, time, and product performance.</p>
             </div>
             <div class="story-body">
-                <div class="story-step">
-                    <div class="story-step-num">01</div>
-                    <h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3>
-                    <p>Numbers alone don't persuade. Sales leadership needed a narrative — not a data dump — that could be presented live in under 10 minutes.</p>
-                </div>
-                <div class="story-step">
-                    <div class="story-step-num">02</div>
-                    <h3><i class="fa-solid fa-map-location-dot"></i> The Approach</h3>
-                    <p>I designed 6 connected Tableau worksheets — a filled map, a treemap, a line chart, two bar charts, and a scatter — each acting as a "chapter" of the story.</p>
-                </div>
+                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>Numbers alone don't persuade. Sales leadership needed a narrative presentable in under 10 minutes.</p></div>
+                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-map-location-dot"></i> The Approach</h3><p>Six connected Tableau worksheets, each acting as a chapter of the story.</p></div>
                 <div class="story-step">
                     <div class="story-step-num">03</div>
                     <h3><i class="fa-solid fa-chart-column"></i> State-Level Concentration</h3>
@@ -1009,20 +1005,11 @@
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 75%;"><span class="story-bar-val">75%</span></div><div class="story-bar-label">NY</div></div>
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 62%;"><span class="story-bar-val">62%</span></div><div class="story-bar-label">TX</div></div>
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 45%;"><span class="story-bar-val">45%</span></div><div class="story-bar-label">FL</div></div>
-                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 30%;"><span class="story-bar-val">30%</span></div><div class="story-bar-label">WA</div></div>
                     </div>
-                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Five states account for nearly 70% of all sales — a clear geographic concentration risk.</div>
+                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Five states account for nearly 70% of all sales.</div>
                 </div>
-                <div class="story-step">
-                    <div class="story-step-num">04</div>
-                    <h3><i class="fa-solid fa-chart-line"></i> The Predictive Story</h3>
-                    <p>Using Tableau's trend-line feature, I layered a 3-month forecast on top of the historical line chart. This gives stakeholders a tangible "where are we heading" moment.</p>
-                </div>
-                <div class="story-step">
-                    <div class="story-step-num">05</div>
-                    <h3><i class="fa-solid fa-trophy"></i> The Final Result</h3>
-                    <div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A 6-chapter interactive Tableau Story that converts 100k rows into a persuasive, board-ready narrative.</div>
-                </div>
+                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-chart-line"></i> The Predictive Story</h3><p>3-month forecast layered on top of the historical line chart.</p></div>
+                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A 6-chapter interactive Tableau Story converting 100k rows into a board-ready narrative.</div></div>
             </div>
         </div>
     </div>
@@ -1033,23 +1020,17 @@
             <div class="story-hero">
                 <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
                 <h2 class="story-title">NYC Taxi Revenue Analysis</h2>
-                <p class="story-intro">Using statistics to prove what actually drives a NYC taxi driver's daily income — and what most drivers are leaving on the table.</p>
+                <p class="story-intro">Using statistics to prove what actually drives a NYC taxi driver's daily income.</p>
             </div>
             <div class="story-body">
-                <div class="story-step">
-                    <div class="story-step-num">01</div>
-                    <h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3>
-                    <p>A driver's income depends on hundreds of micro-decisions every shift. Most drivers rely on intuition. I wanted to replace intuition with evidence.</p>
-                </div>
+                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>A driver's income depends on hundreds of micro-decisions every shift.</p></div>
                 <div class="story-step">
                     <div class="story-step-num">02</div>
                     <h3><i class="fa-solid fa-code"></i> The Approach</h3>
-                    <p>I pulled the NYC TLC trip dataset, cleaned outliers, and ran grouped statistics using <strong>pandas</strong> and <strong>SciPy</strong>.</p>
                     <div class="story-code">
                         <div class="story-code-header"><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="story-code-lang">Python</span></div>
 <pre><code>df[<span class="str">'hour'</span>] <span class="op">=</span> df[<span class="str">'pickup_time'</span>].dt.hour
-hourly <span class="op">=</span> df.groupby(<span class="str">'hour'</span>)[<span class="str">'fare'</span>].mean()
-hourly.sort_values(ascending<span class="op">=</span><span class="kw">False</span>).head()</code></pre>
+hourly <span class="op">=</span> df.groupby(<span class="str">'hour'</span>)[<span class="str">'fare'</span>].mean()</code></pre>
                     </div>
                 </div>
                 <div class="story-step">
@@ -1062,18 +1043,10 @@ hourly.sort_values(ascending<span class="op">=</span><span class="kw">False</spa
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 62%;"><span class="story-bar-val">62%</span></div><div class="story-bar-label">11 PM</div></div>
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 40%;"><span class="story-bar-val">40%</span></div><div class="story-bar-label">3 AM</div></div>
                     </div>
-                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> 6 PM and 8 AM rush hours yield ~20% more per trip than the daily average — a clear scheduling signal.</div>
+                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> 6 PM and 8 AM rush hours yield ~20% more per trip.</div>
                 </div>
-                <div class="story-step">
-                    <div class="story-step-num">04</div>
-                    <h3><i class="fa-solid fa-magnifying-glass-chart"></i> Surprising Correlations</h3>
-                    <ul><li>Trips under 3 miles in Manhattan have the highest tip ratio.</li><li>Airport pickups are longer but tip-ratio drops by ~15%.</li><li>Weekend late-nights outperform weekday late-nights.</li></ul>
-                </div>
-                <div class="story-step">
-                    <div class="story-step-num">05</div>
-                    <h3><i class="fa-solid fa-trophy"></i> The Final Result</h3>
-                    <div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A statistical playbook that recommends an optimal shift schedule — a data-backed way to boost daily driver income.</div>
-                </div>
+                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-magnifying-glass-chart"></i> Surprising Correlations</h3><ul><li>Short Manhattan trips have the highest tip ratio.</li><li>Airport pickups drop tip-ratio by ~15%.</li></ul></div>
+                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A statistical playbook recommending an optimal shift schedule.</div></div>
             </div>
         </div>
     </div>
@@ -1084,22 +1057,16 @@ hourly.sort_values(ascending<span class="op">=</span><span class="kw">False</spa
             <div class="story-hero">
                 <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
                 <h2 class="story-title">Google Play Store EDA</h2>
-                <p class="story-intro">An exploratory data analysis across 10,000+ apps to discover what actually makes an app succeed on the Play Store.</p>
+                <p class="story-intro">Exploratory analysis across 10,000+ apps to discover what makes an app succeed.</p>
             </div>
             <div class="story-body">
-                <div class="story-step">
-                    <div class="story-step-num">01</div>
-                    <h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3>
-                    <p>Over 1 million apps fight for attention on the Play Store. Every indie developer wants to know: what separates the top apps from the invisible ones?</p>
-                </div>
+                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>What separates top apps from invisible ones?</p></div>
                 <div class="story-step">
                     <div class="story-step-num">02</div>
                     <h3><i class="fa-solid fa-code"></i> Cleaning the Mess</h3>
-                    <p>The raw dataset had size ("19M"), installs ("10,000+"), and price ("$4.99") as strings. I converted all of them to numeric types with pandas.</p>
                     <div class="story-code">
                         <div class="story-code-header"><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="story-code-lang">Python</span></div>
-<pre><code>df[<span class="str">'Size'</span>] <span class="op">=</span> df[<span class="str">'Size'</span>].<span class="fn">apply</span>(convert_size)
-df[<span class="str">'Installs'</span>] <span class="op">=</span> df[<span class="str">'Installs'</span>].<span class="fn">str</span>.replace(<span class="str">'[,+]'</span>, <span class="str">''</span>).<span class="fn">astype</span>(<span class="kw">int</span>)</code></pre>
+<pre><code>df[<span class="str">'Installs'</span>] <span class="op">=</span> df[<span class="str">'Installs'</span>].<span class="fn">str</span>.replace(<span class="str">'[,+]'</span>, <span class="str">''</span>).<span class="fn">astype</span>(<span class="kw">int</span>)</code></pre>
                     </div>
                 </div>
                 <div class="story-step">
@@ -1111,18 +1078,10 @@ df[<span class="str">'Installs'</span>] <span class="op">=</span> df[<span class
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 66%;"><span class="story-bar-val">66%</span></div><div class="story-bar-label">Social</div></div>
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 55%;"><span class="story-bar-val">55%</span></div><div class="story-bar-label">Business</div></div>
                     </div>
-                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Games have both the highest installs AND the highest average rating — a compound advantage.</div>
+                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Games lead both installs and average rating.</div>
                 </div>
-                <div class="story-step">
-                    <div class="story-step-num">04</div>
-                    <h3><i class="fa-solid fa-dollar-sign"></i> Free vs. Paid</h3>
-                    <p>Over 92% of the apps in the dataset are free. Paid apps average a slightly higher rating but dramatically fewer installs — proving scale beats price on the Play Store.</p>
-                </div>
-                <div class="story-step">
-                    <div class="story-step-num">05</div>
-                    <h3><i class="fa-solid fa-trophy"></i> The Final Result</h3>
-                    <div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A clear set of factors that correlate with app success — small size, free pricing, frequent updates, and a category fit.</div>
-                </div>
+                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-dollar-sign"></i> Free vs. Paid</h3><p>92% of apps are free. Paid apps rate slightly higher but get far fewer installs.</p></div>
+                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A clear set of success factors — small size, free pricing, frequent updates.</div></div>
             </div>
         </div>
     </div>
@@ -1133,22 +1092,16 @@ df[<span class="str">'Installs'</span>] <span class="op">=</span> df[<span class
             <div class="story-hero">
                 <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
                 <h2 class="story-title">Customer Churn Analysis</h2>
-                <p class="story-intro">Finding the hidden signals that predict which customers are about to leave — before they actually leave.</p>
+                <p class="story-intro">Finding the hidden signals that predict which customers are about to leave.</p>
             </div>
             <div class="story-body">
-                <div class="story-step">
-                    <div class="story-step-num">01</div>
-                    <h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3>
-                    <p>A subscription business was losing ~26% of customers every year. Retention was treated as a support function, not a data problem.</p>
-                </div>
+                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>A subscription business was losing ~26% of customers annually.</p></div>
                 <div class="story-step">
                     <div class="story-step-num">02</div>
                     <h3><i class="fa-solid fa-code"></i> The Approach</h3>
-                    <p>I segmented the customer base by contract type, tenure, and service usage — then cross-tabbed churn against each one.</p>
                     <div class="story-code">
                         <div class="story-code-header"><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="story-code-lang">Python</span></div>
-<pre><code>churn <span class="op">=</span> df.groupby(<span class="str">'Contract'</span>)[<span class="str">'Churn'</span>].value_counts(normalize<span class="op">=</span><span class="kw">True</span>)
-churn.<span class="fn">unstack</span>().plot(kind<span class="op">=</span><span class="str">'bar'</span>, stacked<span class="op">=</span><span class="kw">True</span>)</code></pre>
+<pre><code>churn <span class="op">=</span> df.groupby(<span class="str">'Contract'</span>)[<span class="str">'Churn'</span>].value_counts(normalize<span class="op">=</span><span class="kw">True</span>)</code></pre>
                     </div>
                 </div>
                 <div class="story-step">
@@ -1157,21 +1110,13 @@ churn.<span class="fn">unstack</span>().plot(kind<span class="op">=</span><span 
                     <div class="story-bars">
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 92%;"><span class="story-bar-val">92%</span></div><div class="story-bar-label">Month-to-Month</div></div>
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 68%;"><span class="story-bar-val">68%</span></div><div class="story-bar-label">Fiber Optic</div></div>
-                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 52%;"><span class="story-bar-val">52%</span></div><div class="story-bar-label">No Online Sec.</div></div>
+                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 52%;"><span class="story-bar-val">52%</span></div><div class="story-bar-label">No Online Sec</div></div>
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 38%;"><span class="story-bar-val">38%</span></div><div class="story-bar-label">Paperless Off</div></div>
                     </div>
-                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Month-to-month contracts churn at ~3x the rate of annual contracts — the single biggest lever for retention.</div>
+                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Month-to-month contracts churn at ~3x the rate of annual.</div>
                 </div>
-                <div class="story-step">
-                    <div class="story-step-num">04</div>
-                    <h3><i class="fa-solid fa-user-shield"></i> Building Risk Profiles</h3>
-                    <p>Combining the top 3 churn drivers, I created a simple scoring rule that flags high-risk customers within the first 90 days of tenure.</p>
-                </div>
-                <div class="story-step">
-                    <div class="story-step-num">05</div>
-                    <h3><i class="fa-solid fa-trophy"></i> The Final Result</h3>
-                    <div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A data-driven retention framework that lets the business target offers to the customers most likely to leave — before they do.</div>
-                </div>
+                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-user-shield"></i> Building Risk Profiles</h3><p>Simple scoring rule flags high-risk customers within first 90 days.</p></div>
+                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> Data-driven retention framework to target offers before customers leave.</div></div>
             </div>
         </div>
     </div>
@@ -1182,40 +1127,24 @@ churn.<span class="fn">unstack</span>().plot(kind<span class="op">=</span><span 
             <div class="story-hero">
                 <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
                 <h2 class="story-title">Diwali Sales Analysis</h2>
-                <p class="story-intro">Unpacking the buying behavior of a festival that drives a huge chunk of India's annual retail revenue.</p>
+                <p class="story-intro">Unpacking the buying behavior of a festival driving India's retail revenue.</p>
             </div>
             <div class="story-body">
-                <div class="story-step">
-                    <div class="story-step-num">01</div>
-                    <h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3>
-                    <p>A retailer wanted to optimize their Diwali inventory and ad spend — but had no visibility into which customer segments actually drive the festival rush.</p>
-                </div>
-                <div class="story-step">
-                    <div class="story-step-num">02</div>
-                    <h3><i class="fa-solid fa-code"></i> The Approach</h3>
-                    <p>I used pandas for grouping and Seaborn for visualization, splitting the customer base by gender, age bracket, state, and product category.</p>
-                </div>
+                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>A retailer had no visibility into which segments actually drive the festival rush.</p></div>
+                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-code"></i> The Approach</h3><p>Pandas for grouping; Seaborn for visualization split by gender, age, state, and category.</p></div>
                 <div class="story-step">
                     <div class="story-step-num">03</div>
                     <h3><i class="fa-solid fa-chart-column"></i> Who Actually Buys</h3>
                     <div class="story-bars">
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 85%;"><span class="story-bar-val">85%</span></div><div class="story-bar-label">Age 26-35</div></div>
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 62%;"><span class="story-bar-val">62%</span></div><div class="story-bar-label">Female</div></div>
-                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 48%;"><span class="story-bar-val">48%</span></div><div class="story-bar-label">UP / MH</div></div>
+                        <div class="story-bar-wrap"><div class="story-bar" style="--h: 48%;"><span class="story-bar-val">48%</span></div><div class="story-bar-label">UP/MH</div></div>
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 30%;"><span class="story-bar-val">30%</span></div><div class="story-bar-label">IT Sector</div></div>
                     </div>
-                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Women aged 26-35 dominate purchases — a segment that should be the primary target of Diwali ad spend.</div>
+                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Women aged 26-35 dominate purchases.</div>
                 </div>
-                <div class="story-step">
-                    <div class="story-step-num">04</div>
-                    <h3><i class="fa-solid fa-tags"></i> Winning Categories</h3>
-                    <ul><li>Food &amp; Clothing lead in volume.</li><li>Electronics leads in total revenue.</li><li>Home Decor peaks in the last 5 days before Diwali.</li></ul>
-                </div>
-                <div class="story-step">
-                    <div class="story-step-num">05</div>
-                    <h3><i class="fa-solid fa-trophy"></i> The Final Result</h3>
-                    <div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A targeted segment playbook for Diwali inventory and marketing — with a clear "who to target" and "what to stock" recommendation.</div>
-                </div>
+                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-tags"></i> Winning Categories</h3><ul><li>Food & Clothing lead in volume.</li><li>Electronics leads in revenue.</li></ul></div>
+                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> Targeted segment playbook for Diwali inventory and marketing.</div></div>
             </div>
         </div>
     </div>
@@ -1226,18 +1155,13 @@ churn.<span class="fn">unstack</span>().plot(kind<span class="op">=</span><span 
             <div class="story-hero">
                 <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
                 <h2 class="story-title">NumPy Sales Analysis</h2>
-                <p class="story-intro">Turning a slow, loop-heavy sales pipeline into a blazing-fast vectorized workflow — with the same business output.</p>
+                <p class="story-intro">Turning a slow, loop-heavy pipeline into a blazing-fast vectorized workflow.</p>
             </div>
             <div class="story-body">
-                <div class="story-step">
-                    <div class="story-step-num">01</div>
-                    <h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3>
-                    <p>The original script processed 2 million rows using Python loops. It took over 40 minutes to run and was holding up the entire reporting pipeline.</p>
-                </div>
+                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>Original script took 40+ minutes to process 2 million rows.</p></div>
                 <div class="story-step">
                     <div class="story-step-num">02</div>
                     <h3><i class="fa-solid fa-code"></i> The Rewrite</h3>
-                    <p>I replaced every loop with a NumPy vectorized operation and re-used boolean masks for filtering.</p>
                     <div class="story-code">
                         <div class="story-code-header"><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="story-code-lang">Python</span></div>
 <pre><code><span class="cm"># Before: Python loop (~40 min)</span>
@@ -1256,18 +1180,10 @@ total <span class="op">=</span> sales[sales <span class="op">&gt;</span> thresho
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 95%;"><span class="story-bar-val">100%</span></div><div class="story-bar-label">Loop</div></div>
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 10%;"><span class="story-bar-val">10%</span></div><div class="story-bar-label">NumPy</div></div>
                     </div>
-                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> A 10x speedup means the reporting pipeline now runs every hour instead of once a day.</div>
+                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> 10x speedup means pipeline runs hourly instead of daily.</div>
                 </div>
-                <div class="story-step">
-                    <div class="story-step-num">04</div>
-                    <h3><i class="fa-solid fa-check-double"></i> Same Business Truth</h3>
-                    <p>The output metrics — top products, regional totals, and month-over-month growth — were identical to the old script. Only the runtime changed.</p>
-                </div>
-                <div class="story-step">
-                    <div class="story-step-num">05</div>
-                    <h3><i class="fa-solid fa-trophy"></i> The Final Result</h3>
-                    <div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A reusable NumPy template for any large-array analysis — cutting runtime from 40 minutes to under 3.</div>
-                </div>
+                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-check-double"></i> Same Business Truth</h3><p>Output metrics were identical to old script. Only runtime changed.</p></div>
+                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> Reusable NumPy template cutting runtime 40 min → under 3.</div></div>
             </div>
         </div>
     </div>
@@ -1278,19 +1194,11 @@ total <span class="op">=</span> sales[sales <span class="op">&gt;</span> thresho
             <div class="story-hero">
                 <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
                 <h2 class="story-title">Swiggy Sales Analysis Dashboard</h2>
-                <p class="story-intro">Turning raw food-delivery transactions into a 4-slicer Excel dashboard that answers "what should we promote next month?"</p>
+                <p class="story-intro">Turning raw food-delivery transactions into a 4-slicer Excel dashboard.</p>
             </div>
             <div class="story-body">
-                <div class="story-step">
-                    <div class="story-step-num">01</div>
-                    <h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3>
-                    <p>Swiggy-style platforms generate thousands of orders a day. Without an analysis layer, ops teams can't see which restaurants, cities, or categories are actually pulling the revenue.</p>
-                </div>
-                <div class="story-step">
-                    <div class="story-step-num">02</div>
-                    <h3><i class="fa-solid fa-code"></i> The Approach</h3>
-                    <p>I cleaned the raw CSV, built pivot tables for restaurant, city, category, and time-of-day, and wired them all to four dynamic slicers.</p>
-                </div>
+                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>Ops teams couldn't see which restaurants, cities, or categories pull revenue.</p></div>
+                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-code"></i> The Approach</h3><p>Cleaned raw CSV, built pivot tables for restaurant/city/category/time, wired 4 slicers.</p></div>
                 <div class="story-step">
                     <div class="story-step-num">03</div>
                     <h3><i class="fa-solid fa-chart-column"></i> Category Revenue Share</h3>
@@ -1300,18 +1208,10 @@ total <span class="op">=</span> sales[sales <span class="op">&gt;</span> thresho
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 42%;"><span class="story-bar-val">42%</span></div><div class="story-bar-label">Desserts</div></div>
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 28%;"><span class="story-bar-val">28%</span></div><div class="story-bar-label">Snacks</div></div>
                     </div>
-                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Main Course drives ~78% of revenue, but Desserts have the highest AOV. Promoting desserts alongside mains could raise basket size.</div>
+                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Desserts have the highest AOV — promoting them alongside mains could raise basket size.</div>
                 </div>
-                <div class="story-step">
-                    <div class="story-step-num">04</div>
-                    <h3><i class="fa-solid fa-clock"></i> Peak Ordering Hours</h3>
-                    <ul><li>Lunch peak: 12:30 PM – 1:30 PM</li><li>Dinner peak: 7:30 PM – 9:30 PM</li><li>Weekend lunch orders are 2x weekday lunches.</li></ul>
-                </div>
-                <div class="story-step">
-                    <div class="story-step-num">05</div>
-                    <h3><i class="fa-solid fa-trophy"></i> The Final Result</h3>
-                    <div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A one-file Excel dashboard with four slicers, ~12 charts, and one clear weekly-promo recommendation.</div>
-                </div>
+                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-clock"></i> Peak Ordering Hours</h3><ul><li>Lunch: 12:30–1:30 PM</li><li>Dinner: 7:30–9:30 PM</li></ul></div>
+                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> One-file Excel dashboard with 4 slicers, ~12 charts, 1 clear recommendation.</div></div>
             </div>
         </div>
     </div>
@@ -1322,19 +1222,11 @@ total <span class="op">=</span> sales[sales <span class="op">&gt;</span> thresho
             <div class="story-hero">
                 <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
                 <h2 class="story-title">Decathlon Sales & Customer Analytics</h2>
-                <p class="story-intro">A 30,000-record Excel dashboard that segments Decathlon's customers by value and reveals which product categories actually move the needle.</p>
+                <p class="story-intro">A 30,000-record Excel dashboard segmenting customers by value.</p>
             </div>
             <div class="story-body">
-                <div class="story-step">
-                    <div class="story-step-num">01</div>
-                    <h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3>
-                    <p>Sports retail generates massive daily transaction data, but most teams lack a fast way to know: which customers are worth retaining? Which product categories drive profit?</p>
-                </div>
-                <div class="story-step">
-                    <div class="story-step-num">02</div>
-                    <h3><i class="fa-solid fa-code"></i> The Approach</h3>
-                    <p>I built the whole analysis in Excel: cleaned 30k+ rows, then used Pivot Tables, Pivot Charts, and Slicers for Total Sales, AOV, and Retention.</p>
-                </div>
+                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>Which customers are worth retaining? Which categories drive profit?</p></div>
+                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-code"></i> The Approach</h3><p>30k+ rows cleaned, then Pivot Tables/Charts/Slicers for Total Sales, AOV, Retention.</p></div>
                 <div class="story-step">
                     <div class="story-step-num">03</div>
                     <h3><i class="fa-solid fa-chart-column"></i> Revenue by Category</h3>
@@ -1344,35 +1236,28 @@ total <span class="op">=</span> sales[sales <span class="op">&gt;</span> thresho
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 55%;"><span class="story-bar-val">55%</span></div><div class="story-bar-label">Fitness</div></div>
                         <div class="story-bar-wrap"><div class="story-bar" style="--h: 40%;"><span class="story-bar-val">40%</span></div><div class="story-bar-label">Outdoor</div></div>
                     </div>
-                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Running alone accounts for over 80% of revenue — a critical category to protect during any supply-chain disruption.</div>
+                    <div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Running alone accounts for over 80% of revenue.</div>
                 </div>
                 <div class="story-step">
                     <div class="story-step-num">04</div>
                     <h3><i class="fa-solid fa-users"></i> Customer Segmentation</h3>
-                    <p>Using RFM-style scoring in Excel, I split customers into four value tiers: VIP, Loyal, Occasional, and At-Risk.</p>
                     <div class="story-stat-row">
                         <div class="story-stat"><strong>8%</strong><span>VIP</span></div>
                         <div class="story-stat"><strong>22%</strong><span>Loyal</span></div>
                         <div class="story-stat"><strong>38%</strong><span>Occasional</span></div>
                     </div>
                 </div>
-                <div class="story-step">
-                    <div class="story-step-num">05</div>
-                    <h3><i class="fa-solid fa-trophy"></i> The Final Result</h3>
-                    <div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A single-file Excel dashboard that turns 30k raw records into a clear "who to retain, what to stock" recommendation for the retail team.</div>
-                </div>
+                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A single-file Excel dashboard with clear "who to retain, what to stock" recommendation.</div></div>
             </div>
         </div>
     </div>
 
-    <!-- EXTERNAL SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-    <!-- INTERNAL SCRIPT -->
     <script src="script.js"></script>
 </body>
 </html>
