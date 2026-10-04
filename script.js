@@ -1,39 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-    /* ============================================================
-       LIVE BAR CHART GROWTH — inject bars into every project card
-       ============================================================ */
-    (function injectDataBars() {
-        const cards = document.querySelectorAll('.mock-dashboard-card');
-        if (!cards.length) return;
-
-        // Beautiful fixed height pattern (percent of container height)
-        const basePattern = [38, 52, 68, 60, 82, 56, 72, 88, 46, 64];
-
-        cards.forEach(function(card, index) {
-            // Don't add bars to the "Coming Soon" placeholder card
-            const filter = card.getAttribute('data-filter');
-            if (filter === 'major') return;
-
-            // Rotate pattern per card so each looks slightly different
-            const offset = index % basePattern.length;
-            const rotated = basePattern.slice(offset).concat(basePattern.slice(0, offset));
-
-            const wrap = document.createElement('div');
-            wrap.className = 'data-bars';
-            wrap.setAttribute('aria-hidden', 'true');
-
-            rotated.forEach(function(h) {
-                const bar = document.createElement('span');
-                bar.style.setProperty('--h', h + '%');
-                wrap.appendChild(bar);
-            });
-
-            card.insertBefore(wrap, card.firstChild);
-        });
-    })();
-
     /* 1. LOADER */
     setTimeout(function() {
         const loader = document.getElementById('initialLoader');
@@ -80,47 +47,75 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2600);
     })();
 
-    /* POWER BI VIDEO */
-    (function initPowerBIVideo() {
-        const video = document.getElementById('powerbiDemoVideo');
-        const container = document.getElementById('powerbiVideoContainer');
-        if (!video || !container) return;
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            video.removeAttribute('autoplay');
-            video.pause();
-            return;
-        }
-        const tryPlay = function() {
-            const p = video.play();
-            if (p && typeof p.catch === 'function') {
-                p.catch(function() { video.setAttribute('controls', 'controls'); });
-            }
-        };
-        if (video.readyState >= 1) tryPlay();
-        else video.addEventListener('loadedmetadata', tryPlay, { once: true });
+    /* POWER BI VIDEOS */
+    (function initAllPowerBIVideos() {
+        const videoContainers = document.querySelectorAll('.powerbi-video-container');
+        videoContainers.forEach(function(container) {
+            const video = container.querySelector('video');
+            if (!video) return;
 
-        const vObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    tryPlay();
-                    vObserver.unobserve(entry.target);
+            video.loop = true;
+            video.setAttribute('loop', 'loop');
+            video.muted = true;
+            video.setAttribute('muted', 'muted');
+            video.playsInline = true;
+            video.setAttribute('playsinline', 'playsinline');
+
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                video.removeAttribute('autoplay');
+                video.pause();
+                return;
+            }
+
+            const tryPlay = function() {
+                const p = video.play();
+                if (p && typeof p.catch === 'function') {
+                    p.catch(function() { video.setAttribute('controls', 'controls'); });
+                }
+            };
+            if (video.readyState >= 1) tryPlay();
+            else video.addEventListener('loadedmetadata', tryPlay, { once: true });
+
+            video.addEventListener('ended', function() {
+                try {
+                    video.currentTime = 0;
+                    const p = video.play();
+                    if (p && typeof p.catch === 'function') p.catch(function(){});
+                } catch (e) {}
+            });
+            video.addEventListener('pause', function() {
+                if (!container.matches(':hover') && video.loop && !video.ended) {
+                    const p = video.play();
+                    if (p && typeof p.catch === 'function') p.catch(function(){});
                 }
             });
-        }, { threshold: 0.25 });
-        vObserver.observe(container);
 
-        container.addEventListener('mouseenter', function() { if (!video.paused) video.pause(); });
-        container.addEventListener('mouseleave', function() {
-            if (video.paused) {
-                const p = video.play();
-                if (p && typeof p.catch === 'function') p.catch(function(){});
-            }
-        });
+            const vObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        tryPlay();
+                        vObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.25 });
+            vObserver.observe(container);
 
-        video.addEventListener('error', function() {
-            container.style.backgroundImage = "url('https://github.com/ilikemanish/Smoking_Health_Risk_Analysis_PowerBI/raw/main/Dashboard%20preview.jpeg')";
-            container.style.backgroundSize = 'cover';
-            container.style.backgroundPosition = 'center';
+            container.addEventListener('mouseenter', function() { if (!video.paused) video.pause(); });
+            container.addEventListener('mouseleave', function() {
+                if (video.paused) {
+                    const p = video.play();
+                    if (p && typeof p.catch === 'function') p.catch(function(){});
+                }
+            });
+            video.addEventListener('error', function() {
+                const poster = video.getAttribute('poster');
+                if (poster) {
+                    container.style.backgroundImage = "url('" + poster + "')";
+                    container.style.backgroundSize = 'cover';
+                    container.style.backgroundPosition = 'center';
+                    container.style.backgroundRepeat = 'no-repeat';
+                }
+            });
         });
     })();
 
@@ -173,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             localStorage.setItem('soundEnabled', soundEnabled ? '1' : '0');
         });
-        document.querySelectorAll('.btn, .project-link-btn, .drop-link, .slide-btn, .hire-btn, .filter-tag, .modal-close, .github-toggle-btn, .project-nav-btn, .copy-btn').forEach(function(el) {
+        document.querySelectorAll('.btn, .project-link-btn, .drop-link, .slide-btn, .hire-btn, .filter-tag, .modal-close, .github-toggle-btn, .project-nav-btn, .copy-btn, .resume-filter, .resume-collapse-btn, .resume-copy-btn').forEach(function(el) {
             el.addEventListener('mouseenter', function() { playClick(1400); });
             el.addEventListener('click', function() { playClick(760); });
         });
@@ -315,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalVeil = document.getElementById('modalVeil');
     const allModals = document.querySelectorAll('.modal-overlay');
     const closeBtns = document.querySelectorAll('.modal-close');
-    let activeStoryObserver = null;
+    let activeStoryScrubCleanup = null;
 
     function closeModal(modal) {
         if (!modal) return;
@@ -324,8 +319,12 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = 'auto';
         }
         if (modal.classList.contains('story-modal')) {
-            modal.querySelectorAll('.story-step').forEach(s => s.classList.remove('visible'));
-            if (activeStoryObserver) { activeStoryObserver.disconnect(); activeStoryObserver = null; }
+            modal.querySelectorAll('.story-step').forEach(s => {
+                s.classList.remove('visible');
+                const bars = s.querySelectorAll('.story-bar');
+                bars.forEach(b => b.style.height = '0%');
+            });
+            if (activeStoryScrubCleanup) { activeStoryScrubCleanup(); activeStoryScrubCleanup = null; }
         }
     }
     function closeAllModals() { allModals.forEach(function(m) { closeModal(m); }); }
@@ -360,6 +359,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
+            const lightbox = document.getElementById('certLightbox');
+            if (lightbox && lightbox.classList.contains('active')) { closeLightbox(); return; }
             document.querySelectorAll('.modal-overlay.active').forEach(function(modal) { closeModal(modal); });
         }
     });
@@ -497,16 +498,185 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    /* 14. RESUME MODAL */
+    /* 14. RESUME MODAL + INTERACTIVE SWITCH */
     const openResumeBtn = document.getElementById('openResumeViewerBtn');
+    const openInteractiveResumeBtn = document.getElementById('openInteractiveResumeBtn');
     const resumeModal = document.getElementById('resumeViewerModal');
-    function openResumeModal() {
-        if (resumeModal) openModalSmooth(resumeModal);
-    }
+    const interactiveResumeModal = document.getElementById('interactiveResumeModal');
+    function openResumeModal() { if (resumeModal) openModalSmooth(resumeModal); }
+    function openInteractiveResumeModal() { if (interactiveResumeModal) openModalSmooth(interactiveResumeModal); }
     if (openResumeBtn) {
         openResumeBtn.addEventListener('click', function(e) { e.preventDefault(); openResumeModal(); });
     }
+    if (openInteractiveResumeBtn) {
+        openInteractiveResumeBtn.addEventListener('click', function(e) { e.preventDefault(); openInteractiveResumeModal(); });
+    }
     window.__openResumeModal = openResumeModal;
+    window.__openInteractiveResumeModal = openInteractiveResumeModal;
+
+    const switchToInteractiveBtn = document.getElementById('switchToInteractiveBtn');
+    const switchToPdfBtn = document.getElementById('switchToPdfBtn');
+    if (switchToInteractiveBtn) {
+        switchToInteractiveBtn.addEventListener('click', function() {
+            closeModal(resumeModal);
+            setTimeout(function() { openModalSmooth(interactiveResumeModal); }, 220);
+        });
+    }
+    if (switchToPdfBtn) {
+        switchToPdfBtn.addEventListener('click', function() {
+            closeModal(interactiveResumeModal);
+            setTimeout(function() { openModalSmooth(resumeModal); }, 220);
+        });
+    }
+
+    /* INTERACTIVE RESUME LOGIC */
+    (function initInteractiveResume() {
+        const body = document.getElementById('resumeInteractiveBody');
+        if (!body) return;
+
+        // Collapsible sections
+        body.querySelectorAll('.resume-section').forEach(function(section) {
+            const header = section.querySelector('.resume-section-header');
+            const btn = section.querySelector('.resume-collapse-btn');
+            if (!header) return;
+            header.addEventListener('click', function(e) {
+                if (e.target.closest('a, button:not(.resume-collapse-btn)')) return;
+                section.classList.toggle('collapsed');
+            });
+            if (btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    section.classList.toggle('collapsed');
+                });
+            }
+        });
+
+        // Filters
+        const filters = document.querySelectorAll('.resume-filter');
+        const sections = body.querySelectorAll('.resume-section');
+        filters.forEach(function(f) {
+            f.addEventListener('click', function() {
+                const target = f.getAttribute('data-rfilter');
+                filters.forEach(function(x) { x.classList.remove('active'); });
+                f.classList.add('active');
+                sections.forEach(function(s) {
+                    if (target === 'all') {
+                        s.classList.remove('hidden');
+                    } else {
+                        s.classList.toggle('hidden', s.getAttribute('data-rsection') !== target);
+                    }
+                });
+            });
+        });
+
+        // Print
+        const printBtn = document.getElementById('resumePrintBtn');
+        if (printBtn) {
+            printBtn.addEventListener('click', function() {
+                window.print();
+            });
+        }
+
+        // Copy as JSON
+        const copyJsonBtn = document.getElementById('copyAsJsonBtn');
+        if (copyJsonBtn) {
+            copyJsonBtn.addEventListener('click', function() {
+                const data = {
+                    name: 'Manish Kashyap',
+                    role: 'Aspiring Data Analyst',
+                    email: 'manishkshyp0123@gmail.com',
+                    location: 'India',
+                    phone: '+91 95681 10788',
+                    github: 'https://github.com/ilikemanish',
+                    education: [
+                        { degree: 'B.Tech in Computer Science', institution: 'Teerthanker Mahaveer University, Moradabad', duration: '2023 – 2027', specialization: 'AI, ML, Deep Learning' },
+                        { degree: 'Class 12 (CBSE)', institution: "St Anthony's Sr Sec School, Dugawar", year: '2023' },
+                        { degree: 'Class 10 (CBSE)', institution: "St Anthony's Sr Sec School, Dugawar", year: '2021' }
+                    ],
+                    experience: [
+                        { role: 'Data Analyst Intern', company: '3Skill', duration: '2 Months', tools: ['Excel', 'SQL', 'Python', 'Power BI'] }
+                    ],
+                    skills: {
+                        technical: { Python: 90, SQL: 85, Excel: 90, 'Power BI': 80, Tableau: 75, Statistics: 70, 'Machine Learning': 60 },
+                        soft: ['Critical Thinking', 'Team Leading', 'Decision Making', 'Data Storytelling', 'Collaboration', 'Problem Solving']
+                    },
+                    projects: [
+                        { name: 'Blinkit Sales & Outlet Performance', stack: 'Power BI, DAX' },
+                        { name: 'Smoking Health Risk Analysis', stack: 'Power BI, DAX' },
+                        { name: 'Netflix SQL Data Analysis', stack: 'PostgreSQL' },
+                        { name: 'Online Book Store Analysis', stack: 'PostgreSQL' },
+                        { name: 'Swiggy Sales Dashboard', stack: 'Microsoft Excel' },
+                        { name: 'Decathlon Sales & Customer Analytics', stack: 'Microsoft Excel' }
+                    ],
+                    languages: ['Hindi', 'English']
+                };
+                const json = JSON.stringify(data, null, 2);
+                navigator.clipboard.writeText(json).then(function() {
+                    copyJsonBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                    setTimeout(function() {
+                        copyJsonBtn.innerHTML = '<i class="fa-solid fa-code"></i> Copy as JSON';
+                    }, 2200);
+                }).catch(function() {
+                    copyJsonBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> Failed';
+                    setTimeout(function() {
+                        copyJsonBtn.innerHTML = '<i class="fa-solid fa-code"></i> Copy as JSON';
+                    }, 2200);
+                });
+            });
+        }
+
+        // Copy as Markdown
+        const copyMdBtn = document.getElementById('copyAsMdBtn');
+        if (copyMdBtn) {
+            copyMdBtn.addEventListener('click', function() {
+                const md = `# Manish Kashyap
+**Aspiring Data Analyst**
+
+📧 manishkshyp0123@gmail.com · 📍 India · 🐙 [github.com/ilikemanish](https://github.com/ilikemanish)
+
+## Education
+- **B.Tech in Computer Science** — Teerthanker Mahaveer University, Moradabad *(2023 – 2027)*
+  Specialization: AI, ML, Deep Learning
+- **Class 12 (CBSE)** — St Anthony's Sr Sec School, Dugawar *(2023)*
+- **Class 10 (CBSE)** — St Anthony's Sr Sec School, Dugawar *(2021)*
+
+## Experience
+- **Data Analyst Intern** — 3Skill *(2 Months)*
+  Tools: Excel, SQL, Python, Power BI
+
+## Technical Skills
+- **Python** 90% · **SQL** 85% · **Excel** 90%
+- **Power BI** 80% · **Tableau** 75%
+- **Statistics** 70% · **Machine Learning** 60%
+
+## Soft Skills
+Critical Thinking, Team Leading, Decision Making, Data Storytelling, Collaboration, Problem Solving
+
+## Key Projects
+- **Blinkit Sales & Outlet Performance** — Power BI, DAX
+- **Smoking Health Risk Analysis** — Power BI, DAX
+- **Netflix SQL Data Analysis** — PostgreSQL
+- **Online Book Store Analysis** — PostgreSQL
+- **Swiggy Sales Dashboard** — Microsoft Excel
+- **Decathlon Sales & Customer Analytics** — Microsoft Excel
+
+## Languages
+Hindi, English
+`;
+                navigator.clipboard.writeText(md).then(function() {
+                    copyMdBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                    setTimeout(function() {
+                        copyMdBtn.innerHTML = '<i class="fa-solid fa-file-lines"></i> Copy as Markdown';
+                    }, 2200);
+                }).catch(function() {
+                    copyMdBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> Failed';
+                    setTimeout(function() {
+                        copyMdBtn.innerHTML = '<i class="fa-solid fa-file-lines"></i> Copy as Markdown';
+                    }, 2200);
+                });
+            });
+        }
+    })();
 
     /* 15. METRICS COUNTER */
     const counters = document.querySelectorAll('.counter');
@@ -537,7 +707,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const impactSection = document.querySelector('.impact-section');
     if (impactSection) metricsObserver.observe(impactSection);
 
-    /* 16. SLIDER */
+    /* 16. SLIDER + LIGHTBOX */
     const slides = document.querySelectorAll('.slide');
     const prevBtn = document.getElementById('prevSlide');
     const nextBtn = document.getElementById('nextSlide');
@@ -563,6 +733,150 @@ document.addEventListener('DOMContentLoaded', function() {
         if (document.hidden) clearInterval(slideInterval); else startSliderTimer();
     });
 
+    /* CERTIFICATE LIGHTBOX */
+    const certLightbox = document.getElementById('certLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    const lightboxZoomIn = document.getElementById('lightboxZoomIn');
+    const lightboxZoomOut = document.getElementById('lightboxZoomOut');
+    const lightboxReset = document.getElementById('lightboxReset');
+    const lightboxDownload = document.getElementById('lightboxDownload');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    const lightboxImgWrap = document.getElementById('lightboxImgWrap');
+
+    const certImages = Array.from(document.querySelectorAll('#certSlider .slide img'));
+    let lightboxIndex = 0;
+    let lightboxScale = 1;
+    let lightboxTranslateX = 0;
+    let lightboxTranslateY = 0;
+    let isDraggingLightbox = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let dragStartTranslateX = 0;
+    let dragStartTranslateY = 0;
+
+    function applyLightboxTransform() {
+        lightboxImg.style.transform = `translate(${lightboxTranslateX}px, ${lightboxTranslateY}px) scale(${lightboxScale})`;
+    }
+    function resetLightboxTransform() {
+        lightboxScale = 1;
+        lightboxTranslateX = 0;
+        lightboxTranslateY = 0;
+        applyLightboxTransform();
+    }
+    function updateLightboxContent() {
+        if (!certImages.length) return;
+        const img = certImages[lightboxIndex];
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt || ('Certificate ' + (lightboxIndex + 1));
+        if (lightboxDownload) {
+            lightboxDownload.href = img.src;
+            lightboxDownload.download = 'certificate-' + (lightboxIndex + 1) + '.jpg';
+        }
+        if (lightboxCounter) lightboxCounter.textContent = (lightboxIndex + 1) + ' / ' + certImages.length;
+        resetLightboxTransform();
+    }
+    function openLightbox(index) {
+        lightboxIndex = index;
+        updateLightboxContent();
+        certLightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        showSlide(index);
+    }
+    function closeLightbox() {
+        certLightbox.classList.remove('active');
+        if (!document.querySelector('.modal-overlay.active')) {
+            document.body.style.overflow = 'auto';
+        }
+        resetLightboxTransform();
+        resetSliderTimer();
+    }
+    function lightboxNextImg() {
+        lightboxIndex = (lightboxIndex + 1) % certImages.length;
+        updateLightboxContent();
+        showSlide(lightboxIndex);
+    }
+    function lightboxPrevImg() {
+        lightboxIndex = (lightboxIndex - 1 + certImages.length) % certImages.length;
+        updateLightboxContent();
+        showSlide(lightboxIndex);
+    }
+
+    if (certImages.length) {
+        certImages.forEach(function(img, i) {
+            img.addEventListener('click', function() { openLightbox(i); });
+        });
+    }
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if (lightboxPrev) lightboxPrev.addEventListener('click', lightboxPrevImg);
+    if (lightboxNext) lightboxNext.addEventListener('click', lightboxNextImg);
+    if (lightboxZoomIn) lightboxZoomIn.addEventListener('click', function() {
+        lightboxScale = Math.min(5, lightboxScale + 0.25);
+        applyLightboxTransform();
+    });
+    if (lightboxZoomOut) lightboxZoomOut.addEventListener('click', function() {
+        lightboxScale = Math.max(0.5, lightboxScale - 0.25);
+        if (lightboxScale <= 1) { lightboxTranslateX = 0; lightboxTranslateY = 0; }
+        applyLightboxTransform();
+    });
+    if (lightboxReset) lightboxReset.addEventListener('click', resetLightboxTransform);
+
+    if (certLightbox) {
+        certLightbox.addEventListener('click', function(e) {
+            if (e.target === certLightbox) closeLightbox();
+        });
+    }
+
+    if (lightboxImgWrap) {
+        lightboxImgWrap.addEventListener('wheel', function(e) {
+            if (!certLightbox.classList.contains('active')) return;
+            e.preventDefault();
+            const delta = -e.deltaY * 0.0015;
+            lightboxScale = Math.min(5, Math.max(0.5, lightboxScale + delta));
+            if (lightboxScale <= 1) { lightboxTranslateX = 0; lightboxTranslateY = 0; }
+            applyLightboxTransform();
+        }, { passive: false });
+
+        lightboxImgWrap.addEventListener('pointerdown', function(e) {
+            if (lightboxScale <= 1) return;
+            isDraggingLightbox = true;
+            lightboxImgWrap.classList.add('grabbing');
+            dragStartX = e.clientX;
+            dragStartY = e.clientY;
+            dragStartTranslateX = lightboxTranslateX;
+            dragStartTranslateY = lightboxTranslateY;
+            lightboxImgWrap.setPointerCapture(e.pointerId);
+        });
+        lightboxImgWrap.addEventListener('pointermove', function(e) {
+            if (!isDraggingLightbox) return;
+            const dx = e.clientX - dragStartX;
+            const dy = e.clientY - dragStartY;
+            lightboxTranslateX = dragStartTranslateX + dx;
+            lightboxTranslateY = dragStartTranslateY + dy;
+            applyLightboxTransform();
+        });
+        lightboxImgWrap.addEventListener('pointerup', function(e) {
+            isDraggingLightbox = false;
+            lightboxImgWrap.classList.remove('grabbing');
+            try { lightboxImgWrap.releasePointerCapture(e.pointerId); } catch (err) {}
+        });
+        lightboxImgWrap.addEventListener('pointercancel', function(e) {
+            isDraggingLightbox = false;
+            lightboxImgWrap.classList.remove('grabbing');
+        });
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (!certLightbox || !certLightbox.classList.contains('active')) return;
+        if (e.key === 'ArrowRight') { e.preventDefault(); lightboxNextImg(); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); lightboxPrevImg(); }
+        else if (e.key === '+' || e.key === '=') { e.preventDefault(); lightboxZoomIn.click(); }
+        else if (e.key === '-' || e.key === '_') { e.preventDefault(); lightboxZoomOut.click(); }
+        else if (e.key === '0') { e.preventDefault(); resetLightboxTransform(); }
+    });
+
     /* 17. GLOW CARDS TILT */
     const cards = document.querySelectorAll('.glow-card:not(.mock-dashboard-card), .premium-metric-card');
     cards.forEach(function(card) {
@@ -583,7 +897,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    /* Track cursor for project card spotlight */
     if (isFinePointer) {
         document.querySelectorAll('.mock-dashboard-card').forEach(function(card) {
             card.addEventListener('mousemove', function(e) {
@@ -662,24 +975,82 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* 21. SCROLLYTELLING STORY MODALS */
+    /* 21. SCROLL-SCRUBBED STORY MODALS */
+    function clamp(v, min, max) { return Math.min(Math.max(v, min), max); }
     function resetStoryModal(modalEl) {
-        modalEl.querySelectorAll('.story-step').forEach(s => s.classList.remove('visible'));
+        modalEl.querySelectorAll('.story-step').forEach(s => {
+            s.classList.remove('visible');
+            s.querySelectorAll('.story-bar').forEach(b => b.style.height = '0%');
+            s.querySelectorAll('.story-bar-val').forEach(v => v.style.opacity = '0');
+        });
         const content = modalEl.querySelector('.modal-content');
         if (content) content.scrollTop = 0;
     }
-    function setupStoryObserver(modalEl) {
-        if (activeStoryObserver) activeStoryObserver.disconnect();
+    function setupScrollScrub(modalEl) {
+        if (activeStoryScrubCleanup) activeStoryScrubCleanup();
         const content = modalEl.querySelector('.modal-content');
         const steps = modalEl.querySelectorAll('.story-step');
         if (!content || !steps.length) return;
-        activeStoryObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
+
+        steps.forEach(step => {
+            const bars = step.querySelectorAll('.story-bar');
+            bars.forEach(bar => {
+                const h = bar.style.getPropertyValue('--h');
+                if (h) {
+                    const parsed = parseFloat(h);
+                    if (!isNaN(parsed)) bar.dataset.targetH = parsed;
+                }
             });
-        }, { root: content, threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
-        steps.forEach(s => activeStoryObserver.observe(s));
+        });
+
+        function update() {
+            const contentRect = content.getBoundingClientRect();
+            const viewportTop = contentRect.top;
+            const viewportH = content.clientHeight;
+
+            steps.forEach(step => {
+                const rect = step.getBoundingClientRect();
+                const stepTopRel = rect.top - viewportTop;
+                const triggerStart = viewportH;
+                const triggerEnd = viewportH * 0.35;
+                const progress = clamp((triggerStart - stepTopRel) / (triggerStart - triggerEnd), 0, 1);
+
+                if (progress > 0.05) step.classList.add('visible');
+                else step.classList.remove('visible');
+
+                const bars = step.querySelectorAll('.story-bar');
+                bars.forEach(bar => {
+                    const target = parseFloat(bar.dataset.targetH || 0);
+                    bar.style.height = (target * progress) + '%';
+                });
+                const vals = step.querySelectorAll('.story-bar-val');
+                vals.forEach(v => {
+                    v.style.opacity = progress > 0.7 ? '1' : '0';
+                });
+            });
+        }
+
+        let ticking = false;
+        function onScroll() {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                update();
+                ticking = false;
+            });
+        }
+        content.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+
+        activeStoryScrubCleanup = function() {
+            content.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
+        };
+
+        setTimeout(update, 250);
+        setTimeout(update, 550);
     }
+
     document.querySelectorAll('.btn-story').forEach(function(btn) {
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -687,12 +1058,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!modal) return;
             resetStoryModal(modal);
             openModalSmooth(modal);
-            setTimeout(function() { setupStoryObserver(modal); }, 350);
+            setTimeout(function() { setupScrollScrub(modal); }, 400);
         });
     });
     document.querySelectorAll('.story-modal .modal-close').forEach(function(btn) {
         btn.addEventListener('click', function() {
-            if (activeStoryObserver) { activeStoryObserver.disconnect(); activeStoryObserver = null; }
+            if (activeStoryScrubCleanup) { activeStoryScrubCleanup(); activeStoryScrubCleanup = null; }
         });
     });
 
@@ -835,7 +1206,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (hireResumeBtn) {
         hireResumeBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            openResumeModal();
+            openInteractiveResumeModal();
         });
     }
 
@@ -844,12 +1215,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const ghWidget = document.getElementById('githubFeedWidget');
     const ghBody = document.getElementById('githubFeedBody');
     const fallbackRepos = [
+        { name: 'Blinkit_Sales_Analysis_PowerBI', description: 'An interactive Power BI dashboard analyzing Blinkit sales, product categories, outlet performance, location trends, and key business KPIs.', language: 'Power BI', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Blinkit_Sales_Analysis_PowerBI' },
         { name: 'Smoking_Health_Risk_Analysis_PowerBI', description: 'An interactive Power BI dashboard analysing 2,500 patient records across smoking exposure, organ condition, and health-risk indicators.', language: 'Power BI', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Smoking_Health_Risk_Analysis_PowerBI' },
         { name: 'Netflix-SQL-Data-Analysis', description: 'A PostgreSQL-based analysis exploring content types, ratings, genres, and release trends to answer 15 practical business questions.', language: 'SQL', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Netflix-SQL-Data-Analysis' },
         { name: 'Online_Book_Store_Analysis_Using_SQL', description: 'An end-to-end data analysis project using PostgreSQL to analyze books, customers, orders, sales, and inventory.', language: 'SQL', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Online_Book_Store_Analysis_Using_SQL' },
         { name: 'Swiggy-Sales-Analysis-Dashboard', description: 'An interactive Microsoft Excel dashboard analyzing Swiggy food delivery data to track revenue and customer preferences.', language: 'HTML', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/Manish-kashyap/Swiggy-Sales-Analysis-Dashboard' },
-        { name: 'Decathlon-Retail-Sales-Customer-Analytics-Dashboard', description: 'An interactive Microsoft Excel dashboard analyzing sales performance, customer behavior, and KPIs.', language: 'HTML', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/Manish-kashyap/Decathlon-Retail-Sales-Customer-Analytics-Dashboard' },
-        { name: 'Google_Play_Store-EDA', description: 'Exploratory Data Analysis on Google Play Store apps to uncover patterns and factors that contribute to app success.', language: 'Jupyter Notebook', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/Manish-kashyap/Google_Play_Store-EDA' }
+        { name: 'Decathlon-Retail-Sales-Customer-Analytics-Dashboard', description: 'An interactive Microsoft Excel dashboard analyzing sales performance, customer behavior, and KPIs.', language: 'HTML', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/Manish-kashyap/Decathlon-Retail-Sales-Customer-Analytics-Dashboard' }
     ];
     function getLangColor(lang) {
         const colors = {
