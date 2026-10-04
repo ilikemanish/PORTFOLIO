@@ -950,4 +950,60 @@ footer { padding: 2.5rem 6% 2.5rem; color: var(--text-muted); font-size: 0.9rem;
     .hire-btn .hire-btn-text { display: none; }
     .hire-btn i { font-size: 0.85rem; }
     .hire-close { width: 26px; height: 26px; font-size: 0.8rem; }
-    .story-hero { padding: 1.5rem 
+    .story-hero { padding: 1.5rem 1.2rem 1.2rem; }
+    .story-title { font-size: 1.25rem; }
+    .story-body { padding: 1rem 1.1rem 1.8rem; gap: 1rem; }
+    .story-step { padding: 1.1rem 1rem 1rem 1.15rem; }
+    .story-stat-row { gap: 6px; }
+    .story-bars { height: 140px; gap: 6px; }
+    .learning-ticker .lt-value { min-width: 150px; }
+    .availability-badge { padding: 8px 14px; gap: 8px; font-size: 0.75rem; }
+    .availability-badge .av-updated { display: none; }
+    .resume-interactive-header { padding: 1.2rem 1.1rem 1rem; }
+    .resume-interactive-header h2 { font-size: 1.3rem; }
+    .resume-interactive-header .resume-header-actions { position: static; margin-top: 12px; }
+    .resume-filters { padding: 0.9rem 1.1rem 0.4rem; }
+    .resume-interactive-body { padding: 0.9rem 1.1rem 1rem; }
+    .resume-interactive-footer { padding: 10px 1.1rem; }
+    .lightbox-img-wrap { width: 95vw; height: 78vh; }
+    .lightbox-nav { width: 42px; height: 42px; font-size: 1rem; }
+    .lightbox-prev { left: 8px; }
+    .lightbox-next { right: 8px; }
+    .lightbox-toolbar { bottom: 14px; padding: 6px 10px; gap: 4px; }
+    .lightbox-toolbar button, .lightbox-toolbar a { width: 32px; height: 32px; font-size: 0.85rem; }
+    .lightbox-counter { padding: 0 6px; min-width: 48px; font-size: 0.7rem; }
+    .lightbox-hint { font-size: 0.62rem; padding: 5px 12px; }
+}
+@media (max-width: 480px) {
+    .skill-item, .skill-item.tech-item, .skill-item.social-card { width: 100%; }
+}
+@media (max-width: 410px) {
+    header { padding: 1rem 4%; flex-wrap: nowrap; }
+    .logo-signature { font-size: 1.6rem; margin: 0 5px; }
+    .logo-bracket { font-size: 1.2rem; }
+    .header-actions { gap: 0.2rem; }
+    #themeToggleBtn, #hamburgerBtn, #soundToggleBtn { width: 36px; height: 36px; font-size: 1rem; }
+    #hamburgerBtn .bar { width: 18px; }
+    .widget-1 { top: 4px; right: -4px; }
+    .widget-2 { bottom: 4px; left: -4px; }
+    .github-toggle-stack { bottom: 70px; right: 12px; }
+    .github-toggle-btn { width: 40px; height: 40px; font-size: 0.95rem; }
+    .hire-bar { bottom: 122px; padding: 6px 8px; gap: 6px; }
+    .hire-bar-label { display: none; }
+    .back-to-top { width: 40px; height: 40px; bottom: 16px; right: 12px; }
+    .github-feed-widget { right: -8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+@media print {
+    body > *:not(#interactiveResumeModal) { display: none !important; }
+    #interactiveResumeModal { position: static !important; opacity: 1 !important; visibility: visible !important; background: white !important; padding: 0 !important; }
+    #interactiveResumeModal .modal-content { box-shadow: none !important; border: none !important; max-height: none !important; height: auto !important; }
+    .resume-interactive-header .resume-header-actions,
+    .resume-filters,
+    .resume-collapse-btn,
+    .resume-interactive-footer,
+    .modal-close { display: none !important; }
+    .resume-section { page-break-inside: avoid; }
+}
