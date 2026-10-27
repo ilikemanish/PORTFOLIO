@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-    /* 1. LOADER */
     setTimeout(function() {
         const loader = document.getElementById('initialLoader');
         if (loader) loader.classList.add('hidden');
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 400);
 
-    /* 2. GREETING */
     (function updateGreeting() {
         const greetingSpan = document.getElementById('dynamicGreeting');
         if (!greetingSpan) return;
@@ -23,11 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
         greetingSpan.textContent = timeGreeting;
     })();
 
-    /* 3. LEARNING TICKER */
     (function initLearningTicker() {
         const learningValueEl = document.getElementById('learningValue');
         if (!learningValueEl) return;
-        const items = ['Machine Learning', 'AWS Basics', 'Microsoft Fabric', 'Snowflake'];
+        const items = ['Machine Learning', 'AWS Basics', 'Microsoft Fabric', 'Snowflake', 'Statistics'];
         learningValueEl.innerHTML = items.map((item, i) =>
             `<span class="lt-item${i === 0 ? ' active' : ''}">${item}</span>`
         ).join('');
@@ -47,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2600);
     })();
 
-    /* POWER BI VIDEOS */
     (function initAllPowerBIVideos() {
         const videoContainers = document.querySelectorAll('.powerbi-video-container');
         videoContainers.forEach(function(container) {
@@ -67,22 +63,51 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            const tryPlay = function() {
-                const p = video.play();
-                if (p && typeof p.catch === 'function') {
-                    p.catch(function() { video.setAttribute('controls', 'controls'); });
+            const sourceEls = Array.from(video.querySelectorAll('source'));
+            const sourceList = sourceEls.map(s => s.src).filter(Boolean);
+            let currentIdx = 0;
+            let playSucceeded = false;
+
+            function showPosterFallback() {
+                const poster = video.getAttribute('poster');
+                if (poster) {
+                    container.style.backgroundImage = "url('" + poster + "')";
+                    container.style.backgroundSize = 'cover';
+                    container.style.backgroundPosition = 'center';
+                    container.style.backgroundRepeat = 'no-repeat';
                 }
-            };
+                video.style.opacity = '0';
+            }
+
+            function tryPlay() {
+                const p = video.play();
+                if (p && typeof p.then === 'function') {
+                    p.then(function() { playSucceeded = true; video.style.opacity = '1'; })
+                     .catch(function() { cycleSource(); });
+                }
+            }
+
+            function cycleSource() {
+                if (currentIdx < sourceList.length - 1) {
+                    currentIdx++;
+                    video.src = sourceList[currentIdx];
+                    video.load();
+                    tryPlay();
+                } else {
+                    showPosterFallback();
+                }
+            }
+
+            video.addEventListener('error', function() { showPosterFallback(); });
             if (video.readyState >= 1) tryPlay();
             else video.addEventListener('loadedmetadata', tryPlay, { once: true });
 
-            video.addEventListener('ended', function() {
-                try {
-                    video.currentTime = 0;
-                    const p = video.play();
-                    if (p && typeof p.catch === 'function') p.catch(function(){});
-                } catch (e) {}
-            });
+            setTimeout(function() {
+                if (!playSucceeded && (video.readyState < 2 || video.paused)) {
+                    showPosterFallback();
+                }
+            }, 6000);
+
             video.addEventListener('pause', function() {
                 if (!container.matches(':hover') && video.loop && !video.ended) {
                     const p = video.play();
@@ -92,34 +117,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const vObserver = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        tryPlay();
-                        vObserver.unobserve(entry.target);
-                    }
+                    if (entry.isIntersecting) { tryPlay(); vObserver.unobserve(entry.target); }
                 });
             }, { threshold: 0.25 });
             vObserver.observe(container);
 
             container.addEventListener('mouseenter', function() { if (!video.paused) video.pause(); });
             container.addEventListener('mouseleave', function() {
-                if (video.paused) {
-                    const p = video.play();
-                    if (p && typeof p.catch === 'function') p.catch(function(){});
-                }
-            });
-            video.addEventListener('error', function() {
-                const poster = video.getAttribute('poster');
-                if (poster) {
-                    container.style.backgroundImage = "url('" + poster + "')";
-                    container.style.backgroundSize = 'cover';
-                    container.style.backgroundPosition = 'center';
-                    container.style.backgroundRepeat = 'no-repeat';
-                }
+                if (video.paused) { const p = video.play(); if (p && typeof p.catch === 'function') p.catch(function(){}); }
             });
         });
     })();
 
-    /* 4. SOUND EFFECTS */
     let audioCtx = null;
     let soundEnabled = false;
     function getAudioCtx() {
@@ -174,7 +183,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* KONAMI CODE */
     (function initKonami() {
         const sequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
         let idx = 0;
@@ -197,20 +205,17 @@ document.addEventListener('DOMContentLoaded', function() {
             goldActive = true;
             document.body.classList.add('gold-mode');
             fireConfetti();
-            if (toast) {
-                toast.classList.add('show');
-                setTimeout(function() { toast.classList.remove('show'); }, 10000);
-            }
+            if (toast) { toast.classList.add('show'); setTimeout(function() { toast.classList.remove('show'); }, 10000); }
             if (window.__radarChartInstance && window.__updateRadarTheme) {
-                const currentMode = localStorage.getItem('themeMode') || 'dark';
-                window.__updateRadarTheme(currentMode);
+                const m = localStorage.getItem('themeMode') || 'dark';
+                window.__updateRadarTheme(m);
             }
             setTimeout(function() {
                 document.body.classList.remove('gold-mode');
                 goldActive = false;
                 if (window.__radarChartInstance && window.__updateRadarTheme) {
-                    const currentMode = localStorage.getItem('themeMode') || 'dark';
-                    window.__updateRadarTheme(currentMode);
+                    const m = localStorage.getItem('themeMode') || 'dark';
+                    window.__updateRadarTheme(m);
                 }
             }, 10000);
         }
@@ -225,7 +230,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     })();
 
-    /* 5. SCROLL LOGIC */
     const scrollIndicator = document.getElementById('scrollIndicator');
     const backToTop = document.getElementById('backToTop');
     const progressBar = document.getElementById('scrollProgressBar');
@@ -240,11 +244,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateGithubToggleVisibility() {
         if (!ghStack || !heroSection) return;
         const threshold = heroSection.offsetTop + heroSection.offsetHeight - 150;
-        if (window.scrollY >= threshold) {
-            ghStack.classList.add('revealed');
-        } else {
-            ghStack.classList.remove('revealed');
-        }
+        if (window.scrollY >= threshold) ghStack.classList.add('revealed');
+        else ghStack.classList.remove('revealed');
     }
 
     window.addEventListener('scroll', function() {
@@ -285,7 +286,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* 6. PARTICLES */
     if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
         particlesJS('particles-js', {
             particles: {
@@ -306,7 +306,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* 7. MODAL TRANSITIONS */
     const modalVeil = document.getElementById('modalVeil');
     const allModals = document.querySelectorAll('.modal-overlay');
     const closeBtns = document.querySelectorAll('.modal-close');
@@ -321,8 +320,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (modal.classList.contains('story-modal')) {
             modal.querySelectorAll('.story-step').forEach(s => {
                 s.classList.remove('visible');
-                const bars = s.querySelectorAll('.story-bar');
-                bars.forEach(b => b.style.height = '0%');
+                s.querySelectorAll('.story-bar').forEach(b => b.style.height = '0%');
             });
             if (activeStoryScrubCleanup) { activeStoryScrubCleanup(); activeStoryScrubCleanup = null; }
         }
@@ -365,7 +363,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    /* 8. SKILL CARDS */
     const techItems = document.querySelectorAll('.tech-item');
     techItems.forEach(function(item) {
         item.addEventListener('click', function() {
@@ -378,7 +375,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    /* 9. HAMBURGER */
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const dropdownMenu = document.getElementById('dropdownMenu');
     const dropLinks = document.querySelectorAll('.drop-link');
@@ -411,7 +407,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { root: null, rootMargin: '-30% 0px -50% 0px', threshold: 0 });
     sections.forEach(function(sec) { scrollObserver.observe(sec); });
 
-    /* 10. 3D REVEAL */
     const revealTargets = document.querySelectorAll('.terminal-box, .premium-metric-card, .card-3d-node, .info-premium-node, .mock-dashboard-card, .testimonial-item, .chain-item, .skill-item');
     revealTargets.forEach(function(el) { el.classList.add('reveal-3d'); });
     const revealObserver = new IntersectionObserver(function(entries) {
@@ -425,7 +420,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { threshold: 0, rootMargin: '0px 0px 100px 0px' });
     revealTargets.forEach(function(el) { revealObserver.observe(el); });
 
-    /* 11. THEME */
     const themeToggleBtn = document.getElementById('themeToggleBtn');
     const themeIcon = document.getElementById('themeIcon');
     const themeModes = ['dark', 'light', 'contrast'];
@@ -452,7 +446,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* 12. PORTFOLIO FILTER */
     const filterTags = document.querySelectorAll('.filter-tag');
     const boxContainer = document.getElementById('projectPlaceholderBox');
     const mockCards = document.querySelectorAll('.mock-dashboard-card');
@@ -484,7 +477,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* 13. DETAILS MODAL OPENERS + PROJECT NAV */
     document.querySelectorAll('.btn-details').forEach(function(btn) {
         btn.addEventListener('click', function() {
             const target = document.getElementById(btn.getAttribute('data-modal'));
@@ -498,19 +490,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    /* 14. RESUME MODAL + INTERACTIVE SWITCH */
     const openResumeBtn = document.getElementById('openResumeViewerBtn');
     const openInteractiveResumeBtn = document.getElementById('openInteractiveResumeBtn');
     const resumeModal = document.getElementById('resumeViewerModal');
     const interactiveResumeModal = document.getElementById('interactiveResumeModal');
     function openResumeModal() { if (resumeModal) openModalSmooth(resumeModal); }
     function openInteractiveResumeModal() { if (interactiveResumeModal) openModalSmooth(interactiveResumeModal); }
-    if (openResumeBtn) {
-        openResumeBtn.addEventListener('click', function(e) { e.preventDefault(); openResumeModal(); });
-    }
-    if (openInteractiveResumeBtn) {
-        openInteractiveResumeBtn.addEventListener('click', function(e) { e.preventDefault(); openInteractiveResumeModal(); });
-    }
+    if (openResumeBtn) openResumeBtn.addEventListener('click', function(e) { e.preventDefault(); openResumeModal(); });
+    if (openInteractiveResumeBtn) openInteractiveResumeBtn.addEventListener('click', function(e) { e.preventDefault(); openInteractiveResumeModal(); });
     window.__openResumeModal = openResumeModal;
     window.__openInteractiveResumeModal = openInteractiveResumeModal;
 
@@ -529,12 +516,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* INTERACTIVE RESUME LOGIC */
     (function initInteractiveResume() {
         const body = document.getElementById('resumeInteractiveBody');
         if (!body) return;
 
-        // Collapsible sections
         body.querySelectorAll('.resume-section').forEach(function(section) {
             const header = section.querySelector('.resume-section-header');
             const btn = section.querySelector('.resume-collapse-btn');
@@ -551,7 +536,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Filters
         const filters = document.querySelectorAll('.resume-filter');
         const sections = body.querySelectorAll('.resume-section');
         filters.forEach(function(f) {
@@ -560,24 +544,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 filters.forEach(function(x) { x.classList.remove('active'); });
                 f.classList.add('active');
                 sections.forEach(function(s) {
-                    if (target === 'all') {
-                        s.classList.remove('hidden');
-                    } else {
-                        s.classList.toggle('hidden', s.getAttribute('data-rsection') !== target);
-                    }
+                    if (target === 'all') s.classList.remove('hidden');
+                    else s.classList.toggle('hidden', s.getAttribute('data-rsection') !== target);
                 });
             });
         });
 
-        // Print
         const printBtn = document.getElementById('resumePrintBtn');
-        if (printBtn) {
-            printBtn.addEventListener('click', function() {
-                window.print();
-            });
-        }
+        if (printBtn) printBtn.addEventListener('click', function() { window.print(); });
 
-        // Copy as JSON
         const copyJsonBtn = document.getElementById('copyAsJsonBtn');
         if (copyJsonBtn) {
             copyJsonBtn.addEventListener('click', function() {
@@ -593,9 +568,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         { degree: 'Class 12 (CBSE)', institution: "St Anthony's Sr Sec School, Dugawar", year: '2023' },
                         { degree: 'Class 10 (CBSE)', institution: "St Anthony's Sr Sec School, Dugawar", year: '2021' }
                     ],
-                    experience: [
-                        { role: 'Data Analyst Intern', company: '3Skill', duration: '2 Months', tools: ['Excel', 'SQL', 'Python', 'Power BI'] }
-                    ],
+                    experience: [{ role: 'Data Analyst Intern', company: '3Skill', duration: '2 Months', tools: ['Excel', 'SQL', 'Python', 'Power BI'] }],
                     skills: {
                         technical: { Python: 90, SQL: 85, Excel: 90, 'Power BI': 80, Tableau: 75, Statistics: 70, 'Machine Learning': 60 },
                         soft: ['Critical Thinking', 'Team Leading', 'Decision Making', 'Data Storytelling', 'Collaboration', 'Problem Solving']
@@ -603,6 +576,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     projects: [
                         { name: 'Blinkit Sales & Outlet Performance', stack: 'Power BI, DAX' },
                         { name: 'Smoking Health Risk Analysis', stack: 'Power BI, DAX' },
+                        { name: 'PhonePe UPI Transaction Analytics Dashboard', stack: 'Power BI, DAX' },
                         { name: 'Netflix SQL Data Analysis', stack: 'PostgreSQL' },
                         { name: 'Online Book Store Analysis', stack: 'PostgreSQL' },
                         { name: 'Swiggy Sales Dashboard', stack: 'Microsoft Excel' },
@@ -610,75 +584,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     ],
                     languages: ['Hindi', 'English']
                 };
-                const json = JSON.stringify(data, null, 2);
-                navigator.clipboard.writeText(json).then(function() {
+                navigator.clipboard.writeText(JSON.stringify(data, null, 2)).then(function() {
                     copyJsonBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-                    setTimeout(function() {
-                        copyJsonBtn.innerHTML = '<i class="fa-solid fa-code"></i> Copy as JSON';
-                    }, 2200);
+                    setTimeout(function() { copyJsonBtn.innerHTML = '<i class="fa-solid fa-code"></i> Copy as JSON'; }, 2200);
                 }).catch(function() {
                     copyJsonBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> Failed';
-                    setTimeout(function() {
-                        copyJsonBtn.innerHTML = '<i class="fa-solid fa-code"></i> Copy as JSON';
-                    }, 2200);
+                    setTimeout(function() { copyJsonBtn.innerHTML = '<i class="fa-solid fa-code"></i> Copy as JSON'; }, 2200);
                 });
             });
         }
 
-        // Copy as Markdown
         const copyMdBtn = document.getElementById('copyAsMdBtn');
         if (copyMdBtn) {
             copyMdBtn.addEventListener('click', function() {
-                const md = `# Manish Kashyap
-**Aspiring Data Analyst**
-
-📧 manishkshyp0123@gmail.com · 📍 India · 🐙 [github.com/ilikemanish](https://github.com/ilikemanish)
-
-## Education
-- **B.Tech in Computer Science** — Teerthanker Mahaveer University, Moradabad *(2023 – 2027)*
-  Specialization: AI, ML, Deep Learning
-- **Class 12 (CBSE)** — St Anthony's Sr Sec School, Dugawar *(2023)*
-- **Class 10 (CBSE)** — St Anthony's Sr Sec School, Dugawar *(2021)*
-
-## Experience
-- **Data Analyst Intern** — 3Skill *(2 Months)*
-  Tools: Excel, SQL, Python, Power BI
-
-## Technical Skills
-- **Python** 90% · **SQL** 85% · **Excel** 90%
-- **Power BI** 80% · **Tableau** 75%
-- **Statistics** 70% · **Machine Learning** 60%
-
-## Soft Skills
-Critical Thinking, Team Leading, Decision Making, Data Storytelling, Collaboration, Problem Solving
-
-## Key Projects
-- **Blinkit Sales & Outlet Performance** — Power BI, DAX
-- **Smoking Health Risk Analysis** — Power BI, DAX
-- **Netflix SQL Data Analysis** — PostgreSQL
-- **Online Book Store Analysis** — PostgreSQL
-- **Swiggy Sales Dashboard** — Microsoft Excel
-- **Decathlon Sales & Customer Analytics** — Microsoft Excel
-
-## Languages
-Hindi, English
-`;
+                const md = `# Manish Kashyap\n**Aspiring Data Analyst**\n\n📧 manishkshyp0123@gmail.com · 📍 India · 🐙 [github.com/ilikemanish](https://github.com/ilikemanish)\n\n## Education\n- **B.Tech in Computer Science** — Teerthanker Mahaveer University, Moradabad *(2023 – 2027)*\n  Specialization: AI, ML, Deep Learning\n- **Class 12 (CBSE)** — St Anthony's Sr Sec School, Dugawar *(2023)*\n- **Class 10 (CBSE)** — St Anthony's Sr Sec School, Dugawar *(2021)*\n\n## Experience\n- **Data Analyst Intern** — 3Skill *(2 Months)*\n  Tools: Excel, SQL, Python, Power BI\n\n## Technical Skills\n- **Python** 90% · **SQL** 85% · **Excel** 90%\n- **Power BI** 80% · **Tableau** 75%\n- **Statistics** 70% · **Machine Learning** 60%\n\n## Soft Skills\nCritical Thinking, Team Leading, Decision Making, Data Storytelling, Collaboration, Problem Solving\n\n## Key Projects\n- **Blinkit Sales & Outlet Performance** — Power BI, DAX\n- **Smoking Health Risk Analysis** — Power BI, DAX\n- **PhonePe UPI Transaction Analytics Dashboard** — Power BI, DAX\n- **Netflix SQL Data Analysis** — PostgreSQL\n- **Online Book Store Analysis** — PostgreSQL\n- **Swiggy Sales Dashboard** — Microsoft Excel\n- **Decathlon Sales & Customer Analytics** — Microsoft Excel\n\n## Languages\nHindi, English\n`;
                 navigator.clipboard.writeText(md).then(function() {
                     copyMdBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-                    setTimeout(function() {
-                        copyMdBtn.innerHTML = '<i class="fa-solid fa-file-lines"></i> Copy as Markdown';
-                    }, 2200);
+                    setTimeout(function() { copyMdBtn.innerHTML = '<i class="fa-solid fa-file-lines"></i> Copy as Markdown'; }, 2200);
                 }).catch(function() {
                     copyMdBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> Failed';
-                    setTimeout(function() {
-                        copyMdBtn.innerHTML = '<i class="fa-solid fa-file-lines"></i> Copy as Markdown';
-                    }, 2200);
+                    setTimeout(function() { copyMdBtn.innerHTML = '<i class="fa-solid fa-file-lines"></i> Copy as Markdown'; }, 2200);
                 });
             });
         }
     })();
 
-    /* 15. METRICS COUNTER */
     const counters = document.querySelectorAll('.counter');
     let hasCounted = false;
     function animateCounters() {
@@ -707,7 +637,6 @@ Hindi, English
     const impactSection = document.querySelector('.impact-section');
     if (impactSection) metricsObserver.observe(impactSection);
 
-    /* 16. SLIDER + LIGHTBOX */
     const slides = document.querySelectorAll('.slide');
     const prevBtn = document.getElementById('prevSlide');
     const nextBtn = document.getElementById('nextSlide');
@@ -733,7 +662,6 @@ Hindi, English
         if (document.hidden) clearInterval(slideInterval); else startSliderTimer();
     });
 
-    /* CERTIFICATE LIGHTBOX */
     const certLightbox = document.getElementById('certLightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxClose = document.getElementById('lightboxClose');
@@ -749,21 +677,15 @@ Hindi, English
     const certImages = Array.from(document.querySelectorAll('#certSlider .slide img'));
     let lightboxIndex = 0;
     let lightboxScale = 1;
-    let lightboxTranslateX = 0;
-    let lightboxTranslateY = 0;
+    let lightboxTranslateX = 0, lightboxTranslateY = 0;
     let isDraggingLightbox = false;
-    let dragStartX = 0;
-    let dragStartY = 0;
-    let dragStartTranslateX = 0;
-    let dragStartTranslateY = 0;
+    let dragStartX = 0, dragStartY = 0, dragStartTranslateX = 0, dragStartTranslateY = 0;
 
     function applyLightboxTransform() {
         lightboxImg.style.transform = `translate(${lightboxTranslateX}px, ${lightboxTranslateY}px) scale(${lightboxScale})`;
     }
     function resetLightboxTransform() {
-        lightboxScale = 1;
-        lightboxTranslateX = 0;
-        lightboxTranslateY = 0;
+        lightboxScale = 1; lightboxTranslateX = 0; lightboxTranslateY = 0;
         applyLightboxTransform();
     }
     function updateLightboxContent() {
@@ -787,21 +709,17 @@ Hindi, English
     }
     function closeLightbox() {
         certLightbox.classList.remove('active');
-        if (!document.querySelector('.modal-overlay.active')) {
-            document.body.style.overflow = 'auto';
-        }
+        if (!document.querySelector('.modal-overlay.active')) document.body.style.overflow = 'auto';
         resetLightboxTransform();
         resetSliderTimer();
     }
     function lightboxNextImg() {
         lightboxIndex = (lightboxIndex + 1) % certImages.length;
-        updateLightboxContent();
-        showSlide(lightboxIndex);
+        updateLightboxContent(); showSlide(lightboxIndex);
     }
     function lightboxPrevImg() {
         lightboxIndex = (lightboxIndex - 1 + certImages.length) % certImages.length;
-        updateLightboxContent();
-        showSlide(lightboxIndex);
+        updateLightboxContent(); showSlide(lightboxIndex);
     }
 
     if (certImages.length) {
@@ -824,9 +742,7 @@ Hindi, English
     if (lightboxReset) lightboxReset.addEventListener('click', resetLightboxTransform);
 
     if (certLightbox) {
-        certLightbox.addEventListener('click', function(e) {
-            if (e.target === certLightbox) closeLightbox();
-        });
+        certLightbox.addEventListener('click', function(e) { if (e.target === certLightbox) closeLightbox(); });
     }
 
     if (lightboxImgWrap) {
@@ -843,18 +759,15 @@ Hindi, English
             if (lightboxScale <= 1) return;
             isDraggingLightbox = true;
             lightboxImgWrap.classList.add('grabbing');
-            dragStartX = e.clientX;
-            dragStartY = e.clientY;
+            dragStartX = e.clientX; dragStartY = e.clientY;
             dragStartTranslateX = lightboxTranslateX;
             dragStartTranslateY = lightboxTranslateY;
             lightboxImgWrap.setPointerCapture(e.pointerId);
         });
         lightboxImgWrap.addEventListener('pointermove', function(e) {
             if (!isDraggingLightbox) return;
-            const dx = e.clientX - dragStartX;
-            const dy = e.clientY - dragStartY;
-            lightboxTranslateX = dragStartTranslateX + dx;
-            lightboxTranslateY = dragStartTranslateY + dy;
+            lightboxTranslateX = dragStartTranslateX + (e.clientX - dragStartX);
+            lightboxTranslateY = dragStartTranslateY + (e.clientY - dragStartY);
             applyLightboxTransform();
         });
         lightboxImgWrap.addEventListener('pointerup', function(e) {
@@ -862,7 +775,7 @@ Hindi, English
             lightboxImgWrap.classList.remove('grabbing');
             try { lightboxImgWrap.releasePointerCapture(e.pointerId); } catch (err) {}
         });
-        lightboxImgWrap.addEventListener('pointercancel', function(e) {
+        lightboxImgWrap.addEventListener('pointercancel', function() {
             isDraggingLightbox = false;
             lightboxImgWrap.classList.remove('grabbing');
         });
@@ -877,7 +790,6 @@ Hindi, English
         else if (e.key === '0') { e.preventDefault(); resetLightboxTransform(); }
     });
 
-    /* 17. GLOW CARDS TILT */
     const cards = document.querySelectorAll('.glow-card:not(.mock-dashboard-card), .premium-metric-card');
     cards.forEach(function(card) {
         card.addEventListener('mousemove', function(e) {
@@ -901,15 +813,12 @@ Hindi, English
         document.querySelectorAll('.mock-dashboard-card').forEach(function(card) {
             card.addEventListener('mousemove', function(e) {
                 const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', x + 'px');
-                card.style.setProperty('--mouse-y', y + 'px');
+                card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+                card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
             });
         });
     }
 
-    /* 18. COPY EMAIL */
     const copyBtn = document.getElementById('copyEmailBtn');
     const emailText = document.getElementById('emailText');
     if (copyBtn && emailText) {
@@ -922,7 +831,6 @@ Hindi, English
         });
     }
 
-    /* 19. GITHUB STATS */
     const githubCounter = document.getElementById('githubCounter');
     const githubPlus = document.getElementById('githubPlus');
     const githubText = document.getElementById('githubText');
@@ -944,7 +852,6 @@ Hindi, English
             }
         });
 
-    /* 20. VANILLA TILT + ABOUT TILT + MAGNETIC */
     if (typeof VanillaTilt !== 'undefined') {
         VanillaTilt.init(document.querySelectorAll('[data-tilt]'), { max: 15, speed: 400, glare: true, 'max-glare': 0.2 });
     }
@@ -954,9 +861,7 @@ Hindi, English
             const rect = aboutTiltCard.getBoundingClientRect();
             const x = e.clientX - rect.left, y = e.clientY - rect.top;
             const midX = rect.width / 2, midY = rect.height / 2;
-            const rotateY = ((x - midX) / midX) * 8;
-            const rotateX = -((y - midY) / midY) * 8;
-            aboutTiltCard.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            aboutTiltCard.style.transform = `perspective(900px) rotateX(${-((y - midY) / midY) * 8}deg) rotateY(${((x - midX) / midX) * 8}deg)`;
         });
         aboutTiltCard.addEventListener('mouseleave', function() {
             aboutTiltCard.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
@@ -975,7 +880,6 @@ Hindi, English
         });
     }
 
-    /* 21. SCROLL-SCRUBBED STORY MODALS */
     function clamp(v, min, max) { return Math.min(Math.max(v, min), max); }
     function resetStoryModal(modalEl) {
         modalEl.querySelectorAll('.story-step').forEach(s => {
@@ -993,8 +897,7 @@ Hindi, English
         if (!content || !steps.length) return;
 
         steps.forEach(step => {
-            const bars = step.querySelectorAll('.story-bar');
-            bars.forEach(bar => {
+            step.querySelectorAll('.story-bar').forEach(bar => {
                 const h = bar.style.getPropertyValue('--h');
                 if (h) {
                     const parsed = parseFloat(h);
@@ -1018,13 +921,11 @@ Hindi, English
                 if (progress > 0.05) step.classList.add('visible');
                 else step.classList.remove('visible');
 
-                const bars = step.querySelectorAll('.story-bar');
-                bars.forEach(bar => {
+                step.querySelectorAll('.story-bar').forEach(bar => {
                     const target = parseFloat(bar.dataset.targetH || 0);
                     bar.style.height = (target * progress) + '%';
                 });
-                const vals = step.querySelectorAll('.story-bar-val');
-                vals.forEach(v => {
+                step.querySelectorAll('.story-bar-val').forEach(v => {
                     v.style.opacity = progress > 0.7 ? '1' : '0';
                 });
             });
@@ -1034,10 +935,7 @@ Hindi, English
         function onScroll() {
             if (ticking) return;
             ticking = true;
-            requestAnimationFrame(() => {
-                update();
-                ticking = false;
-            });
+            requestAnimationFrame(() => { update(); ticking = false; });
         }
         content.addEventListener('scroll', onScroll, { passive: true });
         window.addEventListener('resize', onScroll, { passive: true });
@@ -1067,7 +965,6 @@ Hindi, English
         });
     });
 
-    /* 22. SKILLS RADAR CHART */
     let radarChartInstance = null;
     const skillRadarData = [
         { label: 'Python', value: 90, projects: 5 },
@@ -1077,9 +974,7 @@ Hindi, English
         { label: 'Tableau', value: 75, projects: 2 },
         { label: 'Statistics', value: 70, projects: 1 }
     ];
-    function getCSSVar(name) {
-        return getComputedStyle(document.body).getPropertyValue(name).trim() || '';
-    }
+    function getCSSVar(name) { return getComputedStyle(document.body).getPropertyValue(name).trim() || ''; }
     function initRadarChart() {
         const canvas = document.getElementById('skillsRadarChart');
         if (!canvas || typeof Chart === 'undefined') return;
@@ -1097,32 +992,25 @@ Hindi, English
                     label: 'Proficiency',
                     data: skillRadarData.map(s => s.value),
                     backgroundColor: 'rgba(0,240,255,0.16)',
-                    borderColor: accent,
-                    borderWidth: 2.5,
+                    borderColor: accent, borderWidth: 2.5,
                     pointBackgroundColor: accent2,
-                    pointBorderColor: '#fff',
-                    pointBorderWidth: 1.5,
-                    pointRadius: 6,
-                    pointHoverRadius: 11,
-                    pointHoverBackgroundColor: accent,
-                    pointHoverBorderColor: '#fff'
+                    pointBorderColor: '#fff', pointBorderWidth: 1.5,
+                    pointRadius: 6, pointHoverRadius: 11,
+                    pointHoverBackgroundColor: accent, pointHoverBorderColor: '#fff'
                 }]
             },
             options: {
-                responsive: true,
-                maintainAspectRatio: false,
+                responsive: true, maintainAspectRatio: false,
                 animation: { duration: 1400, easing: 'easeOutQuart' },
                 events: ['mousemove', 'mouseout', 'click', 'touchstart', 'touchmove', 'touchend'],
                 interaction: { mode: 'nearest', intersect: true },
-                scales: {
-                    r: {
-                        beginAtZero: true, max: 100,
-                        ticks: { display: false, stepSize: 25 },
-                        grid: { color: gridColor, circular: true },
-                        angleLines: { color: gridColor },
-                        pointLabels: { color: labelColor, font: { size: 12, weight: '700', family: 'Outfit' } }
-                    }
-                },
+                scales: { r: {
+                    beginAtZero: true, max: 100,
+                    ticks: { display: false, stepSize: 25 },
+                    grid: { color: gridColor, circular: true },
+                    angleLines: { color: gridColor },
+                    pointLabels: { color: labelColor, font: { size: 12, weight: '700', family: 'Outfit' } }
+                }},
                 plugins: {
                     legend: { display: false },
                     tooltip: {
@@ -1135,10 +1023,7 @@ Hindi, English
                         callbacks: {
                             label: function(ctx) {
                                 const skill = skillRadarData[ctx.dataIndex];
-                                return [
-                                    skill.value + '% Proficiency',
-                                    skill.projects + ' project' + (skill.projects === 1 ? '' : 's') + ' made'
-                                ];
+                                return [skill.value + '% Proficiency', skill.projects + ' project' + (skill.projects === 1 ? '' : 's') + ' made'];
                             }
                         }
                     }
@@ -1178,7 +1063,6 @@ Hindi, English
         radarObs.observe(radarSection);
     }
 
-    /* 23. HIRE BAR */
     const hireBar = document.getElementById('hireBar');
     const hireCloseBtn = document.getElementById('hireCloseBtn');
     const hireResumeBtn = document.getElementById('hireResumeBtn');
@@ -1210,13 +1094,13 @@ Hindi, English
         });
     }
 
-    /* 24. GITHUB FEED */
     const ghToggle = document.getElementById('githubToggleBtn');
     const ghWidget = document.getElementById('githubFeedWidget');
     const ghBody = document.getElementById('githubFeedBody');
     const fallbackRepos = [
         { name: 'Blinkit_Sales_Analysis_PowerBI', description: 'An interactive Power BI dashboard analyzing Blinkit sales, product categories, outlet performance, location trends, and key business KPIs.', language: 'Power BI', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Blinkit_Sales_Analysis_PowerBI' },
         { name: 'Smoking_Health_Risk_Analysis_PowerBI', description: 'An interactive Power BI dashboard analysing 2,500 patient records across smoking exposure, organ condition, and health-risk indicators.', language: 'Power BI', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Smoking_Health_Risk_Analysis_PowerBI' },
+        { name: 'PhonePe_Transactions_Analysis_PowerBI', description: 'An interactive Power BI + web studio analyzing 3.0L PhonePe UPI transactions across services, age cohorts, payment status, and weekday/weekend behavior.', language: 'Power BI', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/PhonePe_Transactions_Analysis_PowerBI' },
         { name: 'Netflix-SQL-Data-Analysis', description: 'A PostgreSQL-based analysis exploring content types, ratings, genres, and release trends to answer 15 practical business questions.', language: 'SQL', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Netflix-SQL-Data-Analysis' },
         { name: 'Online_Book_Store_Analysis_Using_SQL', description: 'An end-to-end data analysis project using PostgreSQL to analyze books, customers, orders, sales, and inventory.', language: 'SQL', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Online_Book_Store_Analysis_Using_SQL' },
         { name: 'Swiggy-Sales-Analysis-Dashboard', description: 'An interactive Microsoft Excel dashboard analyzing Swiggy food delivery data to track revenue and customer preferences.', language: 'HTML', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/Manish-kashyap/Swiggy-Sales-Analysis-Dashboard' },
@@ -1250,16 +1134,15 @@ Hindi, English
             const url = escapeHtml(r.html_url || '#');
             const stars = typeof r.stargazers_count === 'number' ? r.stargazers_count : 0;
             const forks = typeof r.forks_count === 'number' ? r.forks_count : 0;
-            return '' +
-                '<a class="gh-repo" href="' + url + '" target="_blank" rel="noopener noreferrer">' +
-                    '<div class="gh-repo-name"><i class="fa-solid fa-bookmark"></i><span>' + name + '</span></div>' +
-                    '<div class="gh-repo-desc">' + desc + '</div>' +
-                    '<div class="gh-repo-meta">' +
-                        '<span class="gh-repo-lang"><span class="gh-lang-dot" style="background:' + langColor + ';"></span>' + lang + '</span>' +
-                        '<span class="gh-repo-stat"><i class="fa-regular fa-star"></i>' + stars + '</span>' +
-                        '<span class="gh-repo-stat"><i class="fa-solid fa-code-fork"></i>' + forks + '</span>' +
-                    '</div>' +
-                '</a>';
+            return '<a class="gh-repo" href="' + url + '" target="_blank" rel="noopener noreferrer">' +
+                '<div class="gh-repo-name"><i class="fa-solid fa-bookmark"></i><span>' + name + '</span></div>' +
+                '<div class="gh-repo-desc">' + desc + '</div>' +
+                '<div class="gh-repo-meta">' +
+                    '<span class="gh-repo-lang"><span class="gh-lang-dot" style="background:' + langColor + ';"></span>' + lang + '</span>' +
+                    '<span class="gh-repo-stat"><i class="fa-regular fa-star"></i>' + stars + '</span>' +
+                    '<span class="gh-repo-stat"><i class="fa-solid fa-code-fork"></i>' + forks + '</span>' +
+                '</div>' +
+            '</a>';
         }).join('');
     }
     let ghLoaded = false;
@@ -1318,11 +1201,7 @@ Hindi, English
         });
     }
 
-    /* 25. AVAILABILITY BADGE */
-    const availabilityConfig = {
-        status: 'Open to full-time',
-        updated: 'Updated this week'
-    };
+    const availabilityConfig = { status: 'Open to full-time', updated: 'Updated this week' };
     const avStatusText = document.getElementById('avStatusText');
     const avUpdatedText = document.getElementById('avUpdatedText');
     if (avStatusText) avStatusText.textContent = availabilityConfig.status;
