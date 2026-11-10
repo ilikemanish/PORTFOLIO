@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+    
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -93,7 +95,7 @@
                     <div class="terminal-line"><span class="prompt">manish@analytics:~#</span> launch --profile</div>
                     <div class="terminal-line">&gt; Environment: <span class="highlight">Python 3.11 / SQL Server</span></div>
                     <div class="terminal-line">&gt; Target: <span class="highlight">Data Analytics &amp; Visualization Core</span></div>
-                    <div class="terminal-line">&gt; Status: <span class="highlight">Data Analytics intern @iNeuBytes</span></div>
+                    <div class="terminal-line">&gt; Status: <span class="highlight">Data Analyst intern @3Skill</span></div>
                     <div class="terminal-line">&gt; Availability: <span class="highlight">Open to full-time opportunities</span><span class="type-cursor"></span></div>
                 </div>
             </div>
@@ -109,6 +111,7 @@
                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Network"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram Stream"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://wa.me/919568110788" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Connection"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://public.tableau.com/app/profile/manish.kashyap5259" target="_blank" rel="noopener noreferrer" class="tableau-profile-link" aria-label="Tableau Public Profile"><i class="fa-solid fa-chart-simple"></i></a>
             </div>
 
             <div class="tech-ticker-container" data-aos="fade-up" data-aos-delay="300">
@@ -305,17 +308,17 @@
     <section id="portfolio">
         <h2 class="section-title" data-aos="fade-right">Projects & Analytics</h2>
         <div class="portfolio-filter-bar" data-aos="fade-up">
-            <span class="filter-tag active" data-target="major">Major Projects</span>
+            <span class="filter-tag" data-target="major">Major Projects</span>
             <span class="filter-tag" data-target="python">Python</span>
             <span class="filter-tag" data-target="statistics">Statistics</span>
             <span class="filter-tag" data-target="excel">MS Excel</span>
             <span class="filter-tag" data-target="sql">SQL</span>
             <span class="filter-tag" data-target="powerbi">Power BI</span>
-            <span class="filter-tag" data-target="tableau">Tableau</span>
+            <span class="filter-tag active" data-target="tableau">Tableau</span>
         </div>
 
         <div class="projects-grid-container" id="projectPlaceholderBox" data-aos="fade-up" data-aos-delay="0">
-            <div class="mock-dashboard-card glow-card" data-filter="major" style="display: flex;">
+            <div class="mock-dashboard-card glow-card" data-filter="major" style="display: none;">
                 <div style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
                     <i class="fa-solid fa-rocket" style="font-size: 2.5rem; color: var(--accent-emerald); margin-bottom: 10px; opacity: 0.8; filter: drop-shadow(0 0 8px var(--accent-glow));"></i>
                     <h3 style="color:var(--text-main); margin-bottom: 5px;">Interactive project will display soon</h3>
@@ -392,7 +395,7 @@
                 </div>
 
                 <div class="phonepe-static-preview">
-                    <img src="https://raw.githubusercontent.com/ilikemanish/PhonePe_Transactions_Analysis_PowerBI/main/DASHBOARD.png" alt="PhonePe UPI Transaction Analytics Dashboard Preview" />
+                    <img src="assets/phonepe-dashboard.png" alt="PhonePe UPI Transaction Analytics Dashboard Preview" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/ilikemanish/PhonePe_Transactions_Analysis_PowerBI/main/DASHBOARD.png';" />
                 </div>
 
                 <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">PhonePe UPI Transaction Analytics Dashboard</h3>
@@ -403,6 +406,60 @@
                     <a href="https://ilikemanish.github.io/PhonePe_Transactions_Analysis_PowerBI/" target="_blank" rel="noopener noreferrer" class="project-link-btn"><i class="fa-solid fa-eye"></i> Live</a>
                     <span class="project-link-btn btn-details" data-modal="modal-phonepe"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
                     <span class="project-link-btn btn-story" data-story="story-phonepe"><i class="fa-solid fa-scroll"></i> Story</span>
+                </div>
+            </div>
+
+            <div class="mock-dashboard-card glow-card" data-filter="tableau" style="display: flex;">
+                <div class="mock-meta">
+                    <span>Tableau · SQL · Student Mental Health</span>
+                </div>
+                <div class="tableau-static-preview">
+                    <img src="assets/tableau-depression.png" alt="Student Depression Data Analysis Tableau Dashboard Preview" 
+                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/ilikemanish/Student-Depression-Data-Analysis/main/screenshots/dashboard.png';" />
+                </div>
+                <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">Student Depression Data Analysis</h3>
+                <div class="impact-badge"><i class="fa-solid fa-bolt"></i> Impact: Uncovered key depression drivers — academic pressure, financial stress, and sleep patterns — using SQL + Tableau.</div>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">An end-to-end analysis using SQL for preprocessing and Tableau for interactive dashboards on 27,920+ student records.</p>
+                <div class="project-links-row">
+                    <a href="https://github.com/ilikemanish/Student-Depression-Data-Analysis" target="_blank" rel="noopener noreferrer" class="project-link-btn"><i class="fa-brands fa-github"></i> Code</a>
+                    <span class="project-link-btn btn-details" data-modal="modal-tableau-student"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
+                    <span class="project-link-btn btn-story" data-story="story-tableau-student"><i class="fa-solid fa-scroll"></i> Story</span>
+                </div>
+            </div>
+
+            <div class="mock-dashboard-card glow-card" data-filter="tableau" style="display: flex;">
+                <div class="mock-meta">
+                    <span>Tableau · UPI Transactions</span>
+                </div>
+                <div class="tableau-static-preview">
+                    <img src="assets/tableau-upi.png" alt="UPI Transactions Analysis Tableau Dashboard Preview"
+                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/ilikemanish/UPI-Transactions-Analysis-Tableau/main/screenshots/dashboard.png';" />
+                </div>
+                <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">UPI Transactions Analysis Dashboard</h3>
+                <div class="impact-badge"><i class="fa-solid fa-bolt"></i> Impact: Visualized transaction success/failure, city-wise volume, payment methods, merchant insights, and customer demographics.</div>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">An interactive Tableau dashboard analyzing UPI transaction data for fraud detection, success-rate trends, and regional performance.</p>
+                <div class="project-links-row">
+                    <a href="https://github.com/ilikemanish/UPI-Transactions-Analysis-Tableau" target="_blank" rel="noopener noreferrer" class="project-link-btn"><i class="fa-brands fa-github"></i> Code</a>
+                    <span class="project-link-btn btn-details" data-modal="modal-tableau-upi"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
+                    <span class="project-link-btn btn-story" data-story="story-tableau-upi"><i class="fa-solid fa-scroll"></i> Story</span>
+                </div>
+            </div>
+
+            <div class="mock-dashboard-card glow-card" data-filter="tableau" style="display: flex;">
+                <div class="mock-meta">
+                    <span>Tableau · Sample Superstore</span>
+                </div>
+                <div class="tableau-static-preview">
+                    <img src="assets/tableau-superstore.png" alt="Sales & Profit Analysis Tableau Dashboard Preview"
+                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/ilikemanish/Sales-Profit-Analysis-Tableau/main/screenshots/dashboard.png';" />
+                </div>
+                <h3 style="margin-top:5px; color:var(--text-main); font-size:1.2rem;">Sales & Profit Analysis Dashboard</h3>
+                <div class="impact-badge"><i class="fa-solid fa-bolt"></i> Impact: Interactive Tableau dashboard on Sample Superstore data revealing regional performance, customer segmentation, and product insights.</div>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 10px; flex-grow: 1;">Built with Tableau using the Sample Superstore dataset to identify weak areas, profit drivers, and actionable business recommendations.</p>
+                <div class="project-links-row">
+                    <a href="https://github.com/ilikemanish/Sales-Profit-Analysis-Tableau" target="_blank" rel="noopener noreferrer" class="project-link-btn"><i class="fa-brands fa-github"></i> Code</a>
+                    <span class="project-link-btn btn-details" data-modal="modal-tableau-superstore"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
+                    <span class="project-link-btn btn-story" data-story="story-tableau-superstore"><i class="fa-solid fa-scroll"></i> Story</span>
                 </div>
             </div>
 
@@ -431,18 +488,6 @@
                     <a href="https://github.com/ilikemanish/Online_Book_Store_Analysis_Using_SQL/blob/main/Online_Book_Store.pdf" target="_blank" rel="noopener noreferrer" class="project-link-btn"><i class="fa-solid fa-file-pdf"></i> Report</a>
                     <span class="project-link-btn btn-details" data-modal="modal-bookstore"><i class="fa-solid fa-magnifying-glass-chart"></i> Details</span>
                     <span class="project-link-btn btn-story" data-story="story-bookstore"><i class="fa-solid fa-scroll"></i> Story</span>
-                </div>
-            </div>
-
-            <div class="mock-dashboard-card glow-card" data-filter="tableau" style="display: none;">
-                <div style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
-                    <img src="assets/icons/tableau.svg" style="width: 40px; margin-bottom: 10px; opacity: 0.8;" onerror="this.src='https://img.icons8.com/color/480/tableau-software.png'" alt="Tableau" />
-                    <h3 style="color:var(--text-main); margin-bottom: 5px;">Tableau Data Storytelling</h3>
-                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 5px;">End-to-end data storytelling emphasizing geographical sales distribution and predictive trends.</p>
-                    <div class="mock-meta" style="justify-content: center; margin-top: 15px;"><span class="coming-soon-badge">COMING SOON</span></div>
-                    <div class="project-links-row" style="justify-content: center;">
-                        <span class="project-link-btn btn-story" data-story="story-tableau"><i class="fa-solid fa-scroll"></i> Story</span>
-                    </div>
                 </div>
             </div>
 
@@ -856,19 +901,19 @@
                             <p>Filter-first dashboard analyzing 3.0L transactions worth ₹3.47bn with service-wise value ranking, age-cohort splits, and payment reliability metrics.</p>
                         </div>
                         <div class="resume-item">
-                            <h4>Netflix SQL Data Analysis</h4>
-                            <div class="resume-meta">PostgreSQL · 15 Business Questions</div>
-                            <p>Advanced SQL workflow with CTEs, Window Functions, and RANK() to solve 15 real-world business problems.</p>
+                            <h4>Student Depression Data Analysis</h4>
+                            <div class="resume-meta">Tableau · SQL · Mental Health</div>
+                            <p>SQL preprocessing + Tableau dashboards on 27,920+ student records revealing academic pressure, financial stress, and sleep-driven depression patterns.</p>
                         </div>
                         <div class="resume-item">
-                            <h4>Online Book Store Analysis</h4>
-                            <div class="resume-meta">PostgreSQL · 20 Business Questions</div>
-                            <p>End-to-end analysis of books, customers, orders, sales, and inventory using joins, HAVING, and top-N queries.</p>
+                            <h4>UPI Transactions Analysis Dashboard</h4>
+                            <div class="resume-meta">Tableau · UPI Analytics</div>
+                            <p>Interactive Tableau dashboard analyzing transaction success/failure, city-wise volume, payment methods, merchant insights, and customer demographics.</p>
                         </div>
                         <div class="resume-item">
-                            <h4>Swiggy & Decathlon Excel Dashboards</h4>
-                            <div class="resume-meta">Microsoft Excel · Pivot Tables · Slicers</div>
-                            <p>Interactive dashboards analyzing food delivery and retail sales performance with dynamic slicers and KPI tracking.</p>
+                            <h4>Sales & Profit Analysis Dashboard</h4>
+                            <div class="resume-meta">Tableau · Sample Superstore</div>
+                            <p>Tableau dashboard on Sample Superstore data revealing regional performance, customer segmentation, product insights, and profit-driver recommendations.</p>
                         </div>
                     </div>
                 </div>
@@ -971,7 +1016,67 @@
             <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li><strong>Loans lead service-wise value</strong> at ₹2.53bn — far ahead of other services.</li><li><strong>Gen X contributes the most transactions</strong> at 37.5%, followed by Millennials at 37.2%.</li><li><strong>96% success rate</strong> (2.9L successful), but 12,007 non-successful outcomes signal recovery-flow opportunities.</li><li><strong>71.6% of transactions occur on weekdays</strong> — support and offers should align with weekday demand.</li></ul></div>
             <div class="project-nav-row">
                 <button type="button" class="project-nav-btn" data-nav-project="modal-powerbi"><i class="fa-solid fa-arrow-left"></i> Prev</button>
-                <button type="button" class="project-nav-btn" data-nav-project="modal-netflix">Next <i class="fa-solid fa-arrow-right"></i></button>
+                <button type="button" class="project-nav-btn" data-nav-project="modal-tableau-student">Next <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-tableau-student">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header-row">
+                <div>
+                    <h2 class="modal-title">Student Depression Data Analysis</h2>
+                    <div class="modal-subtitle">Tableau · SQL · Mental Health</div>
+                </div>
+                <a href="https://github.com/ilikemanish/Student-Depression-Data-Analysis" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.65rem 1.3rem; font-size: 0.8rem;"><i class="fa-brands fa-github"></i> View Repo</a>
+            </div>
+            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Mental health among students is a growing concern, but the drivers are often invisible in raw data. The goal was to uncover the key factors — academic pressure, financial stress, sleep patterns, study habits — contributing to student depression across 27,920+ records.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>Used SQL for data preprocessing and Tableau for visualization. Built interactive dashboards to explore gender-wise depression rates, academic pressure levels, financial stress, and lifestyle factors.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li><strong>Academic pressure</strong> is the strongest driver of depression among students.</li><li><strong>Financial stress</strong> significantly increases depression risk across all demographics.</li><li><strong>Sleep and study habits</strong> show strong correlation with mental health outcomes.</li></ul></div>
+            <div class="project-nav-row">
+                <button type="button" class="project-nav-btn" data-nav-project="modal-phonepe"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+                <button type="button" class="project-nav-btn" data-nav-project="modal-tableau-upi">Next <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-tableau-upi">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header-row">
+                <div>
+                    <h2 class="modal-title">UPI Transactions Analysis Dashboard</h2>
+                    <div class="modal-subtitle">Tableau · UPI Analytics</div>
+                </div>
+                <a href="https://github.com/ilikemanish/UPI-Transactions-Analysis-Tableau" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.65rem 1.3rem; font-size: 0.8rem;"><i class="fa-brands fa-github"></i> View Repo</a>
+            </div>
+            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>UPI is growing rapidly in India, but transaction failures, fraud risks, and uneven city-wise adoption remain major concerns. Stakeholders needed a single dashboard to analyze transaction success/failure patterns, city-wise volume, payment methods, merchant insights, and customer demographics.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>Built an interactive Tableau dashboard with multiple worksheets covering transaction trends, success-rate analysis, city-wise distribution, payment-mode comparisons, and merchant-level insights.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li><strong>Success vs failure patterns</strong> reveal peak failure windows for targeted recovery flows.</li><li><strong>City-wise transaction volume</strong> shows Tier-1 dominance but Tier-2 growth.</li><li><strong>Payment method and merchant insights</strong> highlight top-performing channels.</li><li><strong>Customer demographics</strong> reveal distinct behavioral cohorts.</li></ul></div>
+            <div class="project-nav-row">
+                <button type="button" class="project-nav-btn" data-nav-project="modal-tableau-student"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+                <button type="button" class="project-nav-btn" data-nav-project="modal-tableau-superstore">Next <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-tableau-superstore">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header-row">
+                <div>
+                    <h2 class="modal-title">Sales & Profit Analysis Dashboard</h2>
+                    <div class="modal-subtitle">Tableau · Sample Superstore</div>
+                </div>
+                <a href="https://github.com/ilikemanish/Sales-Profit-Analysis-Tableau" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.65rem 1.3rem; font-size: 0.8rem;"><i class="fa-brands fa-github"></i> View Repo</a>
+            </div>
+            <div class="modal-section"><h4><i class="fa-solid fa-circle-question"></i> The Problem</h4><p>Sales data alone doesn't reveal profitability. The challenge was to use the Sample Superstore dataset to identify weak areas, profit drivers, and actionable business recommendations across regions, customer segments, and product categories.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>Built interactive Tableau visualizations covering regional performance, customer segmentation, product insights, and profit analysis. The dashboard enables drill-down into categories and sub-categories to spot underperforming segments.</p></div>
+            <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li><strong>Regional performance</strong> reveals uneven profit distribution across states.</li><li><strong>Customer segmentation</strong> highlights high-value vs low-margin cohorts.</li><li><strong>Product-level insights</strong> identify top revenue drivers and loss-making categories.</li><li><strong>Discount patterns</strong> show specific categories where discounts erode profit.</li></ul></div>
+            <div class="project-nav-row">
+                <button type="button" class="project-nav-btn" data-nav-project="modal-tableau-upi"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+                <button type="button" class="project-nav-btn" data-nav-project="modal-blinkit">Next <i class="fa-solid fa-arrow-right"></i></button>
             </div>
         </div>
     </div>
@@ -987,7 +1092,7 @@
             <div class="modal-section"><h4><i class="fa-solid fa-screwdriver-wrench"></i> My Approach</h4><p>Using <strong>PostgreSQL</strong> and <strong>pgAdmin</strong>, I developed an end-to-end data workflow with CTEs, Window Functions, <code>RANK()</code>, Subqueries, and complex string/date processing.</p></div>
             <div class="modal-section"><h4><i class="fa-solid fa-lightbulb"></i> Key Insights</h4><ul><li>Explored content distribution across movies vs. TV shows, country, genres, and years.</li><li>Demonstrated practical application of complex PostgreSQL functions.</li><li>Solved 15 distinct business questions with production-ready SQL.</li></ul></div>
             <div class="project-nav-row">
-                <button type="button" class="project-nav-btn" data-nav-project="modal-phonepe"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+                <button type="button" class="project-nav-btn" data-nav-project="modal-tableau-superstore"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                 <button type="button" class="project-nav-btn" data-nav-project="modal-bookstore">Next <i class="fa-solid fa-arrow-right"></i></button>
             </div>
         </div>
@@ -1190,210 +1295,73 @@
 )</code></pre></div></div>
                 <div class="story-step"><div class="story-step-num">03</div><h3><i class="fa-solid fa-chart-column"></i> What the Data Revealed</h3><div class="story-bars"><div class="story-bar-wrap"><div class="story-bar" style="--h: 73%;"><span class="story-bar-val">₹2.53bn</span></div><div class="story-bar-label">Loans</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 37%;"><span class="story-bar-val">37.5%</span></div><div class="story-bar-label">Gen X</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 37%;"><span class="story-bar-val">37.2%</span></div><div class="story-bar-label">Millennials</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 23%;"><span class="story-bar-val">23.1%</span></div><div class="story-bar-label">Gen Z</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 96%;"><span class="story-bar-val">96.0%</span></div><div class="story-bar-label">Success</div></div></div><div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Loans alone account for the majority of transaction value, while Gen X and Millennials together drive ~75% of volume.</div></div>
                 <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-calendar-days"></i> Weekday vs Weekend</h3><p>71.6% of transactions occur on weekdays — a strong signal that PhonePe usage is tied to routine financial behavior, not just weekend spending.</p><div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Implication:</strong> Support capacity, offers, and reliability monitoring should peak Monday–Friday.</div></div>
-                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-check-circle"></i> <strong>Result:</strong> A live, filter-first transaction studio that converts 3.0L raw UPI records into service-level value rankings, generational behavior profiles, and a payment-reliability dashboard — all with auto-recalculated insights.</div></div>
+                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A live, filter-first transaction studio that converts 3.0L raw UPI records into service-level value rankings, generational behavior profiles, and a payment-reliability dashboard — all with auto-recalculated insights.</div></div>
             </div>
         </div>
     </div>
 
-    <div class="modal-overlay story-modal" id="story-netflix">
+    <div class="modal-overlay story-modal" id="story-tableau-student">
         <div class="modal-content">
             <button class="modal-close" aria-label="Close story"><i class="fa-solid fa-xmark"></i></button>
             <div class="story-hero">
                 <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
-                <h2 class="story-title">Netflix SQL Data Analysis</h2>
-                <p class="story-intro">Interrogating ~8,800 Netflix titles with 15 business questions to reveal the catalog's true composition.</p>
+                <h2 class="story-title">Student Depression Data Analysis</h2>
+                <p class="story-intro">Using SQL and Tableau to uncover the invisible drivers of student mental health — and what the data says about academic pressure, financial stress, and sleep.</p>
             </div>
             <div class="story-body">
-                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Business Problem</h3><p>Netflix's catalog is a black box. Executives needed clear answers on movie-to-show split, top producing countries, and whether older titles still matter.</p></div>
-                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-code"></i> The Approach</h3><p>Progressive SQL from <code>GROUP BY</code> to <code>RANK()</code> window functions.</p><div class="story-code"><div class="story-code-header"><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="story-code-lang">SQL</span></div><pre><code><span class="kw">SELECT</span> type, <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total
-<span class="kw">FROM</span> netflix_titles
-<span class="kw">GROUP BY</span> type;</code></pre></div></div>
-                <div class="story-step"><div class="story-step-num">03</div><h3><i class="fa-solid fa-chart-column"></i> What the Data Revealed</h3><div class="story-bars"><div class="story-bar-wrap"><div class="story-bar" style="--h: 70%;"><span class="story-bar-val">70%</span></div><div class="story-bar-label">Movies</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 30%;"><span class="story-bar-val">30%</span></div><div class="story-bar-label">TV Shows</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 45%;"><span class="story-bar-val">45%</span></div><div class="story-bar-label">Drama</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 35%;"><span class="story-bar-val">35%</span></div><div class="story-bar-label">Comedy</div></div></div><div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Movies dominate, but TV Shows are growing disproportionately.</div></div>
-                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-earth-americas"></i> Country-Level Insight</h3><div class="story-stat-row"><div class="story-stat"><strong>3,690</strong><span>US Titles</span></div><div class="story-stat"><strong>1,046</strong><span>India Titles</span></div><div class="story-stat"><strong>806</strong><span>UK Titles</span></div></div></div>
-                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A 15-question SQL playbook reusable by any streaming analytics team.</div></div>
+                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Business Problem</h3><p>Student depression is a silent crisis. Institutions need to know: what actually drives depression? Is it academic pressure? Financial stress? Sleep deprivation? Without a clear view, interventions are guesswork.</p></div>
+                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-code"></i> The Approach</h3><p>SQL for data preprocessing and Tableau for interactive dashboards. Explored gender-wise rates, pressure levels, financial stress, and lifestyle factors across <strong>27,920+ records</strong>.</p></div>
+                <div class="story-step"><div class="story-step-num">03</div><h3><i class="fa-solid fa-chart-column"></i> What the Data Revealed</h3><div class="story-bars"><div class="story-bar-wrap"><div class="story-bar" style="--h: 85%;"><span class="story-bar-val">High</span></div><div class="story-bar-label">Acad. Pressure</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 72%;"><span class="story-bar-val">High</span></div><div class="story-bar-label">Financial Stress</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 58%;"><span class="story-bar-val">Low</span></div><div class="story-bar-label">Sleep Hours</div></div></div><div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Academic pressure and financial stress are the strongest drivers, while sleep deprivation amplifies the effect.</div></div>
+                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-users"></i> Demographic Patterns</h3><p>Depression rates vary significantly across gender and academic levels, suggesting the need for targeted interventions.</p></div>
+                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A Tableau dashboard that converts raw student data into actionable mental-health insights for institutions and policymakers.</div></div>
             </div>
         </div>
     </div>
 
-    <div class="modal-overlay story-modal" id="story-bookstore">
+    <div class="modal-overlay story-modal" id="story-tableau-upi">
         <div class="modal-content">
             <button class="modal-close" aria-label="Close story"><i class="fa-solid fa-xmark"></i></button>
             <div class="story-hero">
                 <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
-                <h2 class="story-title">Online Book Store Analysis</h2>
-                <p class="story-intro">A PostgreSQL deep dive into 20 business questions across books, customers, orders, and inventory.</p>
+                <h2 class="story-title">UPI Transactions Analysis Dashboard</h2>
+                <p class="story-intro">Exploring transaction success, city-wise volume, payment methods, and merchant insights to understand India's UPI growth story.</p>
             </div>
             <div class="story-body">
-                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>The store had plenty of raw data but no single source of truth.</p></div>
-                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-code"></i> The Approach</h3><p>Progressive SQL from joins to correlated subqueries.</p><div class="story-code"><div class="story-code-header"><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="story-code-lang">SQL</span></div><pre><code><span class="kw">SELECT</span> c.name, <span class="fn">SUM</span>(o.total_amount) <span class="kw">AS</span> spend
-<span class="kw">FROM</span> customers c
-<span class="kw">JOIN</span> orders o <span class="kw">ON</span> o.customer_id <span class="op">=</span> c.id
-<span class="kw">GROUP BY</span> c.name
-<span class="kw">ORDER BY</span> spend <span class="kw">DESC</span> <span class="kw">LIMIT</span> <span class="num">5</span>;</code></pre></div></div>
-                <div class="story-step"><div class="story-step-num">03</div><h3><i class="fa-solid fa-chart-column"></i> Genre Revenue Split</h3><div class="story-bars"><div class="story-bar-wrap"><div class="story-bar" style="--h: 82%;"><span class="story-bar-val">82%</span></div><div class="story-bar-label">Fiction</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 60%;"><span class="story-bar-val">60%</span></div><div class="story-bar-label">Sci-Fi</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 48%;"><span class="story-bar-val">48%</span></div><div class="story-bar-label">Mystery</div></div></div><div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Fiction alone accounts for over 80% of revenue.</div></div>
-                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-boxes-stacked"></i> Inventory Reality Check</h3><ul><li>14 titles out of stock.</li><li>3 high-demand titles with fewer than 5 units.</li></ul></div>
-                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A 20-query SQL suite packaged as a downloadable PDF report.</div></div>
+                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Business Problem</h3><p>UPI is growing fast, but transaction failures and uneven adoption remain major concerns. Stakeholders needed a single dashboard to spot failure patterns, city-wise trends, and demographic behavior.</p></div>
+                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-code"></i> The Approach</h3><p>Built an interactive Tableau dashboard with multiple worksheets covering success/failure analysis, city-wise volume, payment-mode comparisons, merchant insights, and customer demographics.</p></div>
+                <div class="story-step"><div class="story-step-num">03</div><h3><i class="fa-solid fa-chart-column"></i> What the Data Revealed</h3><div class="story-bars"><div class="story-bar-wrap"><div class="story-bar" style="--h: 92%;"><span class="story-bar-val">92%</span></div><div class="story-bar-label">Success</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 45%;"><span class="story-bar-val">45%</span></div><div class="story-bar-label">Tier-1</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 30%;"><span class="story-bar-val">30%</span></div><div class="story-bar-label">Tier-2</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 68%;"><span class="story-bar-val">68%</span></div><div class="story-bar-label">UPI</div></div></div><div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> UPI dominates payment-mode share, but Tier-2 cities show the fastest growth trajectory.</div></div>
+                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-magnifying-glass-chart"></i> Failure Patterns</h3><p>Peak failure windows align with specific hours and merchant categories, enabling targeted recovery flows.</p></div>
+                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A single Tableau dashboard that turns raw UPI transaction records into actionable intelligence for product and operations teams.</div></div>
             </div>
         </div>
     </div>
 
-    <div class="modal-overlay story-modal" id="story-tableau">
+    <div class="modal-overlay story-modal" id="story-tableau-superstore">
         <div class="modal-content">
             <button class="modal-close" aria-label="Close story"><i class="fa-solid fa-xmark"></i></button>
             <div class="story-hero">
                 <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
-                <h2 class="story-title">Tableau Data Storytelling</h2>
-                <p class="story-intro">An end-to-end Tableau story blending geography, time, and product performance.</p>
+                <h2 class="story-title">Sales & Profit Analysis Dashboard</h2>
+                <p class="story-intro">Using Tableau on Sample Superstore data to find where profit hides — and where it leaks.</p>
             </div>
             <div class="story-body">
-                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>Numbers alone don't persuade. Sales leadership needed a narrative presentable in under 10 minutes.</p></div>
-                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-map-location-dot"></i> The Approach</h3><p>Six connected Tableau worksheets, each acting as a chapter of the story.</p></div>
-                <div class="story-step"><div class="story-step-num">03</div><h3><i class="fa-solid fa-chart-column"></i> State-Level Concentration</h3><div class="story-bars"><div class="story-bar-wrap"><div class="story-bar" style="--h: 90%;"><span class="story-bar-val">90%</span></div><div class="story-bar-label">CA</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 75%;"><span class="story-bar-val">75%</span></div><div class="story-bar-label">NY</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 62%;"><span class="story-bar-val">62%</span></div><div class="story-bar-label">TX</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 45%;"><span class="story-bar-val">45%</span></div><div class="story-bar-label">FL</div></div></div><div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Five states account for nearly 70% of all sales.</div></div>
-                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-chart-line"></i> The Predictive Story</h3><p>3-month forecast layered on top of the historical line chart.</p></div>
-                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A 6-chapter interactive Tableau Story converting 100k rows into a board-ready narrative.</div></div>
+                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Business Problem</h3><p>Sales alone don't equal profit. Leadership needed to know which regions, segments, and categories actually drive profit — and where discounts are eroding margins.</p></div>
+                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-code"></i> The Approach</h3><p>Built interactive Tableau visualizations covering regional performance, customer segmentation, product insights, and profit analysis with drill-down capability.</p></div>
+                <div class="story-step"><div class="story-step-num">03</div><h3><i class="fa-solid fa-chart-column"></i> What the Data Revealed</h3><div class="story-bars"><div class="story-bar-wrap"><div class="story-bar" style="--h: 90%;"><span class="story-bar-val">90%</span></div><div class="story-bar-label">West</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 75%;"><span class="story-bar-val">75%</span></div><div class="story-bar-label">East</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 62%;"><span class="story-bar-val">62%</span></div><div class="story-bar-label">Central</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 45%;"><span class="story-bar-val">45%</span></div><div class="story-bar-label">South</div></div></div><div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Profit concentration is highly uneven — a few states drive the majority of profit while others consistently underperform.</div></div>
+                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-tags"></i> Discount-Driven Losses</h3><p>Certain product categories show a clear negative correlation between discount depth and profit, signaling over-discounting in specific segments.</p></div>
+                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A Tableau dashboard that turns Sample Superstore data into a clear "where to focus / where to fix" playbook for profit growth.</div></div>
             </div>
         </div>
     </div>
 
-    <div class="modal-overlay story-modal" id="story-taxi">
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Close story"><i class="fa-solid fa-xmark"></i></button>
-            <div class="story-hero">
-                <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
-                <h2 class="story-title">NYC Taxi Revenue Analysis</h2>
-                <p class="story-intro">Using statistics to prove what actually drives a NYC taxi driver's daily income.</p>
-            </div>
-            <div class="story-body">
-                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>A driver's income depends on hundreds of micro-decisions every shift.</p></div>
-                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-code"></i> The Approach</h3><div class="story-code"><div class="story-code-header"><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="story-code-lang">Python</span></div><pre><code>df[<span class="str">'hour'</span>] <span class="op">=</span> df[<span class="str">'pickup_time'</span>].dt.hour
-hourly <span class="op">=</span> df.groupby(<span class="str">'hour'</span>)[<span class="str">'fare'</span>].mean()</code></pre></div></div>
-                <div class="story-step"><div class="story-step-num">03</div><h3><i class="fa-solid fa-chart-column"></i> Hourly Revenue Pattern</h3><div class="story-bars"><div class="story-bar-wrap"><div class="story-bar" style="--h: 95%;"><span class="story-bar-val">95%</span></div><div class="story-bar-label">6 PM</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 88%;"><span class="story-bar-val">88%</span></div><div class="story-bar-label">8 AM</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 78%;"><span class="story-bar-val">78%</span></div><div class="story-bar-label">9 AM</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 62%;"><span class="story-bar-val">62%</span></div><div class="story-bar-label">11 PM</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 40%;"><span class="story-bar-val">40%</span></div><div class="story-bar-label">3 AM</div></div></div><div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> 6 PM and 8 AM rush hours yield ~20% more per trip.</div></div>
-                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-magnifying-glass-chart"></i> Surprising Correlations</h3><ul><li>Short Manhattan trips have the highest tip ratio.</li><li>Airport pickups drop tip-ratio by ~15%.</li></ul></div>
-                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A statistical playbook recommending an optimal shift schedule.</div></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay story-modal" id="story-playstore">
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Close story"><i class="fa-solid fa-xmark"></i></button>
-            <div class="story-hero">
-                <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
-                <h2 class="story-title">Google Play Store EDA</h2>
-                <p class="story-intro">Exploratory analysis across 10,000+ apps to discover what makes an app succeed.</p>
-            </div>
-            <div class="story-body">
-                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>What separates top apps from invisible ones?</p></div>
-                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-code"></i> Cleaning the Mess</h3><div class="story-code"><div class="story-code-header"><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="story-code-lang">Python</span></div><pre><code>df[<span class="str">'Installs'</span>] <span class="op">=</span> df[<span class="str">'Installs'</span>].<span class="fn">str</span>.replace(<span class="str">'[,+]'</span>, <span class="str">''</span>).<span class="fn">astype</span>(<span class="kw">int</span>)</code></pre></div></div>
-                <div class="story-step"><div class="story-step-num">03</div><h3><i class="fa-solid fa-chart-column"></i> Category Ratings</h3><div class="story-bars"><div class="story-bar-wrap"><div class="story-bar" style="--h: 88%;"><span class="story-bar-val">88%</span></div><div class="story-bar-label">Games</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 76%;"><span class="story-bar-val">76%</span></div><div class="story-bar-label">Tools</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 66%;"><span class="story-bar-val">66%</span></div><div class="story-bar-label">Social</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 55%;"><span class="story-bar-val">55%</span></div><div class="story-bar-label">Business</div></div></div><div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Games lead both installs and average rating.</div></div>
-                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-dollar-sign"></i> Free vs. Paid</h3><p>92% of apps are free. Paid apps rate slightly higher but get far fewer installs.</p></div>
-                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A clear set of success factors — small size, free pricing, frequent updates.</div></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay story-modal" id="story-churn">
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Close story"><i class="fa-solid fa-xmark"></i></button>
-            <div class="story-hero">
-                <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
-                <h2 class="story-title">Customer Churn Analysis</h2>
-                <p class="story-intro">Finding the hidden signals that predict which customers are about to leave.</p>
-            </div>
-            <div class="story-body">
-                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>A subscription business was losing ~26% of customers annually.</p></div>
-                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-code"></i> The Approach</h3><div class="story-code"><div class="story-code-header"><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="story-code-lang">Python</span></div><pre><code>churn <span class="op">=</span> df.groupby(<span class="str">'Contract'</span>)[<span class="str">'Churn'</span>].value_counts(normalize<span class="op">=</span><span class="kw">True</span>)</code></pre></div></div>
-                <div class="story-step"><div class="story-step-num">03</div><h3><i class="fa-solid fa-chart-column"></i> Top Churn Drivers</h3><div class="story-bars"><div class="story-bar-wrap"><div class="story-bar" style="--h: 92%;"><span class="story-bar-val">92%</span></div><div class="story-bar-label">Month-to-Month</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 68%;"><span class="story-bar-val">68%</span></div><div class="story-bar-label">Fiber Optic</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 52%;"><span class="story-bar-val">52%</span></div><div class="story-bar-label">No Online Sec</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 38%;"><span class="story-bar-val">38%</span></div><div class="story-bar-label">Paperless Off</div></div></div><div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Month-to-month contracts churn at ~3x the rate of annual.</div></div>
-                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-user-shield"></i> Building Risk Profiles</h3><p>Simple scoring rule flags high-risk customers within first 90 days.</p></div>
-                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> Data-driven retention framework to target offers before customers leave.</div></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay story-modal" id="story-diwali">
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Close story"><i class="fa-solid fa-xmark"></i></button>
-            <div class="story-hero">
-                <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
-                <h2 class="story-title">Diwali Sales Analysis</h2>
-                <p class="story-intro">Unpacking the buying behavior of a festival driving India's retail revenue.</p>
-            </div>
-            <div class="story-body">
-                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>A retailer had no visibility into which segments actually drive the festival rush.</p></div>
-                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-code"></i> The Approach</h3><p>Pandas for grouping; Seaborn for visualization split by gender, age, state, and category.</p></div>
-                <div class="story-step"><div class="story-step-num">03</div><h3><i class="fa-solid fa-chart-column"></i> Who Actually Buys</h3><div class="story-bars"><div class="story-bar-wrap"><div class="story-bar" style="--h: 85%;"><span class="story-bar-val">85%</span></div><div class="story-bar-label">Age 26-35</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 62%;"><span class="story-bar-val">62%</span></div><div class="story-bar-label">Female</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 48%;"><span class="story-bar-val">48%</span></div><div class="story-bar-label">UP/MH</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 30%;"><span class="story-bar-val">30%</span></div><div class="story-bar-label">IT Sector</div></div></div><div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Women aged 26-35 dominate purchases.</div></div>
-                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-tags"></i> Winning Categories</h3><ul><li>Food & Clothing lead in volume.</li><li>Electronics leads in revenue.</li></ul></div>
-                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> Targeted segment playbook for Diwali inventory and marketing.</div></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay story-modal" id="story-numpy">
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Close story"><i class="fa-solid fa-xmark"></i></button>
-            <div class="story-hero">
-                <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
-                <h2 class="story-title">NumPy Sales Analysis</h2>
-                <p class="story-intro">Turning a slow, loop-heavy pipeline into a blazing-fast vectorized workflow.</p>
-            </div>
-            <div class="story-body">
-                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>Original script took 40+ minutes to process 2 million rows.</p></div>
-                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-code"></i> The Rewrite</h3><div class="story-code"><div class="story-code-header"><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="story-code-lang">Python</span></div><pre><code><span class="cm"># Before: Python loop (~40 min)</span>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(sales)):
-    <span class="kw">if</span> sales[i] <span class="op">&gt;</span> threshold:
-        total <span class="op">+=</span> sales[i]
-
-<span class="cm"># After: NumPy vectorized (~3 min)</span>
-total <span class="op">=</span> sales[sales <span class="op">&gt;</span> threshold].<span class="fn">sum</span>()</code></pre></div></div>
-                <div class="story-step"><div class="story-step-num">03</div><h3><i class="fa-solid fa-gauge-high"></i> Performance Comparison</h3><div class="story-bars"><div class="story-bar-wrap"><div class="story-bar" style="--h: 95%;"><span class="story-bar-val">100%</span></div><div class="story-bar-label">Loop</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 10%;"><span class="story-bar-val">10%</span></div><div class="story-bar-label">NumPy</div></div></div><div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> 10x speedup means pipeline runs hourly instead of daily.</div></div>
-                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-check-double"></i> Same Business Truth</h3><p>Output metrics were identical to old script. Only runtime changed.</p></div>
-                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> Reusable NumPy template cutting runtime 40 min → under 3.</div></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay story-modal" id="story-swiggy">
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Close story"><i class="fa-solid fa-xmark"></i></button>
-            <div class="story-hero">
-                <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
-                <h2 class="story-title">Swiggy Sales Analysis Dashboard</h2>
-                <p class="story-intro">Turning raw food-delivery transactions into a 4-slicer Excel dashboard.</p>
-            </div>
-            <div class="story-body">
-                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>Ops teams couldn't see which restaurants, cities, or categories pull revenue.</p></div>
-                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-code"></i> The Approach</h3><p>Cleaned raw CSV, built pivot tables for restaurant/city/category/time, wired 4 slicers.</p></div>
-                <div class="story-step"><div class="story-step-num">03</div><h3><i class="fa-solid fa-chart-column"></i> Category Revenue Share</h3><div class="story-bars"><div class="story-bar-wrap"><div class="story-bar" style="--h: 78%;"><span class="story-bar-val">78%</span></div><div class="story-bar-label">Main Course</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 55%;"><span class="story-bar-val">55%</span></div><div class="story-bar-label">Beverages</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 42%;"><span class="story-bar-val">42%</span></div><div class="story-bar-label">Desserts</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 28%;"><span class="story-bar-val">28%</span></div><div class="story-bar-label">Snacks</div></div></div><div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Desserts have the highest AOV — promoting them alongside mains could raise basket size.</div></div>
-                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-clock"></i> Peak Ordering Hours</h3><ul><li>Lunch: 12:30–1:30 PM</li><li>Dinner: 7:30–9:30 PM</li></ul></div>
-                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> One-file Excel dashboard with 4 slicers, ~12 charts, 1 clear recommendation.</div></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay story-modal" id="story-decathlon">
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Close story"><i class="fa-solid fa-xmark"></i></button>
-            <div class="story-hero">
-                <span class="story-tag"><i class="fa-solid fa-book-open"></i> Data Story</span>
-                <h2 class="story-title">Decathlon Sales & Customer Analytics</h2>
-                <p class="story-intro">A 30,000-record Excel dashboard segmenting customers by value.</p>
-            </div>
-            <div class="story-body">
-                <div class="story-step"><div class="story-step-num">01</div><h3><i class="fa-solid fa-circle-exclamation"></i> The Problem</h3><p>Which customers are worth retaining? Which categories drive profit?</p></div>
-                <div class="story-step"><div class="story-step-num">02</div><h3><i class="fa-solid fa-code"></i> The Approach</h3><p>30k+ rows cleaned, then Pivot Tables/Charts/Slicers for Total Sales, AOV, Retention.</p></div>
-                <div class="story-step"><div class="story-step-num">03</div><h3><i class="fa-solid fa-chart-column"></i> Revenue by Category</h3><div class="story-bars"><div class="story-bar-wrap"><div class="story-bar" style="--h: 82%;"><span class="story-bar-val">82%</span></div><div class="story-bar-label">Running</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 68%;"><span class="story-bar-val">68%</span></div><div class="story-bar-label">Cycling</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 55%;"><span class="story-bar-val">55%</span></div><div class="story-bar-label">Fitness</div></div><div class="story-bar-wrap"><div class="story-bar" style="--h: 40%;"><span class="story-bar-val">40%</span></div><div class="story-bar-label">Outdoor</div></div></div><div class="story-insight"><i class="fa-solid fa-lightbulb"></i> <strong>Insight:</strong> Running alone accounts for over 80% of revenue.</div></div>
-                <div class="story-step"><div class="story-step-num">04</div><h3><i class="fa-solid fa-users"></i> Customer Segmentation</h3><div class="story-stat-row"><div class="story-stat"><strong>8%</strong><span>VIP</span></div><div class="story-stat"><strong>22%</strong><span>Loyal</span></div><div class="story-stat"><strong>38%</strong><span>Occasional</span></div></div></div>
-                <div class="story-step"><div class="story-step-num">05</div><h3><i class="fa-solid fa-trophy"></i> The Final Result</h3><div class="story-insight"><i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> A single-file Excel dashboard with clear "who to retain, what to stock" recommendation.</div></div>
-            </div>
-        </div>
-    </div>
-
+    <!-- External CDN Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-
+    
+    <!-- Link to External JS -->
     <script src="script.js"></script>
 </body>
 </html>
