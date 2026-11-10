@@ -49,20 +49,17 @@ document.addEventListener('DOMContentLoaded', function() {
         videoContainers.forEach(function(container) {
             const video = container.querySelector('video');
             if (!video) return;
-
             video.loop = true;
             video.setAttribute('loop', 'loop');
             video.muted = true;
             video.setAttribute('muted', 'muted');
             video.playsInline = true;
             video.setAttribute('playsinline', 'playsinline');
-
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 video.removeAttribute('autoplay');
                 video.pause();
                 return;
             }
-
             const sourceEls = Array.from(video.querySelectorAll('source'));
             const sourceList = sourceEls.map(s => s.src).filter(Boolean);
             let currentIdx = 0;
@@ -451,7 +448,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mockCards = document.querySelectorAll('.mock-dashboard-card');
     if (filterTags.length > 0 && boxContainer) {
         const activeTag = document.querySelector('.filter-tag.active');
-        const initialActiveFilter = activeTag ? activeTag.getAttribute('data-target') : 'major';
+        const initialActiveFilter = activeTag ? activeTag.getAttribute('data-target') : 'tableau';
         mockCards.forEach(function(card) {
             card.style.display = card.getAttribute('data-filter') === initialActiveFilter ? 'flex' : 'none';
         });
@@ -577,6 +574,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         { name: 'Blinkit Sales & Outlet Performance', stack: 'Power BI, DAX' },
                         { name: 'Smoking Health Risk Analysis', stack: 'Power BI, DAX' },
                         { name: 'PhonePe UPI Transaction Analytics Dashboard', stack: 'Power BI, DAX' },
+                        { name: 'Student Depression Data Analysis', stack: 'Tableau, SQL' },
+                        { name: 'UPI Transactions Analysis Dashboard', stack: 'Tableau' },
+                        { name: 'Sales & Profit Analysis Dashboard', stack: 'Tableau' },
                         { name: 'Netflix SQL Data Analysis', stack: 'PostgreSQL' },
                         { name: 'Online Book Store Analysis', stack: 'PostgreSQL' },
                         { name: 'Swiggy Sales Dashboard', stack: 'Microsoft Excel' },
@@ -597,7 +597,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const copyMdBtn = document.getElementById('copyAsMdBtn');
         if (copyMdBtn) {
             copyMdBtn.addEventListener('click', function() {
-                const md = `# Manish Kashyap\n**Aspiring Data Analyst**\n\n📧 manishkshyp0123@gmail.com · 📍 India · 🐙 [github.com/ilikemanish](https://github.com/ilikemanish)\n\n## Education\n- **B.Tech in Computer Science** — Teerthanker Mahaveer University, Moradabad *(2023 – 2027)*\n  Specialization: AI, ML, Deep Learning\n- **Class 12 (CBSE)** — St Anthony's Sr Sec School, Dugawar *(2023)*\n- **Class 10 (CBSE)** — St Anthony's Sr Sec School, Dugawar *(2021)*\n\n## Experience\n- **Data Analyst Intern** — 3Skill *(2 Months)*\n  Tools: Excel, SQL, Python, Power BI\n\n## Technical Skills\n- **Python** 90% · **SQL** 85% · **Excel** 90%\n- **Power BI** 80% · **Tableau** 75%\n- **Statistics** 70% · **Machine Learning** 60%\n\n## Soft Skills\nCritical Thinking, Team Leading, Decision Making, Data Storytelling, Collaboration, Problem Solving\n\n## Key Projects\n- **Blinkit Sales & Outlet Performance** — Power BI, DAX\n- **Smoking Health Risk Analysis** — Power BI, DAX\n- **PhonePe UPI Transaction Analytics Dashboard** — Power BI, DAX\n- **Netflix SQL Data Analysis** — PostgreSQL\n- **Online Book Store Analysis** — PostgreSQL\n- **Swiggy Sales Dashboard** — Microsoft Excel\n- **Decathlon Sales & Customer Analytics** — Microsoft Excel\n\n## Languages\nHindi, English\n`;
+                const md = `# Manish Kashyap\n**Aspiring Data Analyst**\n\n📧 manishkshyp0123@gmail.com · 📍 India · 🐙 [github.com/ilikemanish](https://github.com/ilikemanish)\n\n## Education\n- **B.Tech in Computer Science** — Teerthanker Mahaveer University, Moradabad *(2023 – 2027)*\n  Specialization: AI, ML, Deep Learning\n- **Class 12 (CBSE)** — St Anthony's Sr Sec School, Dugawar *(2023)*\n- **Class 10 (CBSE)** — St Anthony's Sr Sec School, Dugawar *(2021)*\n\n## Experience\n- **Data Analyst Intern** — 3Skill *(2 Months)*\n  Tools: Excel, SQL, Python, Power BI\n\n## Technical Skills\n- **Python** 90% · **SQL** 85% · **Excel** 90%\n- **Power BI** 80% · **Tableau** 75%\n- **Statistics** 70% · **Machine Learning** 60%\n\n## Soft Skills\nCritical Thinking, Team Leading, Decision Making, Data Storytelling, Collaboration, Problem Solving\n\n## Key Projects\n- **Blinkit Sales & Outlet Performance** — Power BI, DAX\n- **Smoking Health Risk Analysis** — Power BI, DAX\n- **PhonePe UPI Transaction Analytics Dashboard** — Power BI, DAX\n- **Student Depression Data Analysis** — Tableau, SQL\n- **UPI Transactions Analysis Dashboard** — Tableau\n- **Sales & Profit Analysis Dashboard** — Tableau\n- **Netflix SQL Data Analysis** — PostgreSQL\n- **Online Book Store Analysis** — PostgreSQL\n- **Swiggy Sales Dashboard** — Microsoft Excel\n- **Decathlon Sales & Customer Analytics** — Microsoft Excel\n\n## Languages\nHindi, English\n`;
                 navigator.clipboard.writeText(md).then(function() {
                     copyMdBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
                     setTimeout(function() { copyMdBtn.innerHTML = '<i class="fa-solid fa-file-lines"></i> Copy as Markdown'; }, 2200);
@@ -971,7 +971,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { label: 'SQL', value: 85, projects: 4 },
         { label: 'Excel', value: 90, projects: 6 },
         { label: 'Power BI', value: 80, projects: 5 },
-        { label: 'Tableau', value: 75, projects: 2 },
+        { label: 'Tableau', value: 75, projects: 3 },
         { label: 'Statistics', value: 70, projects: 1 }
     ];
     function getCSSVar(name) { return getComputedStyle(document.body).getPropertyValue(name).trim() || ''; }
@@ -1101,6 +1101,9 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: 'Blinkit_Sales_Analysis_PowerBI', description: 'An interactive Power BI dashboard analyzing Blinkit sales, product categories, outlet performance, location trends, and key business KPIs.', language: 'Power BI', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Blinkit_Sales_Analysis_PowerBI' },
         { name: 'Smoking_Health_Risk_Analysis_PowerBI', description: 'An interactive Power BI dashboard analysing 2,500 patient records across smoking exposure, organ condition, and health-risk indicators.', language: 'Power BI', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Smoking_Health_Risk_Analysis_PowerBI' },
         { name: 'PhonePe_Transactions_Analysis_PowerBI', description: 'An interactive Power BI + web studio analyzing 3.0L PhonePe UPI transactions across services, age cohorts, payment status, and weekday/weekend behavior.', language: 'Power BI', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/PhonePe_Transactions_Analysis_PowerBI' },
+        { name: 'Student-Depression-Data-Analysis', description: 'SQL + Tableau analysis on 27,920+ student records revealing academic pressure, financial stress, and sleep-driven depression patterns.', language: 'Tableau', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Student-Depression-Data-Analysis' },
+        { name: 'UPI-Transactions-Analysis-Tableau', description: 'Interactive Tableau dashboard analyzing transaction success/failure, city-wise volume, payment methods, merchant insights, and customer demographics.', language: 'Tableau', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/UPI-Transactions-Analysis-Tableau' },
+        { name: 'Sales-Profit-Analysis-Tableau', description: 'Tableau dashboard on Sample Superstore data revealing regional performance, customer segmentation, product insights, and profit-driver recommendations.', language: 'Tableau', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Sales-Profit-Analysis-Tableau' },
         { name: 'Netflix-SQL-Data-Analysis', description: 'A PostgreSQL-based analysis exploring content types, ratings, genres, and release trends to answer 15 practical business questions.', language: 'SQL', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Netflix-SQL-Data-Analysis' },
         { name: 'Online_Book_Store_Analysis_Using_SQL', description: 'An end-to-end data analysis project using PostgreSQL to analyze books, customers, orders, sales, and inventory.', language: 'SQL', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/ilikemanish/Online_Book_Store_Analysis_Using_SQL' },
         { name: 'Swiggy-Sales-Analysis-Dashboard', description: 'An interactive Microsoft Excel dashboard analyzing Swiggy food delivery data to track revenue and customer preferences.', language: 'HTML', stargazers_count: 0, forks_count: 0, html_url: 'https://github.com/Manish-kashyap/Swiggy-Sales-Analysis-Dashboard' },
@@ -1110,7 +1113,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const colors = {
             Python: '#3572A5', SQL: '#e38c00', 'Jupyter Notebook': '#DA5B0B',
             JavaScript: '#f1e05a', HTML: '#e34c26', CSS: '#563d7c',
-            TypeScript: '#3178c6', PLpgSQL: '#336790', 'Power BI': '#F2C811'
+            TypeScript: '#3178c6', PLpgSQL: '#336790', 'Power BI': '#F2C811', Tableau: '#e97627'
         };
         return colors[lang] || '#00f0ff';
     }
@@ -1151,7 +1154,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ghBody.innerHTML = '<div class="gh-loading"><i class="fa-solid fa-spinner"></i>Loading activity...</div>';
         const controller = new AbortController();
         const t = setTimeout(function() { controller.abort(); }, 7000);
-        fetch('https://api.github.com/users/ilikemanish/repos?sort=updated&per_page=6', { signal: controller.signal })
+        fetch('https://api.github.com/users/ilikemanish/repos?sort=updated&per_page=10', { signal: controller.signal })
             .then(function(res) {
                 clearTimeout(t);
                 if (!res.ok) throw new Error('API error ' + res.status);
@@ -1159,7 +1162,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(function(data) {
                 if (!Array.isArray(data) || !data.length) throw new Error('No repos');
-                renderRepos(data.slice(0, 6));
+                renderRepos(data.slice(0, 10));
                 ghLoaded = true;
             })
             .catch(function() {
