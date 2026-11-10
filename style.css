@@ -483,7 +483,6 @@ section { padding: 90px 6% 70px; width: 100%; border-bottom: 1px solid var(--bor
 .powerbi-video-pause-hint i { color: var(--accent-emerald); font-size: 0.65rem; }
 .powerbi-video-container:hover .powerbi-video-pause-hint { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-/* --- PhonePe Preview Container --- */
 .phonepe-static-preview {
     position: relative; width: 100%;
     border-radius: 12px; overflow: hidden; margin-bottom: 10px;
@@ -507,7 +506,6 @@ section { padding: 90px 6% 70px; width: 100%; border-bottom: 1px solid var(--bor
     filter: saturate(1.15) contrast(1.06) brightness(1.03);
 }
 
-/* --- Tableau Preview Container --- */
 .tableau-static-preview {
     position: relative; width: 100%;
     border-radius: 12px; overflow: hidden; margin-bottom: 10px;
